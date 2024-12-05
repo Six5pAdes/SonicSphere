@@ -15,22 +15,22 @@ module.exports = (sequelize, DataTypes) => {
 
   User.init(
     {
-      // firstName: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     len: [1, 20],
-      //     isAlpha: true,
-      //   },
-      // },
-      // lastName: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     len: [1, 20],
-      //     isAlpha: true,
-      //   },
-      // },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1, 20],
+          isAlpha: true,
+        },
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1, 20],
+          isAlpha: true,
+        },
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
