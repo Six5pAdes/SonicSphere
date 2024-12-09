@@ -9,11 +9,11 @@ const cookieParser = require("cookie-parser");
 const { environment } = require("./config");
 const isProduction = environment === "production";
 
-const routes = require("./routes");
-
 const app = express();
 
 const { ValidationError } = require("sequelize");
+
+const routes = require("./routes");
 
 app.use(morgan("dev"));
 
@@ -46,19 +46,21 @@ app.use(
 
 app.use(routes); // Connect all the routes
 
+// Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
   err.title = "Resource Not Found";
-  err.errors = ["The requested resource couldn't be found."];
+  err.errors = { message: "The requested resource couldn't be found." };
   err.status = 404;
   next(err);
 });
 
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
+  // check if error is a Sequelize error:
   if (err instanceof ValidationError) {
     let errors = {};
-    for (let error in err.errors) {
+    for (let error of err.errors) {
       errors[error.path] = error.message;
     }
     err.title = "Validation error";
