@@ -53,8 +53,8 @@ module.exports = {
         },
         {
           organizerId: 4,
-          name: "Mystic Roses",
-          about: "A group for people who love to explore the mystical!",
+          name: "Roses and Thorns",
+          about: "A group for people who enjoy the beauty of life!",
           type: "in person",
           private: false,
           city: "Denver",

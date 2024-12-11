@@ -28,7 +28,7 @@ module.exports = {
         },
         {
           eventId: 2,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1717659612/sonic-tails_uubbrm.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1717659612/sonic_tails_uubbrm.jpg",
           preview: true,
         },
         {
@@ -73,7 +73,7 @@ module.exports = {
         },
         {
           eventId: 11,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1719098514/cream-cheese-blaze_nbj62j.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1719098514/cream_blaze_nbj62j.jpg",
           preview: true,
         },
         {
@@ -113,12 +113,12 @@ module.exports = {
         },
         {
           eventId: 19,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1713725285/fang-trip_kpxnxe.png",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1713725285/fang_trip_kpxnxe.png",
           preview: true,
         },
         {
           eventId: 20,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1721541015/jet-shadow_p3nhbd.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1721541015/jet_shadow_p3nhbd.jpg",
           preview: true,
         },
         {
