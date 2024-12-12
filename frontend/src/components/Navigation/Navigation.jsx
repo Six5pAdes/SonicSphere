@@ -7,16 +7,20 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     return (
-        <ul>
-            <li>
-                <NavLink to="/">Home</NavLink>
-            </li>
+        <div id='Navbar'>
+            <NavLink to="/">
+                <img id='logo' alt='Sonic Sphere' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1711420194/sonics-jun-2016_ghv0c8.png' href='/' />
+            </NavLink>
+            <NavLink to='/' className='site-title'>Sonic Sphere</NavLink>
             {isLoaded && (
-                <li>
+                <div className='profile-area' id={sessionUser ? "logged" : "not-logged"}>
+                    {sessionUser &&
+                        <NavLink id='create-group-link' to={'/groups/new'}>Start a new group</NavLink>
+                    }
                     <ProfileButton user={sessionUser} />
-                </li>
+                </div>
             )}
-        </ul>
+        </div>
     );
 }
 

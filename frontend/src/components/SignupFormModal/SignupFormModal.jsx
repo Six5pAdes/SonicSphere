@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import * as sessionActions from '../../store/session';
@@ -14,6 +14,7 @@ function SignupFormModal() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
+    const [disabled, setDisabled] = useState(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,75 +42,100 @@ function SignupFormModal() {
         });
     };
 
+    useEffect(() => {
+        let boolean = true;
+        if (
+            username.length >= 4 &&
+            password.length >= 6 &&
+            email.length > 0 &&
+            firstName.length > 0 &&
+            lastName.length > 0 &&
+            confirmPassword.length > 0
+        ) {
+            boolean = false;
+        }
+        setDisabled(boolean);
+    }, [username, password, email, firstName, lastName, confirmPassword]);
+
     return (
-        <>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Email
+        <div id='signup-modal'>
+            <h1 id='signup-header'>Sign Up</h1>
+            <form id='signup-form' onSubmit={handleSubmit}>
+                <label className='signup-labels'>
                     <input
+                        className='signup-inputs'
                         type="text"
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
+                    // required
                     />
                 </label>
-                {errors.email && <p>{errors.email}</p>}
-                <label>
-                    Username
+                {errors.email && <p className='error-msg' style={{ color: 'red' }}>{errors.email}</p>}
+                <label className='signup-labels'>
                     <input
+                        className='signup-inputs'
                         type="text"
+                        placeholder='Username'
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        required
+                    // required
                     />
                 </label>
-                {errors.username && <p>{errors.username}</p>}
-                <label>
-                    First Name
+                {errors.username && <p className='error-msg' style={{ color: 'red' }}>{errors.username}</p>}
+                <label className='signup-labels'>
                     <input
+                        className='signup-inputs'
                         type="text"
+                        placeholder='First Name'
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        required
+                    // required
                     />
                 </label>
-                {errors.firstName && <p>{errors.firstName}</p>}
-                <label>
-                    Last Name
+                {errors.firstName && <p className='error-msg' style={{ color: 'red' }}>{errors.firstName}</p>}
+                <label className='signup-labels'>
                     <input
+                        className='signup-inputs'
                         type="text"
+                        placeholder='Last Name'
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        required
+                    // required
                     />
                 </label>
-                {errors.lastName && <p>{errors.lastName}</p>}
-                <label>
-                    Password
+                {errors.lastName && <p className='error-msg' style={{ color: 'red' }}>{errors.lastName}</p>}
+                <label className='signup-labels'>
                     <input
+                        className='signup-inputs'
                         type="password"
+                        placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
+                    // required
                     />
                 </label>
-                {errors.password && <p>{errors.password}</p>}
-                <label>
-                    Confirm Password
+                {errors.password && <p className='error-msg' style={{ color: 'red' }}>{errors.password}</p>}
+                <label className='signup-labels'>
                     <input
+                        className='signup-inputs'
                         type="password"
+                        placeholder='Confirm Password'
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
+                    // required
                     />
                 </label>
                 {errors.confirmPassword && (
-                    <p>{errors.confirmPassword}</p>
+                    <p className='error-msg' style={{ color: 'red' }}>{errors.confirmPassword}</p>
                 )}
-                <button type="submit">Sign Up</button>
+                {disabled ?
+                    <button id='signup-disabled' className='signup-inputs' type="submit" disabled={disabled}>Sign Up</button>
+                    :
+                    <button id='signup-success' className='signup-inputs' type="submit">Sign Up</button>
+                }
             </form>
-        </>
+        </div>
     );
 }
 
