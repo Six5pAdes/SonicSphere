@@ -1,0 +1,105 @@
+#landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    top: 50px;
+}
+
+#intro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.intro-text {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    color: #3061e3;
+}
+
+.intro-text h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#what-to-do {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color:#FFE5B4
+}
+
+#instructions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#site-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 62%;
+}
+
+.action-img {
+    width: 100%;
+    height: 275px;
+    border-radius: 15px;
+}
+
+.action {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.action-link {
+    padding: 0px;
+    margin: 0px;
+    color: #3061e3;
+    text-decoration: none;
+}
+
+.action-link:hover:not(.unavailable) {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.description {
+    margin: 4px;
+}
+
+#buttons {
+    width: 10%;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#join-button {
+    width: 100%;
+    height: 100%;
+    font-size: large;
+    font-weight: 500;
+    box-shadow: 1px 2px 2px lightgrey;
+    border: solid 1px;
+    border-radius: 5px;
+}
+
+#join-button:hover {
+    color: #3061e3;
+    box-shadow: 1px 1px 5px 1px #FFD700;
+    border: none;
+  }
+
+.unavailable {
+    color: grey;
+}
+
+.unavailable:hover {
+    cursor:default;
+}

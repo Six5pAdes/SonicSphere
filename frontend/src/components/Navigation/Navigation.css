@@ -68,4 +68,6 @@
 
 #create-group-link:hover {
     color: #3061e3;
+    text-decoration: underline;
+    font-weight: bold;
 }
