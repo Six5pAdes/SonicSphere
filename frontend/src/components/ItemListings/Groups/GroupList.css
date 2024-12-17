@@ -1,4 +1,4 @@
-#groups-list-sec {
+#group-list-sec {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,9 +15,11 @@
 
 #groups-title {
     position: relative;
-    top: 15px;
-    right: 215px;
+    top: 20px;
+    /* right: 215px; */
     font-weight: 400;
+    font-size: 1.5em;
+    padding-bottom: 10px;
 }
 
 .group-img {
@@ -40,18 +42,27 @@
     height: 250px;
     border-top: 1px solid lightgrey;
     width: 650px;
-    background-color: #90C494;
-    border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
     word-wrap: break-word;
+    padding: 15px;
+}
+
+.one-group > * {
+    margin: 5px;
 }
 
 .one-group:hover {
     cursor: pointer;
+    border: 2px solid #da2528;
+    border-radius: 1em;
+    background-color: #FFE5B4;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px grey;
+    color: #3061e3;
 }
 
-.group-information {
+.group-info {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -59,7 +70,7 @@
     word-wrap: break-word;
 }
 
-.group-information > * {
+.group-info > * {
     margin: 0px;
 }
 
@@ -70,10 +81,6 @@
 
 .group-description > h5 {
     margin: 10px;
-}
-
-.one-group > * {
-    margin: 5px;
 }
 
 .group-name {

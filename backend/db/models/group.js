@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         hooks: true,
       });
       Group.belongsToMany(models.User, {
+        as: "Members",
         through: models.Membership,
         foreignKey: "groupId",
         otherKey: "userId",
@@ -44,13 +45,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [1, 255],
+          len: [1, 60],
         },
       },
       about: {
         type: DataTypes.TEXT,
         validate: {
-          len: [1, 2000],
+          len: [1, 1000],
         },
       },
       type: {

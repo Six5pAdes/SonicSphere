@@ -21,14 +21,14 @@ export default function OneGroup({ group }) {
         <div className="one-group-contain">
             <div className="one-group" onClick={handleClick}>
                 <div className="group-img-contain">
-                    <img className="group-img" src={group?.image} alt="group" />
+                    <img className="group-img" src={group?.previewImage} alt="group image" />
                 </div>
                 <div className="group-info">
                     <h2 className="group-name">{group?.name}</h2>
                     <h5 className="group-location">{`${group.city}, ${group.state}`}</h5>
                     <p className="group-about">{group?.about}</p>
                     <div className="group-description">
-                        <h5># {events.length} event&#40;s&#41;</h5>
+                        <h5># {events?.length} event&#40;s&#41;</h5>
                         <h5>&bull;</h5>
                         <h5>{group.private ? "Private" : "Public"}</h5>
                     </div>

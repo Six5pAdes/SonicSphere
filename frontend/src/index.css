@@ -22,3 +22,7 @@ main {
 button:hover {
     cursor: pointer;
 }
+
+.error-msg {
+    color: red
+}

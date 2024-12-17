@@ -16,7 +16,7 @@ export default function GroupList() {
     return (
         <section id="group-list-sec">
             <AllLists />
-            <h5 id="groups-title">All Current Groups</h5>
+            <h3 id="groups-title">All Current Groups</h3>
             <ul id="group-list">
                 {groups.map(group => <OneGroup key={group.id} group={group} />)}
             </ul>

@@ -232,7 +232,7 @@ router.get("/:groupId", idCheck, async (req, res) => {
 
   const group = await Group.findByPk(id);
 
-  let host = await group.getUser({
+  const organizer = await group.getUser({
     attributes: ["id", "firstName", "lastName"],
   });
   const venues = await group.getVenues();
@@ -241,7 +241,7 @@ router.get("/:groupId", idCheck, async (req, res) => {
   res.json({
     ...group.dataValues,
     GroupImages: imagePrev,
-    Host: host,
+    Organizer: organizer,
     Venues: venues,
   });
 });

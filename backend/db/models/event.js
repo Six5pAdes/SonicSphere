@@ -42,14 +42,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [1, 255],
+          len: [1, 60],
         },
       },
       description: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
-          len: [1, 2000],
+          len: [1, 1000],
         },
       },
       type: {

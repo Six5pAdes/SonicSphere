@@ -26,7 +26,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           options(value) {
-            if (!["attending", "pending", "waitlist"].includes(value)) {
+            if (
+              value !== "attending" &&
+              value !== "pending" &&
+              value !== "waitlist"
+            ) {
               throw new Error(
                 "Status must be 'attending', 'pending', or 'waitlist'"
               );

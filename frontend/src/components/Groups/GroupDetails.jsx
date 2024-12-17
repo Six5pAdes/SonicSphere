@@ -46,8 +46,8 @@ export default function GroupDetails() {
 
     return (
         <div id="group-details-contain">
-            <Link to="/groups" className="back"><i className="fa-solid fa-angle-left"></i>Groups</Link>
-            <div id="group-details-contain">
+            <Link to="/groups" className="back"><i className="fa-solid fa-angle-left"></i> Groups</Link>
+            <div id="details-body">
                 <div id="group-img-contain">
                     <img id="group-img" src={groupImg} alt="Group Preview" />
                 </div>
@@ -63,7 +63,7 @@ export default function GroupDetails() {
                         <h4>Organized by {`${group?.Organizer?.firstName} ${group?.Organizer?.lastName}`}</h4>
                     </div>
                     <span>
-                        {userId === group?.organizerId && (
+                        {userId === group?.organizerId &&
                             <div className="group-actions">
                                 <button onClick={updateGroup}>Edit Group</button>
                                 <button onClick={newEvent}>New Event</button>
@@ -78,12 +78,12 @@ export default function GroupDetails() {
                                     )}
                                 />
                             </div>
-                        )}
-                        {userId !== group?.organizerId && (
+                        }
+                        {userId !== group?.organizerId &&
                             <div className="to-be-added">
-                                <button id='join-button' onClick={() => alert("Feature coming soon")}>Join</button>
+                                <button id='join-button' onClick={() => alert("Feature coming soon")}>Join Group</button>
                             </div>
-                        )}
+                        }
                     </span>
                 </div>
             </div>
