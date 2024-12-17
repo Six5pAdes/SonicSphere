@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-// import OpenModalMenuItem from './OpenModalMenuItem';
-import OpenModalNonItem from './OpenModalNonItem';
+import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { useNavigate, NavLink } from 'react-router-dom';
@@ -47,8 +46,8 @@ function ProfileButton({ user }) {
     return (
         <>
             {user ? (
-                <div className='dropdown-container'>
-                    <div className='profile-container' onClick={toggleMenu}>
+                <div className='dropdown-contain'>
+                    <div className='profile-contain' onClick={toggleMenu}>
                         <i className="fas fa-user-circle" />
                         {showMenu ? <i className="fas fa-caret-up" /> : <i className="fas fa-caret-down" />}
                     </div>
@@ -56,8 +55,12 @@ function ProfileButton({ user }) {
                         <ul>
                             <li className='floating'>Hello, {user.firstName}</li>
                             <li className='floating'>{user.email}</li>
-                            <li className='floating'><NavLink className='dropdown-link' to='/groups'>View Groups</NavLink></li>
-                            <li className='floating'><NavLink className='dropdown-link' to='/events'>View Events</NavLink></li>
+                            <li className='floating'>
+                                <NavLink className='dropdown-link' to='/groups'>View Groups</NavLink>
+                            </li>
+                            <li className='floating'>
+                                <NavLink className='dropdown-link' to='/events'>View Events</NavLink>
+                            </li>
                             <li className='floating logout'>
                                 <button onClick={logout}>Log Out</button>
                             </li>
@@ -66,8 +69,8 @@ function ProfileButton({ user }) {
                 </div>
             ) : (
                 <div>
-                    <OpenModalNonItem modalComponent={<LoginFormModal />} itemText='Log In' onItemClick={closeMenu} />
-                    <OpenModalNonItem modalComponent={<SignupFormModal />} itemText='Sign Up' onItemClick={closeMenu} />
+                    <OpenModalMenuItem modalComponent={<LoginFormModal />} itemText='Log In' onItemClick={closeMenu} />
+                    <OpenModalMenuItem modalComponent={<SignupFormModal />} itemText='Sign Up' onItemClick={closeMenu} />
                 </div>
             )}
         </>

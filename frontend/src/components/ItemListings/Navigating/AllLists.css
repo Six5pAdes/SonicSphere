@@ -1,0 +1,31 @@
+.all-lists {
+    display: flex;
+    position: relative;
+    right: 200px;
+    top: 20px;
+    justify-content: space-between;
+    width: 160px;
+}
+
+.all-lists > * {
+    color: grey;
+}
+
+.all-lists > *:hover {
+    text-decoration: underline;
+}
+
+.all-lists > .active {
+    color: teal;
+    text-decoration: underline;
+}
+
+.all-lists > .active:hover {
+    cursor: default;
+}
+
+.list-link {
+    font-size: 1.5rem;
+    align-self: left;
+    text-decoration: none;
+}

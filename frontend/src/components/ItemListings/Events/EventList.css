@@ -1,0 +1,63 @@
+/* tb added */
+
+.event-image {
+    width: 200px;
+}
+
+.one-event-contain {
+    width: 200px;
+    height: 200px;
+}
+
+.event {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    background-color: #90C494;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.event:hover {
+    cursor: pointer;
+}
+
+.block {
+    border-top: 1px solid lightgrey;
+    width: 750px;
+    display: flex;
+    justify-content: center;
+}
+
+.event-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 5px;
+}
+
+.event-display > * {
+    margin: 5px;
+}
+
+.event-description {
+    align-self: left;
+    word-wrap: break-word;
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    width: 65%;
+    bottom: 35px;
+    word-wrap: break-word;
+}
+
+.event-info > * {
+    margin: 0px;
+    font-weight: 500;
+}

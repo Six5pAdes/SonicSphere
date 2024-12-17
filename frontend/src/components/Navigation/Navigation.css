@@ -56,11 +56,6 @@
     width: 15%;
 }
 
-.floating {
-    position: relative;
-    top: 15px;
-}
-
 #create-group-link {
     text-decoration: none;
     color: black;
