@@ -26,7 +26,7 @@ module.exports = {
           organizerId: 1,
           name: "Sonic's Team Adventurers",
           about:
-            "We're a group of adventurers who love to explore the world and have fun!",
+            "We're a group of thrill-seekers who love to explore the world and have fun!",
           type: "in person",
           private: false,
           city: "Atlanta",
@@ -63,7 +63,7 @@ module.exports = {
         {
           organizerId: 5,
           name: "Release the Angst",
-          about: "A group for people who love to explore the dark side!",
+          about: "A group for people always living on the dark side!",
           type: "in person",
           private: false,
           city: "Seattle",
@@ -81,7 +81,8 @@ module.exports = {
         {
           organizerId: 7,
           name: "Family Friendly Journeys",
-          about: "A group for families who love to explore the world!",
+          about:
+            "A group designed for families who want to stay safe while having a good time, always rated G or PG!",
           type: "in person",
           private: false,
           city: "Chicago",
@@ -90,7 +91,7 @@ module.exports = {
         {
           organizerId: 8,
           name: "Service for a Day",
-          about: "A group for people who love to give back to the community!",
+          about: "A group for people who want to give back to the community!",
           type: "in person",
           private: false,
           city: "Phoenix",
@@ -100,7 +101,7 @@ module.exports = {
           organizerId: 9,
           name: "Enjoying the Past for the Moment",
           about:
-            "We love to break the time barrier, explore the past, and have fun!",
+            "We love breaking the time barrier, exploring the past, and bonding together in the process!",
           type: "in person",
           private: false,
           city: "Salt Lake City",
@@ -137,7 +138,7 @@ module.exports = {
         {
           organizerId: 13,
           name: "Outdoor Enjoyments",
-          about: "We love to explore the outdoors!",
+          about: "We love to traverse the outdoors!",
           type: "in person",
           private: false,
           city: "Minneapolis",
@@ -147,7 +148,7 @@ module.exports = {
           organizerId: 14,
           name: "Reconnaissance",
           about:
-            "We love to explore and discover new things (and definitely NOT for the potential monetary gain)!",
+            "We love to explore and discover new things, and definitely NOT for the potential monetary gain!",
           type: "in person",
           private: false,
           city: "San Diego",
@@ -165,7 +166,7 @@ module.exports = {
         {
           organizerId: 16,
           name: "Curiosities",
-          about: "We love to explore the unknown!",
+          about: "We love to dive into the unknown!",
           type: "in person",
           private: false,
           city: "Milwaukee",

@@ -56,10 +56,12 @@ function ProfileButton({ user }) {
                             <li className='floating'>Hello, {user.firstName}</li>
                             <li className='floating'>{user.email}</li>
                             <li className='floating'>
-                                <NavLink className='dropdown-link' to='/groups'>View Groups</NavLink>
+                                {/* replace with Manage ______ later */}
+                                <NavLink className='dropdown-link' to='/groups'>Your Groups</NavLink>
                             </li>
                             <li className='floating'>
-                                <NavLink className='dropdown-link' to='/events'>View Events</NavLink>
+                                {/* replace with Manage ______ later */}
+                                <NavLink className='dropdown-link' to='/events'>Your Events</NavLink>
                             </li>
                             <li className='floating logout'>
                                 <button onClick={logout}>Log Out</button>

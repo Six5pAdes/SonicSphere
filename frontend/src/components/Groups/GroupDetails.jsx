@@ -81,7 +81,7 @@ export default function GroupDetails() {
                         }
                         {userId !== group?.organizerId &&
                             <div className="to-be-added">
-                                <button id='join-button' onClick={() => alert("Feature coming soon")}>Join Group</button>
+                                <button id='join-button' onClick={() => alert("Feature coming soon")}>Join this group</button>
                             </div>
                         }
                     </span>

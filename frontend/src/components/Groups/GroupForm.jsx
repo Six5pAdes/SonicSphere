@@ -80,19 +80,21 @@ const GroupForm = ({ group, formType, groupId }) => {
         <form id="group-form" onSubmit={handleSubmit}>
             {formType === 'Create Group' ?
                 <div id="groupform-heading">
-                    <h2>Create a Group</h2>
-                    <h5>Let&#39;s create your new group!</h5>
+                    <h4>BECOME AN ORGANIZER</h4>
+                    <h3>We&#39;ll walk you through a few steps to build your local community</h3>
                 </div>
                 :
                 <div id="groupform-heading">
-                    <h2>Update a Group</h2>
+                    <h4>UPDATE YOUR GROUP&#39;S INFORMATION</h4>
+                    <h3>We&#39;ll walk you through a few steps to update your group&#39;s information</h3>
                 </div>
             }
 
             <div id="groupform-inputs-area">
                 {/* location */}
                 <div className="groupform-input">
-                    <h2>Where is your group located?</h2>
+                    <h2>First&#44; set your group&#39;s location.</h2>
+                    <p>Meetup groups meet locally&#44; in person and online. We&#39;ll connect you with people in your area&#44; and more can join you online.</p>
                     <label>
                         <input
                             type="text"
@@ -106,12 +108,14 @@ const GroupForm = ({ group, formType, groupId }) => {
 
                 {/* name */}
                 <div className="groupform-input">
-                    <h2>What will your group be called?</h2>
+                    <h2>What will your group&#39;s name be?</h2>
+                    <p>Choose a name that will give people a clear idea of what your group is about.<br />
+                        Feel free to get creative! You can edit this later if you change your mind.</p>
                     <label>
                         <textarea
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            placeholder="Group Name"
+                            placeholder="What is your group name?"
                         />
                     </label>
                     {submitted && <div className="error-msg">{errors.name}</div>}
@@ -119,12 +123,18 @@ const GroupForm = ({ group, formType, groupId }) => {
 
                 {/* about */}
                 <div className="groupform-input">
-                    <h2>Describe what your group will be doing.</h2>
+                    <h2>Now describe what your group will be about</h2>
+                    <p>People will see this when we promote your group&#44; but you&#39;ll be able to add to it later&#44; too.</p>
+                    <ol>
+                        <li>What&#39;s the purpose of the group?</li>
+                        <li>Who should join?</li>
+                        <li>What will you do at your events?</li>
+                    </ol>
                     <label>
                         <textarea
                             value={about}
                             onChange={(e) => setAbout(e.target.value)}
-                            placeholder="Group Description (at least 50 characters)"
+                            placeholder="Please write at least 50 characters"
                         />
                     </label>
                     {submitted && <div className="error-msg">{errors.about}</div>}
@@ -132,16 +142,16 @@ const GroupForm = ({ group, formType, groupId }) => {
 
                 {/* extra stuff */}
                 <div className="groupform-input">
-                    <h2>Other Group Listing Requirements</h2>
+                    <h2>Final steps...</h2>
                     {/* group type */}
                     <div className={'selector type'}>
-                        <h4>Will this be an online or in person group?</h4>
+                        <h4>Is this an in person or online group?</h4>
                         <label>
                             <select
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}
                             >
-                                <option value={''} disabled>Select a group type</option>
+                                <option value={''} disabled>&#40;select one&#41;</option>
                                 <option value={'Online'}>Online</option>
                                 <option value={'In Person'}>In Person</option>
                             </select>
@@ -150,13 +160,13 @@ const GroupForm = ({ group, formType, groupId }) => {
                     </div>
                     {/* group private */}
                     <div className={'selector private'}>
-                        <h4>Will this group be private?</h4>
+                        <h4>Is this group private or public?</h4>
                         <label>
                             <select
                                 value={privateGroup}
                                 onChange={(e) => setPrivateGroup(e.target.value)}
                             >
-                                <option value={''} disabled>Select a privacy setting</option>
+                                <option value={''} disabled>&#40;select one&#41;</option>
                                 <option value={true}>Private</option>
                                 <option value={false}>Public</option>
                             </select>
@@ -165,7 +175,7 @@ const GroupForm = ({ group, formType, groupId }) => {
                     </div>
                     {/* group image */}
                     <div >
-                        <h4>Upload a group image</h4>
+                        <h4>Please add an image url for your group below:</h4>
                         <label>
                             <textarea
                                 placeholder="Image URL"
