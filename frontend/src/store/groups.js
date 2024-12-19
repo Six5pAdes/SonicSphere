@@ -6,6 +6,7 @@ const GET_GROUPS = "groups/GET_GROUPS";
 const GET_USER_GROUPS = "groups/GET_USER_GROUPS";
 const GET_GROUP_BY_ID = "groups/GET_GROUP_BY_ID";
 const CREATE_GROUP = "groups/CREATE_GROUP";
+const CREATE_GROUP_IMAGE = "groupImages/CREATE_GROUP_IMAGE";
 const DELETE_GROUP = "groups/DELETE_GROUP";
 
 // Define Action Creators
@@ -31,6 +32,13 @@ const createGroup = (group) => {
   return {
     type: CREATE_GROUP,
     group,
+  };
+};
+const createGroupImage = (groupId, image) => {
+  return {
+    type: CREATE_GROUP_IMAGE,
+    groupId,
+    image,
   };
 };
 const deleteGroup = (groupId) => {
@@ -110,6 +118,27 @@ export const thunkCreateGroup = (group) => async (dispatch) => {
   }
 };
 
+export const thunkCreateGroupImage = (groupId, image) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${groupId}/images`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      url: image,
+      preview: true,
+    }),
+  });
+
+  if (response.ok) {
+    const image = await response.json();
+    dispatch(createGroupImage(groupId, image));
+    return image;
+  } else {
+    return await response.json();
+  }
+};
+
 export const thunkUpdateGroup = (group, groupId) => async (dispatch) => {
   const response = await csrfFetch(`/api/groups/${groupId}`, {
     method: "PUT",
@@ -181,6 +210,14 @@ export default function groupsReducer(state = { ...initialState }, action) {
       const newState = { ...state, Groups: { ...state.Groups } };
       delete newState.Groups[action.groupId];
       delete newState[action.groupId];
+      return newState;
+    }
+    case CREATE_GROUP_IMAGE: {
+      const newState = { ...state };
+      if (!newState[action.groupId]) {
+        newState[action.groupId] = {};
+      }
+      newState[action.groupId][action.image.id] = action.image;
       return newState;
     }
     default:

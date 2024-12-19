@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { thunkCreateGroup, thunkUpdateGroup } from '../../store/groups'
-import { thunkCreateGroupImage } from '../../store/groupimages'
+import { thunkCreateGroup, thunkCreateGroupImage, thunkUpdateGroup } from '../../store/groups'
 import './GroupForm.css'
 
 const GroupForm = ({ group, formType, groupId }) => {

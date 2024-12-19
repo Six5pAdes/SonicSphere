@@ -9,6 +9,10 @@ import GroupList from './components/ItemListings/Groups/GroupList';
 import GroupDetails from './components/Groups/GroupDetails';
 import NewGroupPage from './components/Groups/NewGroupPage';
 import UpdateGroup from './components/Groups/UpdateGroup';
+import EventList from './components/ItemListings/Events/EventList';
+import EventDetails from './components/Events/EventDetails'
+import NewEventPage from './components/Events/NewEventPage';
+import UpdateEvent from './components/Events/UpdateEvent';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -52,6 +56,22 @@ const router = createBrowserRouter([
       {
         path: '/groups/:groupId/edit',
         element: <UpdateGroup />
+      },
+      {
+        path: '/events',
+        element: <EventList />
+      },
+      {
+        path: '/events/:eventId',
+        element: <EventDetails />
+      },
+      {
+        path: '/groups/:groupId/events/new',
+        element: <NewEventPage />
+      },
+      {
+        path: '/events/:eventId/edit',
+        element: <UpdateEvent />
       },
       {
         path: '*',

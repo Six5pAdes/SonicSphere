@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetGroups, selectGroupsArray } from '../../../store/groups'
 import { useEffect } from "react";
 import OneGroup from "./OneGroup";
-import AllLists from '../Navigating/AllLists';
+import AllLists from '../AllLists/AllLists';
 import './GroupList.css'
 
 export default function GroupList() {

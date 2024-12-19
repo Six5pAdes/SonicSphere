@@ -65,6 +65,7 @@ export const thunkGetEvents = () => async (dispatch) => {
     return await response.json();
   }
 };
+
 export const thunkGetGroupEvents = (groupId) => async (dispatch) => {
   const response = await csrfFetch(`/api/groups/${groupId}/events`);
   if (response.ok) {
@@ -75,6 +76,7 @@ export const thunkGetGroupEvents = (groupId) => async (dispatch) => {
     return await response.json();
   }
 };
+
 export const thunkGetOneEvent = (eventId) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/${eventId}`);
   if (response.ok) {
@@ -84,11 +86,12 @@ export const thunkGetOneEvent = (eventId) => async (dispatch) => {
     const group = await data.json();
     event.Group = group;
     dispatch(getOneEvent(event));
-    return event.Event;
+    return event;
   } else {
     return await response.json();
   }
 };
+
 export const thunkCreateEvent = (event, groupId) => async (dispatch) => {
   const response = await csrfFetch(`/api/groups/${groupId}/events`, {
     method: "POST",
@@ -110,6 +113,7 @@ export const thunkCreateEvent = (event, groupId) => async (dispatch) => {
     return await response.json();
   }
 };
+
 export const thunkCreateEventImage = (eventId, image) => async (dispatch) => {
   const response = await csrfFetch(`/api/events/${eventId}/images`, {
     method: "POST",
@@ -126,6 +130,24 @@ export const thunkCreateEventImage = (eventId, image) => async (dispatch) => {
     const newImage = await response.json();
     dispatch(createEventImage(eventId, newImage));
     return newImage;
+  } else {
+    return await response.json();
+  }
+};
+
+export const thunkUpdateEvent = (event, eventId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/events/${eventId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(event),
+  });
+
+  if (response.ok) {
+    const updatedEvent = await response.json();
+    dispatch(getOneEvent(updatedEvent));
+    return updatedEvent;
   } else {
     return await response.json();
   }

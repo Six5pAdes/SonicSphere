@@ -17,7 +17,7 @@ export default function GroupDetails() {
 
     const group = useSelector(state => state.groups[groupId]);
     const groupImg = useSelector(state => state.groups.Groups[groupId]?.previewImage);
-    const events = useSelector(state => state.events.Events[groupId?.id]);
+    const events = useSelector(state => state.events.Events[group?.id]);
     const userId = useSelector(state => state.session.user?.id);
 
     const past = useSelector(state => state.events.Past[group?.id]);
@@ -56,7 +56,7 @@ export default function GroupDetails() {
                         <h2 className="group-name">{group?.name}</h2>
                         <h4 className="group-location">{`${group?.city}, ${group?.state}`}</h4>
                         <div className="group-details">
-                            <h4># {events?.length} events</h4>
+                            <h4># {events?.length} event&#40;s&#41;</h4>
                             <h4>&bull;</h4>
                             <h4>{group?.private ? "Private" : "Public"}</h4>
                         </div>
@@ -65,15 +65,15 @@ export default function GroupDetails() {
                     <span>
                         {userId === group?.organizerId &&
                             <div className="group-actions">
-                                <button onClick={updateGroup}>Edit Group</button>
                                 <button onClick={newEvent}>New Event</button>
+                                <button onClick={updateGroup}>Edit Group</button>
                                 <OpenModalMenuItem itemText="Delete Group"
                                     modalComponent={(
                                         <div id='confirm-delete'>
                                             <h2>Confirm Delete</h2>
                                             <span>Are you sure you want to remove this group?</span>
-                                            <button id='delete-complete' type='button' onClick={handleDelete}>Yes (Delete Spot)</button>
-                                            <button id='delete-cancel' type='button' onClick={handleCancel}>No (Keep Spot)</button>
+                                            <button id='delete-complete' type='button' onClick={handleDelete}>Yes (Delete Group)</button>
+                                            <button id='delete-cancel' type='button' onClick={handleCancel}>No (Keep Group)</button>
                                         </div>
                                     )}
                                 />

@@ -13,7 +13,7 @@ export default function OneGroupEvent({ event }) {
             <div className="event" onClick={handleClick}>
                 <div className="event-display">
                     <div className="event-image">
-                        <img src={event.image} alt={`${event.name} image`} />
+                        <img src={event.previewImage} alt={`${event.name} image`} />
                     </div>
                     <div className="event-info">
                         <h3>{event.name}</h3>

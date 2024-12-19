@@ -394,7 +394,7 @@ router.get("/:groupId/events", idCheck, async (req, res) => {
   let groupEvents = await group.getEvents({
     include: [
       {
-        model: Venue,
+        model: Group,
         attributes: ["id", "name", "city", "state"],
       },
       {
