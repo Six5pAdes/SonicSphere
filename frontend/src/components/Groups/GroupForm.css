@@ -11,7 +11,7 @@
     width: 500px;
 }
 
-#groupform-submit {
+#groupform-submit, #cancel-button {
     background-color: #3061e3;
     color: white;
     border: none;
@@ -25,11 +25,10 @@
     font-size: 0.9rem;
     line-height: 1.2rem;
     font-weight: 400;
-    box-shadow: 1px 2px 2px lightgrey;
     border: solid 1px;
 }
 
-#groupform-submit:hover {
+#groupform-submit:hover, #cancel-button:hover {
     color: #FFD700;
     box-shadow: 1px 1px 5px 1px black;
 }

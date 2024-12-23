@@ -75,6 +75,10 @@ const GroupForm = ({ group, formType, groupId }) => {
         setErrors(newErrs);
     }, [submitted, type, privateGroup, image, about, name, location]);
 
+    const handleCancel = () => {
+        navigate(-1)
+    }
+
     return (
         <form id="group-form" onSubmit={handleSubmit}>
             {formType === 'Create Group' ?
@@ -188,6 +192,7 @@ const GroupForm = ({ group, formType, groupId }) => {
             </div>
 
             <button disabled={disabled} id="groupform-submit" type="submit">{formType}</button>
+            <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
         </form>
     )
 }
