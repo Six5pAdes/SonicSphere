@@ -184,7 +184,7 @@ router.get("/", validateEventQuery, async (req, res) => {
     event = event.toJSON();
     event.numAttend = numAttend;
     if (imagePrev.length) {
-      event.imagePrev = imagePrev[0].url;
+      event.previewImage = imagePrev[0].url;
     }
     allEvents.push(event);
   }

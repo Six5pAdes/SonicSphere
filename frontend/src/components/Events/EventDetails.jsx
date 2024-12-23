@@ -27,8 +27,8 @@ export default function EventDetails() {
         return closeModal();
     }
 
-    function handleClick() {
-        nav(`/groups/${group?.id}`)
+    function gotoGroup() {
+        nav(`/groups/${event?.groupId}`)
     }
     function updateEvent() {
         nav(`/events/${eventId}/edit`);
@@ -50,9 +50,9 @@ export default function EventDetails() {
                     </div>
                     <div id='event-details'>
                         {/* navigate to group */}
-                        <div id="grouptile" onClick={handleClick}>
+                        <div id="grouptile" onClick={gotoGroup}>
                             <div id="grouptile-img-container">
-                                <img id="grouptile-img" src={group?.GroupImage?.find((image) => image.preview === true)?.url} alt={`${group?.name} preview image`} />
+                                <img id="grouptile-img" src={group?.GroupImages?.find((image) => image.preview === true)?.url} alt={`${group?.name} preview image`} />
                             </div>
                             <div id="grouptile-info">
                                 <h5>{group?.name}</h5>

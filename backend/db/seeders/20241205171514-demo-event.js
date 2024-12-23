@@ -139,7 +139,7 @@ module.exports = {
           venueId: 7,
           groupId: 7,
           name: "The Blitz",
-          description: "All the world's a stage, and we're all players!",
+          description: "All the world's a stage, and we are all players!",
           type: "in person",
           capacity: 100,
           price: 1,
@@ -243,7 +243,7 @@ module.exports = {
           groupId: 15,
           name: "Race of the Year",
           description:
-            "Try to beat me and take the title of the fastest in the universe! I dare you!",
+            "Try to beat me and take the title of the fastest in the universe! I doubt anyone can beat me, but feel free to try!",
           type: "in person",
           capacity: 8,
           price: 300,

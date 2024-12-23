@@ -1,0 +1,135 @@
+#event-details-contain {
+    padding-left: 15%;
+}
+
+#events-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    left: 10px;
+    margin: 4% 2% 2%;
+    word-wrap: break-word;
+}
+
+#events-head > * {
+    margin: 0px;
+}
+
+#event-body {
+    display: flex;
+    flex-direction: column;
+}
+
+#event-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    margin: 10px;
+}
+
+#event-img-contain {
+    display: flex;
+    height: 400px;
+    width: 500px;
+    justify-content: center;
+}
+
+#event-img {
+    width: 100%;
+    height: 400px;
+}
+
+#event-details {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 5%;
+    background-color:#90C494;
+    width: 60%;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.misc-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.misc-info > * {
+    margin: 5px 10px;
+}
+
+#clock {
+    display: flex;
+    align-items: center;
+}
+
+#organizer-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 150px;
+    position: relative;
+    left: 50%;
+    margin-bottom: 10px;
+}
+
+#organizer-actions > * {
+    margin: 10px;
+    font-size: large;
+    font-weight: 700;
+    box-shadow: 1px 2px 2px lightblue;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: lightcyan;
+}
+
+#organizer-actions > *:hover {
+    color: #3061e3;
+    box-shadow: 1px 1px 5px 1px #FFD700;
+    border: none;
+}
+
+.event-description {
+    word-wrap: break-word;
+}
+
+#grouptile {
+    display: flex;
+    flex-direction: row;
+    background-color: #90C494;
+    width: 60%;
+    height: 150px;
+    border-radius: 15px;
+    height: fit-content;
+}
+
+#grouptile-img-container {
+    display: flex;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+}
+
+#grouptile-img {
+    width: 80%;
+    max-height: 150px;
+}
+
+#grouptile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#grouptile-info > * {
+    margin: 5px 0px;
+}
+
+#grouptile-info > h6 {
+    color: grey;
+}

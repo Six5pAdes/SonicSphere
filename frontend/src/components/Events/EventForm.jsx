@@ -94,6 +94,10 @@ const EventForm = ({ event, formType }) => {
         setErrors(newErrs)
     }, [submitted, type, privateEvent, image, description, name, price, startDate, endDate])
 
+    const handleCancel = () => {
+        navigate(-1)
+    }
+
     return (
         <form id="event-form" onSubmit={handleSubmit}>
             {formType === 'Create Event' ?
@@ -211,6 +215,7 @@ const EventForm = ({ event, formType }) => {
                 {submitted && <div className="error-msg">{errors.description}</div>}
             </div>
             <button disabled={disabled} id="eventform-submit" type="submit">{formType}</button>
+            <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
         </form>
     )
 }
