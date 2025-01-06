@@ -1,5 +1,9 @@
 #event-details-contain {
-    padding-left: 15%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+    width: 90%;
 }
 
 #events-head {
@@ -19,7 +23,6 @@
 #event-body {
     display: flex;
     flex-direction: column;
-    left: 140px;
     width: 100%;
     background-color: whitesmoke;
 }
@@ -48,7 +51,7 @@
     flex-direction: column;
     position: relative;
     margin-top: 5%;
-    background-color:#90C494;
+    background-color: #90C494;
     width: 60%;
     border-radius: 15px;
     padding: 20px;
@@ -83,7 +86,6 @@
     margin: 10px;
     font-size: large;
     font-weight: 700;
-    box-shadow: 1px 2px 2px lightblue;
     border: 1px solid;
     border-radius: 5px;
     background-color: lightcyan;
@@ -107,6 +109,14 @@
     height: 150px;
     border-radius: 15px;
     height: fit-content;
+}
+
+#grouptile:hover {
+    cursor: pointer;
+    border-radius: 1em;
+    background-color: #FFE5B4;
+    box-shadow: 5px 5px 5px grey;
+    color: #3061e3;
 }
 
 #grouptile-img-container {
@@ -136,7 +146,6 @@
 #grouptile-info > h6 {
     color: grey;
 }
-
 
 #grouptile-img-container:hover, #grouptile-info > h5:hover {
     cursor: pointer;

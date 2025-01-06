@@ -66,7 +66,7 @@ export default function GroupDetails() {
                         {userId === group?.organizerId &&
                             <div className="group-actions">
                                 <button onClick={newEvent}>New Event</button>
-                                <button onClick={updateGroup}>Edit Group</button>
+                                <button onClick={updateGroup}>Update Group</button>
                                 <OpenModalMenuItem itemText="Delete Group"
                                     modalComponent={(
                                         <div id='confirm-delete'>
