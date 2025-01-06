@@ -116,10 +116,7 @@
 
 
 #extras-contain {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    /* left: 140px; */
+    left: 140px;
     width: 100%;
     background-color: whitesmoke;
 }

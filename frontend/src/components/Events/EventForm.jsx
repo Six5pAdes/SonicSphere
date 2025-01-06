@@ -105,7 +105,7 @@ const EventForm = ({ event, formType }) => {
                 <h2>{`Update ${event?.name}`}</h2>
             }
             <div id='event-name'>
-                <h4>What is the name of your event?</h4>
+                <h4 className="event-label">What is the name of your event?</h4>
                 <label>
                     <textarea
                         className='event-text'
@@ -118,7 +118,7 @@ const EventForm = ({ event, formType }) => {
             </div>
             <div id='selection'>
                 <div className={'selector type'}>
-                    <h4>Is this an in person or online event?</h4>
+                    <h4 className="event-label">Is this an in person or online event?</h4>
                     <label>
                         <select
                             value={type}
@@ -132,7 +132,7 @@ const EventForm = ({ event, formType }) => {
                     {submitted && <div className="error-msg">{errors.type}</div>}
                 </div>
                 <div className={'selector private'}>
-                    <h4>Is this event private or public?</h4>
+                    <h4 className="event-label">Is this event private or public?</h4>
                     <label>
                         <select
                             value={privateEvent}
@@ -146,7 +146,7 @@ const EventForm = ({ event, formType }) => {
                     {submitted && <div className="error-msg">{errors.private}</div>}
                 </div>
                 <div id='price'>
-                    <h4>What is the price of your event?</h4>
+                    <h4 className="event-label">What is the price of your event?</h4>
                     <div>
                         <label>
                             <input
@@ -163,7 +163,7 @@ const EventForm = ({ event, formType }) => {
                 </div>
             </div>
             <div id='dates'>
-                <h4>When does your event start?</h4>
+                <h4 className="event-label">When does your event start?</h4>
                 <label htmlFor='start-date'>
                     <input
                         type='datetime-local'
@@ -176,7 +176,7 @@ const EventForm = ({ event, formType }) => {
                     />
                 </label>
                 {submitted && <div className="error-msg">{errors.startDate}</div>}
-                <h4>When does your event end?</h4>
+                <h4 className="event-label">When does your event end?</h4>
                 <label htmlFor='end-date'>
                     <input
                         type='datetime-local'
@@ -191,7 +191,7 @@ const EventForm = ({ event, formType }) => {
                 {submitted && <div className="error-msg">{errors.endDate}</div>}
             </div>
             <div id='image'>
-                <h4>Please add an image url for your event below:</h4>
+                <h4 className="event-label">Please add an image url for your event below:</h4>
                 <label>
                     <textarea
                         className='event-text'
@@ -203,7 +203,7 @@ const EventForm = ({ event, formType }) => {
                 {submitted && <div className="error-msg">{errors.image}</div>}
             </div>
             <div id='description'>
-                <h4>Please describe your event:</h4>
+                <h4 className="event-label">Please describe your event:</h4>
                 <label>
                     <textarea
                         className='event-text'
@@ -214,8 +214,11 @@ const EventForm = ({ event, formType }) => {
                 </label>
                 {submitted && <div className="error-msg">{errors.description}</div>}
             </div>
-            <button disabled={disabled} id="eventform-submit" type="submit">{formType}</button>
-            <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+
+            <div className='buttons'>
+                <button disabled={disabled} id="eventform-submit" type="submit">{formType}</button>
+                <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+            </div>
         </form>
     )
 }

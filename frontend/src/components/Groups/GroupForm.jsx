@@ -96,7 +96,7 @@ const GroupForm = ({ group, formType, groupId }) => {
             <div id="groupform-inputs-area">
                 {/* location */}
                 <div className="groupform-input">
-                    <h2>First&#44; set your group&#39;s location.</h2>
+                    <h2 className="group-label">First&#44; set your group&#39;s location.</h2>
                     <p>Meetup groups meet locally&#44; in person and online. We&#39;ll connect you with people in your area&#44; and more can join you online.</p>
                     <label>
                         <input
@@ -111,7 +111,7 @@ const GroupForm = ({ group, formType, groupId }) => {
 
                 {/* name */}
                 <div className="groupform-input">
-                    <h2>What will your group&#39;s name be?</h2>
+                    <h2 className="group-label">What will your group&#39;s name be?</h2>
                     <p>Choose a name that will give people a clear idea of what your group is about.<br />
                         Feel free to get creative! You can edit this later if you change your mind.</p>
                     <label>
@@ -126,7 +126,7 @@ const GroupForm = ({ group, formType, groupId }) => {
 
                 {/* about */}
                 <div className="groupform-input">
-                    <h2>Now describe what your group will be about</h2>
+                    <h2 className="group-label">Now describe what your group will be about</h2>
                     <p>People will see this when we promote your group&#44; but you&#39;ll be able to add to it later&#44; too.</p>
                     <ol>
                         <li>What&#39;s the purpose of the group?</li>
@@ -148,7 +148,7 @@ const GroupForm = ({ group, formType, groupId }) => {
                     <h2>Final steps...</h2>
                     {/* group type */}
                     <div className={'selector type'}>
-                        <h4>Is this an in person or online group?</h4>
+                        <h4 className="group-label">Is this an in person or online group?</h4>
                         <label>
                             <select
                                 value={type}
@@ -163,7 +163,7 @@ const GroupForm = ({ group, formType, groupId }) => {
                     </div>
                     {/* group private */}
                     <div className={'selector private'}>
-                        <h4>Is this group private or public?</h4>
+                        <h4 className="group-label">Is this group private or public?</h4>
                         <label>
                             <select
                                 value={privateGroup}
@@ -178,7 +178,7 @@ const GroupForm = ({ group, formType, groupId }) => {
                     </div>
                     {/* group image */}
                     <div >
-                        <h4>Please add an image url for your group below:</h4>
+                        <h4 className="group-label">Please add an image url for your group below:</h4>
                         <label>
                             <textarea
                                 placeholder="Image URL"
@@ -191,8 +191,10 @@ const GroupForm = ({ group, formType, groupId }) => {
                 </div>
             </div>
 
-            <button disabled={disabled} id="groupform-submit" type="submit">{formType}</button>
-            <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+            <div className="buttons">
+                <button disabled={disabled} id="groupform-submit" type="submit">{formType}</button>
+                <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+            </div>
         </form>
     )
 }

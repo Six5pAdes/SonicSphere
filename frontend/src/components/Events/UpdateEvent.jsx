@@ -16,10 +16,11 @@ const UpdateEvent = () => {
     }, [dispatch, eventId]);
 
     const event = useSelector(state => state.events[eventId]);
-    const eventImage = useSelector(state => state.events.Events[eventId])
+    // const eventImage = useSelector(state => state.events.Events[eventId])
 
     if (!event) return (<></>)
 
+    /*
     return (
         Object.keys(event).length > 1 && (
             <>
@@ -40,6 +41,8 @@ const UpdateEvent = () => {
             </>
         )
     )
+    */
+    return <EventForm formType="Update Event" event={event} />;
 }
 
 export default UpdateEvent;

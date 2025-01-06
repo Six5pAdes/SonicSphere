@@ -19,6 +19,9 @@
 #event-body {
     display: flex;
     flex-direction: column;
+    left: 140px;
+    width: 100%;
+    background-color: whitesmoke;
 }
 
 #event-info {
@@ -92,7 +95,7 @@
     border: none;
 }
 
-.event-description {
+#event-description {
     word-wrap: break-word;
 }
 
@@ -115,7 +118,7 @@
 }
 
 #grouptile-img {
-    width: 80%;
+    width: 150px;
     max-height: 150px;
 }
 
@@ -132,4 +135,9 @@
 
 #grouptile-info > h6 {
     color: grey;
+}
+
+
+#grouptile-img-container:hover, #grouptile-info > h5:hover {
+    cursor: pointer;
 }

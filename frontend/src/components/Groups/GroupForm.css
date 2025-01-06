@@ -6,9 +6,23 @@
     width: 80%;
 }
 
+.group-label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    color: #3061e3;
+}
+
 .groupform-input {
     border-bottom: 2px solid lightgray;
     width: 500px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
 }
 
 #groupform-submit, #cancel-button {
@@ -19,13 +33,6 @@
     border-radius: 5px;
     width: fit-content;
     align-self: center;
-    margin-left: 10px;
-    margin: 10px;
-    height: 40px;
-    font-size: 0.9rem;
-    line-height: 1.2rem;
-    font-weight: 400;
-    border: solid 1px;
 }
 
 #groupform-submit:hover, #cancel-button:hover {

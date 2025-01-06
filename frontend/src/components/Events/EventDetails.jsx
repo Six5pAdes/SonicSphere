@@ -3,21 +3,24 @@ import { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { thunkGetOneEvent, thunkDeleteEvent } from '../../store/events'
+import { thunkGetGroupById } from '../../store/groups';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import './EventDetails.css';
 
 export default function EventDetails() {
-    const { eventId, group } = useParams();
+    const { eventId } = useParams();
     const dispatch = useDispatch();
     const nav = useNavigate();
     const { closeModal } = useModal();
 
     const event = useSelector(state => state.events.All[eventId]);
+    const group = useSelector(state => state.groups[event?.groupId]);
     const userId = useSelector(state => state.session.user?.id);
 
     useEffect(() => {
         dispatch(thunkGetOneEvent(eventId));
-    }, [dispatch, eventId]);
+        dispatch(thunkGetGroupById(event?.groupId));
+    }, [dispatch, eventId, event?.groupId]);
 
     const handleDelete = () => {
         closeModal();
@@ -39,7 +42,7 @@ export default function EventDetails() {
             <div id='event-head'>
                 <Link to='/events' className='back'><i className='fa-solid fa-angle-left'></i> Events</Link>
                 <h2 className='event-name'>{event?.name}</h2>
-                <h4>Hosted by {`${event?.Group?.Organizer?.firstName} ${event?.Group?.Organizer?.lastName}`}</h4>
+                <h4>Hosted by {`${group?.Organizer?.firstName} ${group?.Organizer?.lastName}`}</h4>
             </div>
             <div id='event-body'>
                 <div id='event-info'>
@@ -52,7 +55,7 @@ export default function EventDetails() {
                         {/* navigate to group */}
                         <div id="grouptile" onClick={gotoGroup}>
                             <div id="grouptile-img-container">
-                                <img id="grouptile-img" src={group?.GroupImages?.find((image) => image.preview === true)?.url} alt={`${group?.name} preview image`} />
+                                <img id="grouptile-img" src={group?.GroupImages.find(image => image.preview === true)?.url} alt={`${group?.name} preview image`} />
                             </div>
                             <div id="grouptile-info">
                                 <h5>{group?.name}</h5>
