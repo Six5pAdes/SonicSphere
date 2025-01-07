@@ -7,12 +7,14 @@ import { Modal } from './context/Modal';
 import LandingPage from './components/LandingPage/LandingPage';
 import GroupList from './components/ItemListings/Groups/GroupList';
 import GroupDetails from './components/Groups/GroupDetails';
-import NewGroupPage from './components/Groups/NewGroupPage';
+import CreateGroup from './components/Groups/CreateGroup';
 import UpdateGroup from './components/Groups/UpdateGroup';
+import UserGroups from './components/ItemListings/Groups/UserGroups';
 import EventList from './components/ItemListings/Events/EventList';
 import EventDetails from './components/Events/EventDetails'
-import NewEventPage from './components/Events/NewEventPage';
+import CreateEvent from './components/Events/CreateEvent';
 import UpdateEvent from './components/Events/UpdateEvent';
+import UserEvents from './components/ItemListings/Events/UserEvents';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -51,11 +53,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/groups/new',
-        element: <NewGroupPage />
+        element: <CreateGroup />
       },
       {
         path: '/groups/:groupId/edit',
         element: <UpdateGroup />
+      },
+      {
+        path: '/groups/current',
+        element: <UserGroups />
       },
       {
         path: '/events',
@@ -67,11 +73,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/groups/:groupId/events/new',
-        element: <NewEventPage />
+        element: <CreateEvent />
       },
       {
         path: '/events/:eventId/edit',
         element: <UpdateEvent />
+      },
+      {
+        path: '/events/current',
+        element: <UserEvents />
       },
       {
         path: '*',

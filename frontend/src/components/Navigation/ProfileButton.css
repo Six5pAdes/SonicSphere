@@ -4,8 +4,9 @@
     position: absolute;
     top: 100%;
     margin-top: 5px;
+    padding-right: 30px;
     right: 0;
-    width: 200px;
+    width: fit-content;
     z-index: 2;
     border: 1px solid black;
     border-radius: 5px;
@@ -23,6 +24,7 @@
     border: black 1px solid;
     border-radius: 5px;
     padding: 5px;
+    background-color: white;
 }
 
 .fa-caret-up, .fa-caret-down {
@@ -37,9 +39,16 @@
 }
 
 .logout {
-    border-top: darkgrey 1px solid;
     width: 100px;
-    padding-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #3061e3;
+}
+
+.logout:hover {
+    box-shadow: 1px 1px 5px 1px #FFD700;
+    cursor: pointer;
 }
 
 .dropdown-contain {
@@ -60,4 +69,19 @@
 
 .dropdown-link:hover {
     color: #3061e3;
+}
+
+.signins > * {
+    margin: 0px 5px;
+    padding: 5px 10px;
+    color: white;
+    background-color: #3061e3;
+    border-radius: 5px;
+}
+
+.signins > *:hover {
+    color: white;
+    background-color: #3061e3;
+    box-shadow: 1px 1px 5px 1px #FFD700;
+    cursor: pointer;
 }

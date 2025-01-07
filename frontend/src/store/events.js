@@ -4,6 +4,7 @@ import { createSelector } from "reselect";
 const GET_EVENTS = "events/GET_EVENTS";
 const GET_GROUP_EVENTS = "events/GET_GROUP_EVENTS";
 const GET_ONE_EVENT = "events/GET_ONE_EVENT";
+const GET_USER_EVENTS = "events/GET_USER_EVENTS";
 const CREATE_EVENT = "events/CREATE_EVENT";
 const CREATE_EVENT_IMAGE = "events/CREATE_EVENT_IMAGE";
 const DELETE_EVENT = "events/DELETE_EVENT";
@@ -26,6 +27,12 @@ const getOneEvent = (event) => {
   return {
     type: GET_ONE_EVENT,
     event,
+  };
+};
+const getUserEvents = (events) => {
+  return {
+    type: GET_USER_EVENTS,
+    events,
   };
 };
 const createEvent = (event) => {
@@ -90,6 +97,13 @@ export const thunkGetOneEvent = (eventId) => async (dispatch) => {
   } else {
     return await response.json();
   }
+};
+
+export const thunkGetUserEvents = () => async (dispatch) => {
+  const response = await csrfFetch("/api/events/current");
+  const events = await response.json();
+  if (response.status !== 200) return console.log(response);
+  dispatch(getUserEvents(events));
 };
 
 export const thunkCreateEvent = (event, groupId) => async (dispatch) => {
@@ -235,6 +249,13 @@ export default function eventsReducer(state = { ...initialState }, action) {
       };
       newState.All[action.event.id] = action.event;
       return newState;
+    }
+    case GET_USER_EVENTS: {
+      const userEventsState = {};
+      action.events.forEach((event) => {
+        userEventsState[event.id] = event;
+      });
+      return userEventsState;
     }
     case CREATE_EVENT: {
       const newState = {

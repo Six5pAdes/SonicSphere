@@ -1,6 +1,6 @@
 import GroupForm from "./GroupForm";
 
-export default function NewGroupPage() {
+export default function CreateGroup() {
     const group = {
         location: '',
         name: '',

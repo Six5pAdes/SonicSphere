@@ -52,7 +52,7 @@ const EventForm = ({ event, formType }) => {
         if (formType === 'Create Event' && !event.errors) {
             event = await dispatch(thunkCreateEvent(event, groupId))
             await dispatch(thunkCreateEventImage(event?.id, image))
-        } else if (formType === 'Update Event' && !group.errors) {
+        } else if (formType === 'Update Event' && !event.errors) {
             event = await dispatch(thunkUpdateEvent(event, groupId));
         } else {
             setDisabled(false)

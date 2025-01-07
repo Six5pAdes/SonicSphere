@@ -97,7 +97,7 @@ const GroupForm = ({ group, formType, groupId }) => {
                 {/* location */}
                 <div className="groupform-input">
                     <h2 className="group-label">First&#44; set your group&#39;s location.</h2>
-                    <p>Meetup groups meet locally&#44; in person and online. We&#39;ll connect you with people in your area&#44; and more can join you online.</p>
+                    <p>Sonic Sphere groups meet locally&#44; in person, and online. We&#39;ll connect you with people in your area&#44; and more can join you online.</p>
                     <label>
                         <input
                             type="text"

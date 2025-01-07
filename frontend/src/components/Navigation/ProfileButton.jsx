@@ -47,10 +47,10 @@ function ProfileButton({ user }) {
         <>
             {user ? (
                 <div className='dropdown-contain'>
-                    <div className='profile-contain' onClick={toggleMenu}>
+                    <button className='profile-contain' onClick={toggleMenu}>
                         <i className="fas fa-user-circle" />
                         {showMenu ? <i className="fas fa-caret-up" /> : <i className="fas fa-caret-down" />}
-                    </div>
+                    </button>
                     <div className={ulClassName} ref={ulRef}>
                         <ul>
                             <li className='floating'>Hello, {user.firstName}</li>
@@ -58,19 +58,21 @@ function ProfileButton({ user }) {
                             <li className='floating'>
                                 {/* replace with Manage ______ later */}
                                 <NavLink className='dropdown-link' to='/groups'>Your Groups</NavLink>
+                                {/* <NavLink className='dropdown-link' to='/groups/current'>Your Groups</NavLink> */}
                             </li>
                             <li className='floating'>
                                 {/* replace with Manage ______ later */}
                                 <NavLink className='dropdown-link' to='/events'>Your Events</NavLink>
+                                {/* <NavLink className='dropdown-link' to='/events/current'>Your Events</NavLink> */}
                             </li>
-                            <li className='floating logout'>
-                                <button onClick={logout}>Log Out</button>
+                            <li className='floating'>
+                                <button className='logout' onClick={logout}>Log Out</button>
                             </li>
                         </ul>
                     </div>
                 </div>
             ) : (
-                <div>
+                <div className='signins'>
                     <OpenModalMenuItem modalComponent={<LoginFormModal />} itemText='Log In' onItemClick={closeMenu} />
                     <OpenModalMenuItem modalComponent={<SignupFormModal />} itemText='Sign Up' onItemClick={closeMenu} />
                 </div>

@@ -1,6 +1,6 @@
 import EventForm from './EventForm'
 
-export default function NewEventPage() {
+export default function CreateEvent() {
     const event = {
         name: '',
         description: '',

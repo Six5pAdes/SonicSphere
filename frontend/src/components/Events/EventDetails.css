@@ -122,9 +122,10 @@
 #grouptile-img-container {
     display: flex;
     width: 150px;
+    margin-left: 10px;
     justify-content: center;
     align-items: center;
-    height: 160px;
+    height: 150px;
 }
 
 #grouptile-img {
