@@ -70,6 +70,12 @@
     margin: 5px 10px;
 }
 
+.what-to-know {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
 #clock {
     display: flex;
     align-items: center;
@@ -79,7 +85,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 150px;
+    width: 200px;
     position: relative;
     left: 50%;
     margin-bottom: 10px;
@@ -87,16 +93,17 @@
 
 #organizer-actions > * {
     margin: 10px;
+    padding: 5px;
     font-size: large;
-    font-weight: 700;
-    border: 1px solid;
+    border: none;
     border-radius: 5px;
-    background-color: lightcyan;
+    color: white;
+    background-color: #3061e3;
 }
 
 #organizer-actions > *:hover {
-    color: #3061e3;
-    box-shadow: 1px 1px 5px 1px #FFD700;
+    color: #FFD700;
+    box-shadow: 1px 1px 5px 1px black;
     border: none;
 }
 

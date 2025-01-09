@@ -9,12 +9,12 @@ import GroupList from './components/ItemListings/Groups/GroupList';
 import GroupDetails from './components/Groups/GroupDetails';
 import CreateGroup from './components/Groups/CreateGroup';
 import UpdateGroup from './components/Groups/UpdateGroup';
-import UserGroups from './components/ItemListings/Groups/UserGroups';
+import UserGroups from './components/ItemListings/UserLists/UserGroups';
 import EventList from './components/ItemListings/Events/EventList';
 import EventDetails from './components/Events/EventDetails'
 import CreateEvent from './components/Events/CreateEvent';
 import UpdateEvent from './components/Events/UpdateEvent';
-import UserEvents from './components/ItemListings/Events/UserEvents';
+import UserEvents from './components/ItemListings/UserLists/UserEvents';
 
 function Layout() {
   const dispatch = useDispatch();

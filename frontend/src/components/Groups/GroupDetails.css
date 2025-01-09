@@ -66,11 +66,10 @@
 .group-actions > button {
     margin: 10px;
     font-size: large;
-    font-weight: 700;
-    box-shadow: 1px 2px 2px lightblue;
-    border: 1px solid;
+    border: none;
     border-radius: 5px;
-    background-color: lightcyan;
+    color: white;
+    background-color: #3061e3;
 }
 
 .to-be-added {
@@ -86,18 +85,18 @@
 #join-button {
     margin: 10px;
     font-size: large;
-    font-weight: 700;
     box-shadow: 1px 2px 2px lightblue;
-    border: solid 1px;
+    border: none;
     border-radius: 5px;
-    background-color: lightcyan;
+    color: white;
+    background-color: #3061e3;
 
 }
 
 .group-actions > button:hover, #join-button:hover {
-    color: #3061e3;
-    box-shadow: 1px 1px 5px 1px #FFD700;
-    border: none;
+    color: #FFD700;
+    background-color: #3061e3;
+    box-shadow: 1px 1px 5px 1px black;
 }
 
 .back {
@@ -119,6 +118,8 @@
     left: 140px;
     width: 100%;
     background-color: whitesmoke;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 .group-about {

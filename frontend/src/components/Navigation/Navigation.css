@@ -57,12 +57,17 @@
 }
 
 #create-group-link {
+    display: flex;
+    color: white;
+    background-color: #3061e3;
+    border-radius: 5px;
+    text-align: center;
     text-decoration: none;
-    color: black;
+    margin-right: 5px;
+    padding: 5px;
 }
 
 #create-group-link:hover {
-    color: #3061e3;
-    text-decoration: underline;
-    font-weight: bold;
+    color: #FFD700;
+    box-shadow: 1px 1px 5px 1px black;
 }

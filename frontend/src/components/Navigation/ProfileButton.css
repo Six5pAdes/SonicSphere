@@ -41,13 +41,16 @@
 .logout {
     width: 100px;
     padding: 5px;
+    border: none;
     border-radius: 5px;
     color: white;
     background-color: #3061e3;
 }
 
 .logout:hover {
-    box-shadow: 1px 1px 5px 1px #FFD700;
+    color: #FFD700;
+    background-color: #3061e3;
+    box-shadow: 1px 1px 5px 1px black;
     cursor: pointer;
 }
 
@@ -71,17 +74,20 @@
     color: #3061e3;
 }
 
-.signins > * {
+.signins button {
     margin: 0px 5px;
     padding: 5px 10px;
-    color: white;
-    background-color: #3061e3;
+    border: none;
     border-radius: 5px;
+    background-color: white;
+    color: #3061e3;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.signins > *:hover {
-    color: white;
+.signins button:hover {
+    color: #FFD700;
     background-color: #3061e3;
-    box-shadow: 1px 1px 5px 1px #FFD700;
+    box-shadow: 1px 1px 5px 1px black;
     cursor: pointer;
 }

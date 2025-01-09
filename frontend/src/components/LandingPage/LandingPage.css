@@ -4,6 +4,7 @@
     justify-content: space-between;
     position: relative;
     top: 50px;
+    margin-bottom: 75px;
 }
 
 #intro {
@@ -87,14 +88,15 @@
     width: 100%;
     height: 100%;
     font-size: large;
-    box-shadow: 1px 2px 2px lightgrey;
-    border: solid 1px;
+    border: none;
     border-radius: 5px;
+    color: white;
+    background-color: #3061e3;
 }
 
 #join-button:hover {
-    color: #3061e3;
-    box-shadow: 1px 1px 5px 1px #FFD700;
+    color: #FFD700;
+    box-shadow: 1px 1px 5px 1px black;
     border: none;
 }
 
