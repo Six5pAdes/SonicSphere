@@ -17,6 +17,18 @@
 .groupform-input {
     border-bottom: 2px solid lightgray;
     width: 500px;
+    padding-bottom: 20px;
+}
+
+.groupform-input input {
+    margin-top: 20px;
+    width: 200px;
+}
+
+.groupform-input textarea {
+    margin-top: 20px;
+    width: 500px;
+    height: 100px;
 }
 
 .buttons {

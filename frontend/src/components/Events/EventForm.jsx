@@ -107,7 +107,7 @@ const EventForm = ({ event, formType }) => {
             <div id='event-name'>
                 <h4 className="event-label">What is the name of your event?</h4>
                 <label>
-                    <textarea
+                    <input
                         className='event-text'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -149,9 +149,9 @@ const EventForm = ({ event, formType }) => {
                     <h4 className="event-label">What is the price of your event?</h4>
                     <div>
                         <label>
-                            <input
+                            $ <input
                                 type='number'
-                                placeholder='0.00'
+                                placeholder='0'
                                 min='0.00'
                                 step='0.01'
                                 value={price}
@@ -193,7 +193,7 @@ const EventForm = ({ event, formType }) => {
             <div id='image'>
                 <h4 className="event-label">Please add an image url for your event below:</h4>
                 <label>
-                    <textarea
+                    <input
                         className='event-text'
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
@@ -206,7 +206,7 @@ const EventForm = ({ event, formType }) => {
                 <h4 className="event-label">Please describe your event:</h4>
                 <label>
                     <textarea
-                        className='event-text'
+                        className='event-desc'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder='Please include at least 30 characters'

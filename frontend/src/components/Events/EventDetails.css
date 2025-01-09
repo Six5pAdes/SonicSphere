@@ -32,6 +32,9 @@
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
     margin: 10px;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #event-img-contain {
@@ -99,6 +102,8 @@
 
 #event-description {
     word-wrap: break-word;
+    padding-bottom: 20px;
+    padding-left: 20px;
 }
 
 #grouptile {
@@ -117,6 +122,7 @@
     background-color: #FFE5B4;
     box-shadow: 5px 5px 5px grey;
     color: #3061e3;
+    width: 300px;
 }
 
 #grouptile-img-container {
@@ -138,6 +144,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
 }
 
 #grouptile-info > * {

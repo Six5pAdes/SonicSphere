@@ -115,7 +115,7 @@ const GroupForm = ({ group, formType, groupId }) => {
                     <p>Choose a name that will give people a clear idea of what your group is about.<br />
                         Feel free to get creative! You can edit this later if you change your mind.</p>
                     <label>
-                        <textarea
+                        <input
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="What is your group name?"
@@ -180,7 +180,7 @@ const GroupForm = ({ group, formType, groupId }) => {
                     <div >
                         <h4 className="group-label">Please add an image url for your group below:</h4>
                         <label>
-                            <textarea
+                            <input
                                 placeholder="Image URL"
                                 value={image}
                                 onChange={(e) => setImage(e.target.value)}
