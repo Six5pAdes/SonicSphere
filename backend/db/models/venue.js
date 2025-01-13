@@ -15,15 +15,29 @@ module.exports = (sequelize, DataTypes) => {
       Venue.hasMany(models.Event, {
         foreignKey: "venueId",
         onDelete: "SET NULL",
+        hooks: true,
       });
     }
   }
   Venue.init(
     {
-      groupId: { type: DataTypes.INTEGER, allowNull: false },
-      address: DataTypes.STRING,
-      city: DataTypes.STRING,
-      state: DataTypes.STRING,
+      groupId: {
+        type: DataTypes.INTEGER,
+        references: { model: "Groups" },
+        allowNull: false,
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       lat: {
         type: DataTypes.DECIMAL,
         validate: {
@@ -42,11 +56,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Venue",
-      defaultScope: {
-        attributes: {
-          exclude: ["createdAt", "updatedAt"],
-        },
-      },
     }
   );
   return Venue;

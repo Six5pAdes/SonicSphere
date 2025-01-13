@@ -9,27 +9,46 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Membership.belongsTo(models.User, {
+        foreignKey: "userId",
+      });
+      Membership.belongsTo(models.Group, {
+        foreignKey: "groupId",
+      });
     }
   }
   Membership.init(
     {
       userId: {
         type: DataTypes.INTEGER,
+        references: { model: "Users" },
         allowNull: false,
+        onDelete: "CASCADE",
+        hooks: true,
       },
       groupId: {
         type: DataTypes.INTEGER,
+        references: { model: "Groups" },
         allowNull: false,
+        onDelete: "CASCADE",
+        hooks: true,
       },
       status: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          options(value) {
-            if (!["pending", "member", "co-host"].includes(value)) {
-              throw new Error(
-                "Status must be 'pending', 'member', or 'co-host'"
-              );
+          isValidType(value) {
+            const validTypes = ["co-host", "member", "pending"];
+            if (!validTypes.includes(value)) {
+              throw new Error("Invalid membership status");
+            }
+          },
+          notToPending(value) {
+            if (
+              value === "pending" &&
+              (this.status === "co-host" || this.status === "member")
+            ) {
+              throw new Error("Cannot change status to pending");
             }
           },
         },
@@ -38,18 +57,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Membership",
-      defaultScope: {
-        attributes: {
-          exclude: ["createdAt", "updatedAt", "userId", "groupId"],
-        },
-      },
-      scopes: {
-        specific: {
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
-          },
-        },
-      },
     }
   );
   return Membership;

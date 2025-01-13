@@ -18,9 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       eventId: {
         type: DataTypes.INTEGER,
+        references: { model: "Events" },
         allowNull: false,
       },
-      url: DataTypes.STRING,
+      url: DataTypes.TEXT,
       preview: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -30,11 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "EventImage",
-      defaultScope: {
-        attributes: {
-          exclude: ["createdAt", "updatedAt"],
-        },
-      },
     }
   );
   return EventImage;

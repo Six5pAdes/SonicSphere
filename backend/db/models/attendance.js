@@ -15,25 +15,26 @@ module.exports = (sequelize, DataTypes) => {
     {
       eventId: {
         type: DataTypes.INTEGER,
+        references: { model: "Events" },
         allowNull: false,
+        onDelete: "CASCADE",
+        hooks: true,
       },
       userId: {
         type: DataTypes.INTEGER,
+        references: { model: "Users" },
         allowNull: false,
+        onDelete: "CASCADE",
+        hooks: true,
       },
       status: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          options(value) {
-            if (
-              value !== "attending" &&
-              value !== "pending" &&
-              value !== "waitlist"
-            ) {
-              throw new Error(
-                "Status must be 'attending', 'pending', or 'waitlist'"
-              );
+          isValidType(value) {
+            const validTypes = ["attending", "pending", "waitlist"];
+            if (!validTypes.includes(value)) {
+              throw new Error("Invalid attendance status");
             }
           },
         },
@@ -45,13 +46,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultScope: {
         attributes: {
           exclude: ["createdAt", "updatedAt", "userId", "eventId"],
-        },
-      },
-      scopes: {
-        specific: {
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
-          },
         },
       },
     }

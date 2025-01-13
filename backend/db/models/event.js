@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
         hooks: true,
       });
       Event.belongsToMany(models.User, {
-        through: models.Attendance,
+        through: "Attendance",
         foreignKey: "eventId",
         otherKey: "userId",
+        as: "attendees",
       });
       Event.belongsTo(models.Venue, {
         foreignKey: "venueId",
-        onDelete: "SET NULL",
       });
       Event.belongsTo(models.Group, {
         foreignKey: "groupId",
@@ -32,11 +32,16 @@ module.exports = (sequelize, DataTypes) => {
     {
       venueId: {
         type: DataTypes.INTEGER,
+        references: { model: "Venues" },
         allowNull: false,
+        onDelete: "SET NULL",
       },
       groupId: {
         type: DataTypes.INTEGER,
+        references: { model: "Groups" },
         allowNull: false,
+        onDelete: "CASCADE",
+        hooks: true,
       },
       name: {
         type: DataTypes.STRING,
@@ -48,9 +53,6 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.TEXT,
         allowNull: false,
-        validate: {
-          len: [1, 1000],
-        },
       },
       type: {
         type: DataTypes.STRING,
@@ -66,15 +68,9 @@ module.exports = (sequelize, DataTypes) => {
       capacity: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        validate: {
-          min: 1,
-        },
       },
       price: {
         type: DataTypes.DECIMAL,
-        validate: {
-          min: 0,
-        },
       },
       startDate: {
         type: DataTypes.DATE,
@@ -90,14 +86,13 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Event",
       defaultScope: {
         attributes: {
-          exclude: ["createdAt", "updatedAt", "capacity", "price"],
-        },
-      },
-      scopes: {
-        specific: {
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
-          },
+          exclude: [
+            "createdAt",
+            "updatedAt",
+            "capacity",
+            "price",
+            "description",
+          ],
         },
       },
     }
