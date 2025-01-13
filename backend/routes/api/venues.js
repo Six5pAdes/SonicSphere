@@ -1,68 +1,79 @@
 const express = require("express");
 
-const {
-  setTokenCookie,
-  requireAuth,
-  venueAuth,
-  venueIDCheck,
-} = require("../../utils/auth");
 const { Venue } = require("../../db/models");
+const { requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-const validateVenueEdit = [
+const validateVenue = [
   check("address")
-    .optional()
-    .isString()
-    .isLength({ min: 1 })
-    .withMessage("Street address is required"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide an address"),
   check("city")
-    .optional()
-    .isString()
-    .isLength({ min: 1 })
-    .isAlpha("en-US", { ignore: [" ", "-", "'", "."] })
-    .withMessage("City is required"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a city"),
   check("state")
-    .optional()
-    .isString()
-    .isLength({ min: 1 })
-    .isAlpha("en-US", { ignore: [" ", "-", "'", "."] })
-    .withMessage("State is required"),
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a state"),
   check("lat")
-    .optional()
+    .exists({ checkFalsy: true })
     .isFloat({ min: -90, max: 90 })
-    .withMessage("Latitude must be within -90 and 90"),
+    .withMessage("Please provide a latitude"),
   check("lng")
-    .optional()
+    .exists({ checkFalsy: true })
     .isFloat({ min: -180, max: 180 })
-    .withMessage("Longitude must be within -180 and 180"),
+    .withMessage("Please provide a longitude"),
   handleValidationErrors,
 ];
 
-// edit venue
-router.put(
-  "/:venueId",
-  requireAuth,
-  venueIDCheck,
-  venueAuth,
-  validateVenueEdit,
-  async (req, res) => {
-    const id = parseInt(req.params.venueId);
-    const venue = await Venue.findByPk(id);
-    const { address, city, state, lat, lng } = req.body;
+// 15. edit venue
+router.put("/:venueId", requireAuth, validateVenue, async (req, res) => {
+  const { venueId } = req.params;
+  const { user } = req;
+  const { address, city, state, lat, lng } = req.body;
 
-    venue.address = address || venue.address;
-    venue.city = city || venue.city;
-    venue.state = state || venue.state;
-    venue.lat = lat !== undefined ? lat : venue.lat;
-    venue.lng = lng !== undefined ? lng : venue.lng;
+  const venue = await Venue.findByPk(venueId, {
+    include: {
+      model: Group,
+    },
+  });
 
-    await venue.save();
-    const result = await Venue.findByPk(id);
-    return res.json(result);
+  if (!venue) {
+    return res.status(404).json({ message: "Venue not found" });
   }
-);
+
+  const cohost = await User.findByPk(user.id, {
+    include: {
+      model: Membership,
+      where: { groupId: venue.groupId, status: "co-host" },
+    },
+  });
+
+  if (venue.Group.organizerId === user.id || cohost != null) {
+    const updatedVenue = await venue.update({
+      address,
+      city,
+      state,
+      lat,
+      lng,
+    });
+
+    const venueObj = updatedVenue.toJSON();
+
+    return res.json({
+      id: venueObj.id,
+      groupId: venueObj.groupId,
+      address: venueObj.address,
+      city: venueObj.city,
+      state: venueObj.state,
+      lat: venueObj.lat,
+      lng: venueObj.lng,
+    });
+  } else {
+    return res.status(403).json({ message: "Forbidden" });
+  }
+});
 
 module.exports = router;
