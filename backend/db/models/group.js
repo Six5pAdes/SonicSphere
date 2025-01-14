@@ -63,8 +63,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           options(value) {
-            if (!["in person", "online"].includes(value)) {
-              throw new Error("Type must be 'in person' or 'online'");
+            if (!["In person", "Online"].includes(value)) {
+              throw new Error("Type must be 'In person' or 'Online'");
             }
           },
         },

@@ -5,8 +5,10 @@ const {
   Event,
   Group,
   User,
+  Venue,
   EventImage,
   Attendance,
+  Membership,
 } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -45,11 +47,11 @@ const validateQueryParams = [
   check("type")
     .optional()
     .custom((value) => {
-      if (value.includes("online") || value.includes("in person")) {
+      if (value.includes("Online") || value.includes("In person")) {
         return true;
       }
     })
-    .withMessage('Type must be either "online" or "in person"'),
+    .withMessage('Type must be either "Online" or "In person"'),
   check("startDate")
     .optional()
     .isISO8601({
@@ -65,11 +67,11 @@ const validateQueryParams = [
 router.get("/", validateQueryParams, async (req, res) => {
   let { page, size, name, type, startDate } = req.query;
 
-  page = page || 1;
-  size = size || 20;
+  page = parseInt(page) || 1;
+  size = parseInt(size) || 20;
 
-  if (name) name = { [Op.iLike]: `%${name}%` };
-  if (type) type = { [Op.iLike]: `%${type}%` };
+  if (name) name = name.replace(/"/g, "");
+  if (type) type = name.replace(/"/g, "");
 
   const queries = {
     where: {
@@ -117,12 +119,12 @@ router.get("/", validateQueryParams, async (req, res) => {
   if (startDate) {
     eventList.forEach((event) => {
       if (startDate.split(" ").length == 1) {
-        if (event.startDate.split(" ")[0] === startDate) {
+        if (event.startDate.split(" ")[0] == startDate) {
           dateMatch.push(event);
         }
       }
       if (startDate.split(" ").length == 2) {
-        if (event.startDate === startDate) {
+        if (event.startDate == startDate) {
           dateMatch.push(event);
         }
       }
@@ -180,7 +182,7 @@ router.get("/:eventId", async (req, res) => {
   return res.json(eventObj);
 });
 
-// 20. create event
+// 20. create event *
 router.post(":/eventId/images", requireAuth, async (req, res) => {
   const { eventId } = req.params;
   const { user } = req;
@@ -314,7 +316,7 @@ router.delete("/:eventId", requireAuth, async (req, res) => {
 
   if (host || cohost) {
     await event.destroy();
-    return res.json({ message: "Event deleted" });
+    return res.json({ message: "Event successfully deleted" });
   } else {
     return res
       .status(403)
@@ -526,11 +528,9 @@ router.delete("/:eventId/attendance", requireAuth, async (req, res) => {
     await attending[0].destroy();
     return res.json({ message: "Attendance request canceled" });
   } else {
-    return res
-      .status(403)
-      .json({
-        message: "You are not authorized to cancel this attendance request",
-      });
+    return res.status(403).json({
+      message: "You are not authorized to cancel this attendance request",
+    });
   }
 });
 

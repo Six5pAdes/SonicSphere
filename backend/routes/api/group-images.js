@@ -1,13 +1,12 @@
 const express = require("express");
 
 const { requireAuth } = require("../../utils/auth");
-const { GroupImage } = require("../../db/models");
-const { or } = require("sequelize");
+const { GroupImage, User, Group, Membership } = require("../../db/models");
 
 const router = express.Router();
 
 // 31. delete group image
-router.delete("/:groupImageId", requireAuth, async (req, res) => {
+router.delete("/group-images/:imageId", requireAuth, async (req, res) => {
   const { user } = req;
   const { imageId } = req.params;
 

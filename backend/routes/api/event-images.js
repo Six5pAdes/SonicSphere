@@ -1,12 +1,18 @@
 const express = require("express");
 
 const { requireAuth } = require("../../utils/auth");
-const { EventImage, Group, User, Event } = require("../../db/models");
+const {
+  EventImage,
+  Group,
+  User,
+  Event,
+  Membership,
+} = require("../../db/models");
 
 const router = express.Router();
 
 // 32. delete event image
-router.delete("/:imageId", requireAuth, async (req, res) => {
+router.delete("/event-images/:imageId", requireAuth, async (req, res) => {
   const { user } = req;
   const { imageId } = req.params;
 

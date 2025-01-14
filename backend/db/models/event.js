@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         through: "Attendance",
         foreignKey: "eventId",
         otherKey: "userId",
-        as: "attendees",
+        as: "numAttending",
       });
       Event.belongsTo(models.Venue, {
         foreignKey: "venueId",
@@ -59,8 +59,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           options(value) {
-            if (!["in person", "online"].includes(value)) {
-              throw new Error("Type must be either 'in person' or 'online'");
+            if (!["In person", "Online"].includes(value)) {
+              throw new Error("Type must be either 'In person' or 'Online'");
             }
           },
         },
