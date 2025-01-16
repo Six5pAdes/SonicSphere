@@ -182,8 +182,8 @@ router.get("/:eventId", async (req, res) => {
   return res.json(eventObj);
 });
 
-// 20. create image(s) for event *
-router.post(":/eventId/images", requireAuth, async (req, res) => {
+// 20. create image(s) for event
+router.post("/:eventId/images", requireAuth, async (req, res) => {
   const { eventId } = req.params;
   const { user } = req;
 

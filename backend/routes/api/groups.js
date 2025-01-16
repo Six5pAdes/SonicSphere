@@ -8,6 +8,7 @@ const {
   Membership,
   Event,
   EventImage,
+  Attendance,
 } = require("../../db/models");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -446,30 +447,21 @@ router.post(
 
 // 17. get events by group id
 router.get("/:groupId/events", async (req, res) => {
-  const { groupId } = req.params;
-
-  const group = await Group.findByPk(groupId);
-
+  const group = await Group.findByPk(req.params.groupId);
   if (!group) {
     res.status(404);
     return res.json({ message: "Group not found." });
   }
 
-  const events = await Event.findAll({
-    where: {
-      groupId,
-    },
+  const numAttend = await Attendance.findAll({
+    order: [["eventId", "ASC"]],
+  });
+
+  const allEvents = await Event.findAll({
     include: [
       {
-        model: EventImage,
-        attributes: ["url", "preview"],
-      },
-      {
-        model: User,
-        as: "numAttending",
-      },
-      {
         model: Group,
+        where: { id: group.id },
         attributes: ["id", "name", "city", "state"],
       },
       {
@@ -479,21 +471,45 @@ router.get("/:groupId/events", async (req, res) => {
     ],
   });
 
-  let eventsList = [];
-  events.forEach((event) => {
-    eventsList.push(event.toJSON());
+  const getEvents = await Event.findAll({
+    where: { groupId: group.id },
+    attributes: [
+      "id",
+      "groupId",
+      "venueId",
+      "name",
+      "description",
+      "type",
+      "capacity",
+      "price",
+      "startDate",
+      "endDate",
+    ],
+    include: {
+      model: EventImage,
+      attributes: ["id", "url", "preview"],
+    },
   });
 
-  eventsList.forEach((event) => {
-    event.previewImage = event.EventImages.find((image) => {
-      image.preview === true;
-    });
-    if (!event.previewImage) event.previewImage = null;
-    delete event.EventImages;
-    event.numAttending = event.numAttending.length;
+  const response = [];
+  getEvents.forEach((event) => {
+    response.push(event.toJSON());
   });
 
-  return res.json({ Events: eventsList });
+  let num = [];
+  numAttend.forEach((attendee) => num.push([attendee.toJSON()]));
+
+  let i = 0;
+  while (i < response.length) {
+    response[i].numAttend = num[i].length;
+    response[i].Group = allEvents[i].Group;
+    if (allEvents[i].Venue) {
+      response[i].Venue = allEvents[i].Venue;
+    }
+    i++;
+  }
+
+  res.json({ Events: response });
 });
 
 // 19. create event for group
@@ -535,6 +551,7 @@ router.post(
 
     if (group.organizerId == user.id || cohost !== null) {
       const event = await group.createEvent({
+        groupId,
         venueId,
         name,
         type,
@@ -549,7 +566,7 @@ router.post(
       delete eventObj.createdAt;
       delete eventObj.updatedAt;
 
-      return res.json(event);
+      return res.json(eventObj);
     } else {
       res.status(403);
       return res.json({
@@ -743,50 +760,59 @@ router.put("/:groupId/membership", requireAuth, async (req, res) => {
   }
 });
 
-// 26. delete membership *
+// 26. delete membership
 router.delete(
   "/:groupId/membership/:memberId",
   requireAuth,
   async (req, res) => {
     const { user } = req;
-    const { memberId } = req.body;
-    const { groupId } = req.params;
 
-    const group = await Group.findByPk(groupId);
-    if (!group) {
-      res.status(404);
-      return res.json({ message: "Group not found." });
-    }
-
-    const existingUser = await User.findByPk(memberId);
+    const existingUser = await User.findByPk(req.params.memberId);
     if (!existingUser) {
-      return res.status(400).json({
+      return res.status(404).json({
         message: "Validation Error.",
         errors: {
           memberId: "User not found.",
         },
       });
     }
+    const existingGroup = await Group.findByPk(req.params.groupId);
+    if (!existingGroup) {
+      return res.status(404).json({
+        message: "Validation Error.",
+        errors: {
+          groupId: "Group not found.",
+        },
+      });
+    }
 
     const membership = await Membership.findOne({
       where: {
-        userId: {
-          [Op.in]: [memberId, user.id],
-        },
-        groupId,
+        userId: req.params.memberId,
+        groupId: req.params.groupId,
       },
     });
-
     if (!membership) {
       res.status(404);
       return res.json({ message: "Membership not found." });
     }
 
-    if (user.id === group.organizerId || user.id === memberId) {
+    const userMembership = await Membership.findOne({
+      where: {
+        userId: user.id,
+        groupId: existingGroup.id,
+      },
+    });
+
+    if (
+      (userMembership && userMembership.userId === membership.userId) ||
+      user.id === existingGroup.organizerId
+    ) {
       await membership.destroy();
       return res.json({ message: "Membership successfully deleted." });
     } else {
-      return res.status(403).json({
+      res.status(403);
+      return res.json({
         message: "You do not have permission to delete this membership.",
       });
     }

@@ -22,8 +22,8 @@ module.exports = {
     await Event.bulkCreate(
       [
         {
-          venueId: 1,
           groupId: 1,
+          venueId: 1,
           name: "Magic Cooking",
           description: "Come and enjoy some cooking concocted with magic!",
           type: "In person",
@@ -33,8 +33,8 @@ module.exports = {
           endDate: "2024-01-02",
         },
         {
-          venueId: 1,
           groupId: 1,
+          venueId: 1,
           name: "Tornado Exploration",
           description:
             "Fly with me and Tails in a guided tour across the world!",
@@ -45,8 +45,8 @@ module.exports = {
           endDate: "2025-06-17",
         },
         {
-          venueId: 2,
           groupId: 2,
+          venueId: 2,
           name: "Inverse Shakespearean Acting",
           description:
             "Join us in a play where we act out characters whose descriptions don't fit us!",
@@ -57,8 +57,8 @@ module.exports = {
           endDate: "2023-06-01",
         },
         {
-          venueId: 3,
           groupId: 3,
+          venueId: 3,
           name: "Wrestling",
           description: "Come and wrestle with us! Just in time for Halloween!",
           type: "In person",
@@ -68,8 +68,8 @@ module.exports = {
           endDate: "2023-10-31",
         },
         {
-          venueId: 4,
           groupId: 4,
+          venueId: 4,
           name: "The Trial of the Tarot",
           description: "Feeling lucky? Come and have your fortune read!",
           type: "In person",
@@ -79,8 +79,8 @@ module.exports = {
           endDate: "2025-02-02",
         },
         {
-          venueId: 4,
           groupId: 4,
+          venueId: 4,
           name: "New Looks!",
           description: "Time for a makeover!",
           type: "In person",
@@ -90,8 +90,8 @@ module.exports = {
           endDate: "2024-01-26",
         },
         {
-          venueId: 5,
           groupId: 5,
+          venueId: 5,
           name: "Pop Stars Show Down",
           description: "It's a battle of the stars! Who will win?",
           type: "In person",
@@ -101,8 +101,8 @@ module.exports = {
           endDate: "2023-01-26",
         },
         {
-          venueId: 5,
           groupId: 5,
+          venueId: 5,
           name: "Resort Hopping",
           description:
             "Come and enjoy the sun along the coast! We'll be hopping from resort to resort, lounging at pools and not thinking about the world for a little bit.",
@@ -113,8 +113,8 @@ module.exports = {
           endDate: "2024-03-26",
         },
         {
-          venueId: 6,
           groupId: 6,
+          venueId: 6,
           name: "Battles and Blossoms",
           description:
             "Step into the world of horticulture, prune away your impulses and let your inner gardener bloom! Nothing more to it...",
@@ -125,8 +125,8 @@ module.exports = {
           endDate: "2023-09-09",
         },
         {
-          venueId: 7,
           groupId: 7,
+          venueId: 7,
           name: "Mystery Night",
           description: "Who dunnit? Was it the mafia? Come and find out!",
           type: "In person",
@@ -136,8 +136,8 @@ module.exports = {
           endDate: "2023-09-26",
         },
         {
-          venueId: 7,
           groupId: 7,
+          venueId: 7,
           name: "The Blitz",
           description: "All the world's a stage, and we are all players!",
           type: "In person",
@@ -147,8 +147,8 @@ module.exports = {
           endDate: "2024-06-25",
         },
         {
-          venueId: 8,
           groupId: 8,
+          venueId: 8,
           name: "Restaurant Waiting for a Day",
           description: "Come and experience the life of a waiter!",
           type: "In person",
@@ -158,8 +158,8 @@ module.exports = {
           endDate: "2023-07-31",
         },
         {
-          venueId: 9,
           groupId: 9,
+          venueId: 9,
           name: "Figure Skating",
           description:
             "Come and glide with us! Preregister now, and get 10 minutes with Princess Elise!",
@@ -170,8 +170,8 @@ module.exports = {
           endDate: "2023-03-31",
         },
         {
-          venueId: 9,
           groupId: 9,
+          venueId: 9,
           name: "Easter Run",
           description: "Run with us and find the hidden eggs!",
           type: "In person",
@@ -181,8 +181,8 @@ module.exports = {
           endDate: "2024-04-01",
         },
         {
-          venueId: 10,
           groupId: 10,
+          venueId: 10,
           name: "Fishing",
           description: "fishing",
           type: "In person",
@@ -192,8 +192,8 @@ module.exports = {
           endDate: "2024-10-25",
         },
         {
-          venueId: 11,
           groupId: 11,
+          venueId: 11,
           name: "Pizza Making",
           description:
             "Come and make pizza with us! Even Chaos himself will help us!",
@@ -204,8 +204,8 @@ module.exports = {
           endDate: "2025-03-02",
         },
         {
-          venueId: 12,
           groupId: 12,
+          venueId: 12,
           name: "Cosplay and Reenact",
           description: "Let's put on some costumes and act out scenes!",
           type: "In person",
@@ -215,8 +215,8 @@ module.exports = {
           endDate: "2023-05-01",
         },
         {
-          venueId: 13,
           groupId: 13,
+          venueId: 13,
           name: "Night Thrills",
           description:
             "We will be performing freestyle acrobatics and dancing in the dead of night. Come and join us!",
@@ -227,8 +227,8 @@ module.exports = {
           endDate: "2024-08-31",
         },
         {
-          venueId: 14,
           groupId: 14,
+          venueId: 14,
           name: "Gathering Intel",
           description:
             "Join me in learning more about the treasures here! Please join, it's less suspicious if I'm not alone.",
@@ -239,8 +239,8 @@ module.exports = {
           endDate: "2024-04-21",
         },
         {
-          venueId: 15,
           groupId: 15,
+          venueId: 15,
           name: "Race of the Year",
           description:
             "Try to beat me and take the title of the fastest in the universe! I doubt anyone can beat me, but feel free to try!",
@@ -251,8 +251,8 @@ module.exports = {
           endDate: "2025-07-21",
         },
         {
-          venueId: 16,
           groupId: 16,
+          venueId: 16,
           name: "Flying Along the Island",
           description:
             "Come join me in flying around the island, and exploring its many secrets.",
