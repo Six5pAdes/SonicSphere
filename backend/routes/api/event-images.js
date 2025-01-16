@@ -12,7 +12,7 @@ const {
 const router = express.Router();
 
 // 32. delete event image
-router.delete("/event-images/:imageId", requireAuth, async (req, res) => {
+router.delete("/:imageId", requireAuth, async (req, res) => {
   const { user } = req;
   const { imageId } = req.params;
 

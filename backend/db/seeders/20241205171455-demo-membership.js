@@ -103,13 +103,13 @@ module.exports = {
         },
         {
           userId: 2,
-          groupId: 1,
-          status: "member",
+          groupId: 2,
+          status: "co-host",
         },
         {
           userId: 2,
-          groupId: 2,
-          status: "co-host",
+          groupId: 1,
+          status: "member",
         },
         {
           userId: 3,
@@ -297,7 +297,7 @@ module.exports = {
           status: "pending",
         },
         {
-          userId: 1,
+          userId: 16,
           groupId: 11,
           status: "pending",
         },

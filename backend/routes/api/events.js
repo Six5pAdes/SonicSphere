@@ -182,7 +182,7 @@ router.get("/:eventId", async (req, res) => {
   return res.json(eventObj);
 });
 
-// 20. create event *
+// 20. create image(s) for event *
 router.post(":/eventId/images", requireAuth, async (req, res) => {
   const { eventId } = req.params;
   const { user } = req;
@@ -217,15 +217,20 @@ router.post(":/eventId/images", requireAuth, async (req, res) => {
   const host = currUser.id == group.organizerId;
 
   if (host || cohost || attendee.length) {
-    let image = { url, preview };
+    const { url, preview } = req.body;
+
+    const image = await EventImage.create({
+      url,
+      preview,
+      eventId,
+    });
+
+    return res.json(image);
+  } else {
+    return res
+      .status(403)
+      .json({ message: "You are not authorized to add images to this event" });
   }
-
-  const eventImage = await EventImage.create({
-    eventId,
-    url,
-  });
-
-  return res.json(eventImage);
 });
 
 // 21. edit event
@@ -343,7 +348,7 @@ router.get("/:eventId/attendees", async (req, res) => {
 
   currUser.Memberships.forEach((membership) => {
     membership = membership.toJSON();
-    if (membership.groupId === group.id && membership.status === "co-host") {
+    if (membership.groupId === group.id && membership.status == "co-host") {
       cohost.push(true);
     }
   });
@@ -351,6 +356,7 @@ router.get("/:eventId/attendees", async (req, res) => {
   let attendeeArr = [];
   attendees.forEach((attendee) => {
     attendee = attendee.toJSON();
+    delete attendee.username;
     attendee.Attendance = { status: attendee.Attendance.status };
     attendeeArr.push(attendee);
   });
@@ -402,7 +408,7 @@ router.post("/:eventId/attendance", requireAuth, async (req, res) => {
 
   let attendance = [];
   currUserObj.Attendances.forEach((att) => {
-    if (att.eventId === event.id) {
+    if (att.eventId == event.id) {
       attendance.push(att.status);
     }
   });
@@ -419,14 +425,14 @@ router.post("/:eventId/attendance", requireAuth, async (req, res) => {
   }
 
   const attendee = await Attendance.create({
-    eventId,
+    eventId: eventId,
     userId: user.id,
     status: "pending",
   });
 
   return res.json({
-    userId: attendance.userId,
-    status: attendance.status,
+    userId: attendee.userId,
+    status: attendee.status,
   });
 });
 
@@ -463,7 +469,7 @@ router.put("/:eventId/attendance", requireAuth, async (req, res) => {
 
   let attending = [];
   reqBodyUser.Attendances.forEach((att) => {
-    if (att.eventId === eventId) {
+    if (att.eventId == eventId) {
       attending.push(att);
     }
   });
@@ -477,7 +483,7 @@ router.put("/:eventId/attendance", requireAuth, async (req, res) => {
   let cohost = [];
   currUser.Memberships.forEach((membership) => {
     membership = membership.toJSON();
-    if (membership.groupId === group.id && membership.status === "co-host") {
+    if (membership.groupId == group.id && membership.status == "co-host") {
       cohost.push(true);
     }
   });
@@ -511,7 +517,7 @@ router.delete("/:eventId/attendance", requireAuth, async (req, res) => {
 
   let attending = [];
   reqBodyUser.Attendances.forEach((att) => {
-    if (att.eventId === eventId) {
+    if (att.eventId == eventId) {
       attending.push(att);
     }
   });
