@@ -34,7 +34,9 @@ export default function LandingPage() {
             <div id='what-to-do'>
                 <div id='instructions'>
                     <h2>How Sonic Sphere Works...</h2>
-                    <p></p>
+                    <p>
+                        Sonic Sphere is a platform that allows you to find groups and events that interest you. You can join groups to meet new people and participate in activities, or you can create your own group and invite others to join you. You can also create events and invite others to join you in those events. Sonic Sphere is a great way to meet new people and have fun!
+                    </p>
                 </div>
                 <div id='site-options'>
                     <div className='action'>

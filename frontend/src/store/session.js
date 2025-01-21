@@ -2,6 +2,9 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+const LOAD_USER_GROUPS = "session/loadUserGroups";
+const LOAD_USER_EVENTS = "session/loadUserEvents";
+const LOAD_USER_GROUP_EVENTS = "session/loadUserGroupEvents";
 
 const setUser = (user) => {
   return {
@@ -13,6 +16,28 @@ const setUser = (user) => {
 const removeUser = () => {
   return {
     type: REMOVE_USER,
+  };
+};
+
+const loadUserGroups = (groups) => {
+  return {
+    type: LOAD_USER_GROUPS,
+    payload: groups,
+  };
+};
+
+const loadUserEvents = (events) => {
+  return {
+    type: LOAD_USER_EVENTS,
+    payload: events,
+  };
+};
+
+const loadUserGroupEvents = (groupId, events) => {
+  return {
+    type: LOAD_USER_GROUP_EVENTS,
+    groupId,
+    events,
   };
 };
 
@@ -62,6 +87,45 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
+export const loadUserGroupsThunk = () => async (dispatch) => {
+  const res = await csrfFetch("/api/groups/current");
+
+  if (res.ok) {
+    const groups = await res.json();
+    dispatch(loadUserGroups(groups));
+    return groups;
+  } else {
+    const err = await res.json();
+    return err;
+  }
+};
+
+export const loadUserEventsThunk = () => async (dispatch) => {
+  const res = await csrfFetch("/api/events/current");
+
+  if (res.ok) {
+    const events = await res.json();
+    dispatch(loadUserEvents(events));
+    return events;
+  } else {
+    const err = await res.json();
+    return err;
+  }
+};
+
+export const loadUserGroupEventsThunk = (groupId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/groups/${groupId}/events`);
+
+  if (res.ok) {
+    const events = await res.json();
+    dispatch(loadUserGroupEvents(groupId, events));
+    return events;
+  } else {
+    const err = await res.json();
+    return err;
+  }
+};
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
@@ -70,6 +134,49 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.payload };
     case REMOVE_USER:
       return { ...state, user: null };
+    case LOAD_USER_GROUPS: {
+      const Groups = {};
+      action.groups.Groups.forEach((group) => {
+        Groups[group.id] = group;
+      });
+      return { ...state, user: { ...state.user, Groups } };
+    }
+    case LOAD_USER_EVENTS: {
+      const userEvents = {};
+      const eventQueue = {};
+      action.events.userEvents.forEach((event) => {
+        userEvents[event.id] = event;
+      });
+      action.events.eventQueue.forEach((event) => {
+        eventQueue[event.id] = event;
+      });
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          Events: {
+            userEvents,
+            eventQueue,
+          },
+        },
+      };
+    }
+    case LOAD_USER_GROUP_EVENTS: {
+      const userState = {
+        ...state,
+        user: {
+          ...state.user,
+          Groups: {
+            ...state.user.Groups,
+            [action.groupId]: {
+              ...state.user.Groups[action.groupId],
+              ...action.events,
+            },
+          },
+        },
+      };
+      return userState;
+    }
     default:
       return state;
   }

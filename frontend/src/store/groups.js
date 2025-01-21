@@ -1,106 +1,78 @@
 import { csrfFetch } from "./csrf";
-import { createSelector } from "reselect";
+import { deleteAllEvents } from "./events";
 
-// Define Action Types as Constants
-const GET_GROUPS = "groups/GET_GROUPS";
-const GET_USER_GROUPS = "groups/GET_USER_GROUPS";
-const GET_GROUP_BY_ID = "groups/GET_GROUP_BY_ID";
-const CREATE_GROUP = "groups/CREATE_GROUP";
-const CREATE_GROUP_IMAGE = "groupImages/CREATE_GROUP_IMAGE";
-const DELETE_GROUP = "groups/DELETE_GROUP";
+export const LOAD_GROUPS = "groups/loadGroups";
+export const LOAD_GROUP_DETAILS = "groups/loadGroupDetails";
+export const LOAD_GROUP_EVENTS = "groups/loadGroupEvents";
+export const CREATE_GROUP = "groups/createGroup";
+export const UPDATE_GROUP = "groups/updateGroup";
+export const DELETE_GROUP = "groups/deleteGroup";
+export const LOAD_MEMBERS = "groups/loadMembers";
 
-// Define Action Creators
-const getGroups = (groups) => {
-  return {
-    type: GET_GROUPS,
-    groups,
-  };
-};
-const getUserGroups = (groups) => {
-  return {
-    type: GET_USER_GROUPS,
-    groups,
-  };
-};
-const getGroupById = (group) => {
-  return {
-    type: GET_GROUP_BY_ID,
-    group,
-  };
-};
-const createGroup = (group) => {
-  return {
-    type: CREATE_GROUP,
-    group,
-  };
-};
-const createGroupImage = (groupId, image) => {
-  return {
-    type: CREATE_GROUP_IMAGE,
-    groupId,
-    image,
-  };
-};
-const deleteGroup = (groupId) => {
-  return {
-    type: DELETE_GROUP,
-    groupId,
-  };
+export const loadGroups = (groups) => ({
+  type: LOAD_GROUPS,
+  groups,
+});
+
+export const loadGroupDetails = (group) => ({
+  type: LOAD_GROUP_DETAILS,
+  group,
+});
+
+export const loadGroupEvents = (groupId, events) => ({
+  type: LOAD_GROUP_EVENTS,
+  groupId,
+  events,
+});
+
+export const createGroup = (group) => ({
+  type: CREATE_GROUP,
+  group,
+});
+
+export const updateGroup = (groupId, group) => ({
+  type: UPDATE_GROUP,
+  groupId,
+  group,
+});
+
+export const deleteGroup = (groupId) => ({
+  type: DELETE_GROUP,
+  groupId,
+});
+
+export const loadMembers = (groupId, members) => ({
+  type: LOAD_MEMBERS,
+  groupId,
+  members,
+});
+
+export const loadGroupsThunk = () => async (dispatch) => {
+  const response = await csrfFetch("/api/groups");
+  const groups = await response.json();
+  dispatch(loadGroups(groups));
 };
 
-// Define Thunks
-export const thunkGetGroups = () => async (dispatch) => {
-  const response = await fetch("/api/groups", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export const loadGroupDetailsThunk = (groupId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${groupId}`);
+  const group = await response.json();
+  dispatch(loadGroupDetails(group));
+  return group;
+};
 
+export const loadGroupEventsThunk = (groupId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${groupId}/events`);
   if (response.ok) {
-    const groups = await response.json();
-    dispatch(getGroups(groups.Groups));
-    return groups.Groups;
+    const events = await response.json();
+    dispatch(loadGroupEvents(groupId, events));
+    return events;
   } else {
-    return await response.json();
+    const err = await response.json();
+    return err;
   }
 };
 
-export const thunkGetUserGroups = () => async (dispatch) => {
-  const response = await csrfFetch("/api/groups/current", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (response.ok) {
-    const groups = await response.json();
-    dispatch(getUserGroups(groups.Groups));
-    return groups.Groups;
-  } else {
-    return await response.json();
-  }
-};
-
-export const thunkGetGroupById = (groupId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/groups/${groupId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (response.ok) {
-    const group = await response.json();
-    dispatch(getGroupById(group));
-    return group;
-  } else {
-    return await response.json();
-  }
-};
-
-export const thunkCreateGroup = (group) => async (dispatch) => {
+export const createGroupThunk = (group) => async (dispatch) => {
   const response = await csrfFetch("/api/groups", {
     method: "POST",
     headers: {
@@ -108,38 +80,16 @@ export const thunkCreateGroup = (group) => async (dispatch) => {
     },
     body: JSON.stringify(group),
   });
-
   if (response.ok) {
     const newGroup = await response.json();
     dispatch(createGroup(newGroup));
     return newGroup;
   } else {
-    return await response.json();
+    throw response;
   }
 };
 
-export const thunkCreateGroupImage = (groupId, image) => async (dispatch) => {
-  const response = await csrfFetch(`/api/groups/${groupId}/images`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      url: image,
-      preview: true,
-    }),
-  });
-
-  if (response.ok) {
-    const image = await response.json();
-    dispatch(createGroupImage(groupId, image));
-    return image;
-  } else {
-    return await response.json();
-  }
-};
-
-export const thunkUpdateGroup = (group, groupId) => async (dispatch) => {
+export const updateGroupThunk = (groupId, group) => async (dispatch) => {
   const response = await csrfFetch(`/api/groups/${groupId}`, {
     method: "PUT",
     headers: {
@@ -147,80 +97,108 @@ export const thunkUpdateGroup = (group, groupId) => async (dispatch) => {
     },
     body: JSON.stringify(group),
   });
-
   if (response.ok) {
     const updatedGroup = await response.json();
-    dispatch(getGroupById(updatedGroup));
+    dispatch(updateGroup(groupId, updatedGroup));
     return updatedGroup;
   } else {
-    return await response.json();
+    const error = await response.json();
+    return error;
   }
 };
 
-export const thunkDeleteGroup = (groupId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/groups/${groupId}`, {
+export const deleteGroupThunk = (group) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${group.id}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
-
   if (response.ok) {
-    dispatch(deleteGroup(groupId));
+    const msg = await response.json();
+    await group.Events.forEach((event) => {
+      dispatch(deleteAllEvents(event.id));
+    });
+    dispatch(deleteGroup(group.id));
+    return msg;
   } else {
-    return await response.json();
+    const error = await response.json();
+    return error;
   }
 };
 
-const selectGroups = (state) => {
-  return state.groups.Groups;
+export const loadMembersThunk = (groupId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${groupId}/members`);
+  if (response.ok) {
+    const members = await response.json();
+    dispatch(loadMembers(groupId, members));
+    return members;
+  } else {
+    const error = await response.json();
+    return error;
+  }
 };
-export const selectGroupsArray = createSelector([selectGroups], (groups) => {
-  return Object.values(groups);
-});
 
-// Define an initial state
-const initialState = { Groups: {} };
-
-export default function groupsReducer(state = { ...initialState }, action) {
+const groupReducer = (state = {}, action) => {
   switch (action.type) {
-    case GET_GROUPS: {
-      const newState = { ...state, Groups: { ...state.Groups } };
-      action.groups.forEach((group) => {
-        newState.Groups[group.id] = group;
+    case LOAD_GROUPS: {
+      const groupState = { ...state };
+      action.groups.Groups.forEach((group) => {
+        groupState[group.id] = { ...state[group.id], ...group };
       });
-      return newState;
+      return groupState;
     }
-    case GET_USER_GROUPS: {
-      const newState = {
-        ...state,
-        Groups: { ...state.Groups, User: { ...action.groups } },
+    case LOAD_GROUP_DETAILS: {
+      const groupState = { ...state };
+      groupState[action.group.id] = {
+        ...state[action.group.id],
+        ...action.group,
       };
-      return newState;
+      return groupState;
     }
-    case GET_GROUP_BY_ID: {
-      const newState = { ...state, Groups: { ...state.Groups } };
-      newState[action.group.id] = action.group;
-      return newState;
+    case LOAD_GROUP_EVENTS: {
+      return {
+        ...state,
+        [action.groupId]: {
+          ...state[action.groupId],
+          Events: action.events.Events,
+        },
+      };
+    }
+    case LOAD_MEMBERS: {
+      const Members = {};
+      action.members.Members.forEach((member) => {
+        Members[member.id] = member;
+      });
+      return {
+        ...state,
+        [action.groupId]: {
+          ...state[action.groupId],
+          Members,
+        },
+      };
     }
     case CREATE_GROUP: {
-      const newState = { ...state, Groups: { ...state.Groups } };
-      newState.Groups[action.group.id] = action.group;
-      newState[action.group.id] = action.group;
-      return newState;
+      const groupState = { ...state };
+      groupState[action.group.id] = action.group;
+      return groupState;
+    }
+    case UPDATE_GROUP: {
+      const groupState = { ...state };
+      groupState[action.groupId] = {
+        ...groupState[action.groupId],
+        ...action.group,
+      };
+      return groupState;
     }
     case DELETE_GROUP: {
-      const newState = { ...state, Groups: { ...state.Groups } };
-      delete newState.Groups[action.groupId];
-      delete newState[action.groupId];
-      return newState;
-    }
-    case CREATE_GROUP_IMAGE: {
-      const newState = { ...state };
-      if (!newState[action.groupId]) {
-        newState[action.groupId] = {};
-      }
-      newState[action.groupId][action.image.id] = action.image;
-      return newState;
+      const groupState = { ...state };
+      delete groupState[action.groupId];
+      return groupState;
     }
     default:
       return state;
   }
-}
+};
+
+export default groupReducer;
