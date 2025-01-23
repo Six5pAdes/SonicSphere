@@ -7,6 +7,8 @@ import { Modal } from './context/Modal';
 import LandingPage from './components/LandingPage/LandingPage';
 import GroupList from './components/Groups/Listings/GroupList';
 import GroupDetails from './components/Groups/GroupDetails';
+import CreateGroupForm from './components/Groups/CreateGroupForm';
+import EditGroupForm from './components/Groups/EditGroupForm';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: '/groups/:groupId',
         element: <GroupDetails />
+      },
+      {
+        path: '/groups/new',
+        element: <CreateGroupForm />
+      },
+      {
+        path: '/groups/:groupId/edit',
+        element: <EditGroupForm />
       },
       {
         path: '*',

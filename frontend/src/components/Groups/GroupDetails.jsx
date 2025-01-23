@@ -21,15 +21,17 @@ const GroupDetails = () => {
     const numEvents = Object.values(events).filter(event => event.groupId == groupId).length;
 
     useEffect(() => {
-        if (!group.Organizer) dispatch(loadGroupDetailsThunk(groupId));
-
+        if (!group?.Organizer) dispatch(loadGroupDetailsThunk(groupId));
         return () => null;
     }, [dispatch, groupId, group?.Organizer]);
 
     useEffect(() => {
-        if (!group?.Events || group.Events.length !== numEvents) dispatch(loadGroupEventsThunk(groupId));
-        return () => null;
-    }, [dispatch, groupId, group?.Events, numEvents]);
+        const groupEvents = Object.values(events).filter(event => event.groupId == groupId);
+        if (groupEvents.length !== numEvents) {
+            dispatch(loadGroupEventsThunk(groupId));
+        }
+    }, [dispatch, groupId, events, numEvents]);
+
 
     useEffect(() => {
         if (!group?.Members && user) dispatch(loadMembersThunk(groupId));
@@ -86,19 +88,17 @@ const GroupDetails = () => {
 
                 <div className='group-info'>
                     <div>
-                        <h1>{group.name}</h1>
-                        <h3>{group.city}, {group.state}</h3>
-                        <h4>{groupEvent.length ? groupEvent.length : 0}
-                            events • {group.private ? "Private" : "Public"}
-                        </h4>
+                        <h1>{group?.name}</h1>
+                        <h3>{group?.city}, {group?.state}</h3>
+                        <h4>{groupEvent?.length ? groupEvent?.length : 0} events • {group.private ? "Private" : "Public"}</h4>
                         <h4>Organized by {group?.Organizer?.firstName} {group?.Organizer?.lastName}</h4>
                     </div>
                     <div className='group-btns'>
                         {!isOwner && !isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Join</button>}
-                        {isOwner && <button onClick={() => nav(`groups/${groupId}/events/new`)}>Create New Event</button>}
-                        {isOwner && <button onClick={() => nav(`groups/${groupId}/edit`)}>Update</button>}
+                        {isOwner && <button onClick={() => nav(`/groups/${groupId}/events/new`)}>Create New Event</button>}
+                        {isOwner && <button onClick={() => nav(`/groups/${groupId}/edit`)}>Update Group</button>}
                         {isOwner && <OpenModalMenuItem
-                            buttonText='Delete'
+                            itemText='Delete Group'
                             modalComponent={
                                 (<div id='confirm-delete'>
                                     <h2>Confirm Delete</h2>
@@ -125,18 +125,16 @@ const GroupDetails = () => {
                         <h2>Upcoming Events ({upcoming.length})</h2>
                         <ul>
                             {/* {upcoming.map(event => (
-                                <EventListItem key={event.id} eventId={event.id} /> */}
-                            <p></p>
-                            {/* ))} */}
+                                <EventListItem key={event.id} eventId={event.id} />
+                            ))} */}
                         </ul>
                     </div>}
                     {past.length != 0 && <div className='past-events'>
                         <h2>Past Events ({past.length})</h2>
                         <ul>
                             {/* {past.map(event => (
-                                <EventListItem key={event.id} eventId={event.id} /> */}
-                            <p></p>
-                            {/* ))} */}
+                                <EventListItem key={event.id} eventId={event.id} />
+                            )} */}
                         </ul>
                     </div>}
                 </div>

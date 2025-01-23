@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 export const LOAD_EVENTS = "events/loadEvents";
 export const LOAD_EVENT_DETAILS = "events/loadEventDetails";
 export const CREATE_EVENT = "events/createEvent";
+export const ADD_EVENT_IMAGE = "events/addEventImage";
 export const UPDATE_EVENT = "events/updateEvent";
 export const DELETE_EVENT = "events/deleteEvent";
 export const DELETE_ALL_EVENTS = "events/deleteAllEvents";
@@ -20,6 +21,12 @@ export const loadEventDetails = (event) => ({
 export const createEvent = (event) => ({
   type: CREATE_EVENT,
   event,
+});
+
+export const addEventImage = (eventId, image) => ({
+  type: ADD_EVENT_IMAGE,
+  eventId,
+  image,
 });
 
 export const updateEvent = (eventId, event) => ({
@@ -66,6 +73,22 @@ export const createEventThunk = (groupId, event) => async (dispatch) => {
     const newEvent = await response.json();
     dispatch(createEvent(newEvent));
     return newEvent;
+  } else {
+    throw response;
+  }
+};
+
+export const addEventImageThunk = (eventId, image) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("image", image);
+  const response = await csrfFetch(`/api/events/${eventId}/images`, {
+    method: "POST",
+    body: formData,
+  });
+  if (response.ok) {
+    const eventImage = await response.json();
+    dispatch(addEventImage(eventId, eventImage));
+    return eventImage;
   } else {
     throw response;
   }
@@ -126,6 +149,15 @@ const eventReducer = (state = {}, action) => {
       const eventState = { ...state };
       eventState[action.event.id] = action.event;
       return eventState;
+    }
+    case ADD_EVENT_IMAGE: {
+      return {
+        ...state,
+        [action.eventId]: {
+          ...state[action.eventId],
+          EventImages: [...state[action.eventId].EventImages, ...action.image],
+        },
+      };
     }
     case UPDATE_EVENT: {
       const eventState = { ...state };

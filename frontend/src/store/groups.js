@@ -5,6 +5,7 @@ export const LOAD_GROUPS = "groups/loadGroups";
 export const LOAD_GROUP_DETAILS = "groups/loadGroupDetails";
 export const LOAD_GROUP_EVENTS = "groups/loadGroupEvents";
 export const CREATE_GROUP = "groups/createGroup";
+export const ADD_GROUP_IMAGE = "groups/addGroupImage";
 export const UPDATE_GROUP = "groups/updateGroup";
 export const DELETE_GROUP = "groups/deleteGroup";
 export const LOAD_MEMBERS = "groups/loadMembers";
@@ -28,6 +29,12 @@ export const loadGroupEvents = (groupId, events) => ({
 export const createGroup = (group) => ({
   type: CREATE_GROUP,
   group,
+});
+
+export const addGroupImage = (groupId, image) => ({
+  type: ADD_GROUP_IMAGE,
+  groupId,
+  image,
 });
 
 export const updateGroup = (groupId, group) => ({
@@ -84,6 +91,27 @@ export const createGroupThunk = (group) => async (dispatch) => {
     const newGroup = await response.json();
     dispatch(createGroup(newGroup));
     return newGroup;
+  } else {
+    throw response;
+  }
+};
+
+export const addGroupImageThunk = (groupId, image) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${groupId}/images`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      url: image,
+      preview: true,
+    }),
+  });
+
+  if (response.ok) {
+    const newImage = await response.json();
+    dispatch(addGroupImage(groupId, newImage));
+    return newImage;
   } else {
     throw response;
   }
@@ -182,6 +210,15 @@ const groupReducer = (state = {}, action) => {
       const groupState = { ...state };
       groupState[action.group.id] = action.group;
       return groupState;
+    }
+    case ADD_GROUP_IMAGE: {
+      return {
+        ...state,
+        [action.groupId]: {
+          ...state[action.groupId],
+          GroupImages: [...state[action.groupId].GroupImages, ...action.image],
+        },
+      };
     }
     case UPDATE_GROUP: {
       const groupState = { ...state };

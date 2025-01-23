@@ -59,7 +59,7 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
             <div className='grp-btn-contain'>
                 {isOwner && <button onClick={() => navigate(`/groups/${group.id}/edit`)}>Update</button>}
                 {isOwner && <OpenModalMenuItem
-                    buttonText='Delete'
+                    itemText='Delete Group'
                     modalComponent={
                         (<div id='confirm-delete'>
                             <h2>Confirm Delete</h2>
