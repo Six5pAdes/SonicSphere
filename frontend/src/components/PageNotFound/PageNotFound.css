@@ -1,0 +1,57 @@
+.four-oh-four-contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.page-not-found {
+    margin: 3rem auto;
+    text-align: center;
+    font-size: xx-large;
+    animation: tracking-in-contract-bck 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+img.page-not-found {
+    width: 50%;
+    height: 50%;
+}
+
+h1.page-not-found {
+    font-size: 3rem;
+}
+
+@keyframes tracking-in-contract-bck {
+    0% {
+        letter-spacing: 1em;
+        transform: translateZ(400px);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+.return {
+    display: flex;
+    color: white;
+    background-color: #3061e3;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.return:hover {
+    color: #FFD700;
+    box-shadow: 1px 1px 5px 1px black;
+}

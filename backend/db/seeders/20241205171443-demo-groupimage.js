@@ -83,7 +83,7 @@ module.exports = {
         },
         {
           groupId: 13,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948535/sonic_pict/Chaotix_picnic_unkjyj.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948535/sonic_pict/Chaotix_cityescape_unkjyj.jpg",
           preview: true,
         },
         {

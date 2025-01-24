@@ -9,6 +9,14 @@ import GroupList from './components/Groups/Listings/GroupList';
 import GroupDetails from './components/Groups/GroupDetails';
 import CreateGroupForm from './components/Groups/CreateGroupForm';
 import EditGroupForm from './components/Groups/EditGroupForm';
+import EventList from './components/Events/Listings/EventList';
+import EventDetails from './components/Events/EventDetails';
+import CreateEventForm from './components/Events/CreateEventForm';
+{/* import EditEventForm from './components/Events/EditEventForm';
+  import ManageGroups from './components/Groups/ManageGroups';
+  import ManageEvents from './components/Events/ManageEvents';
+ */}
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -54,8 +62,20 @@ const router = createBrowserRouter([
         element: <EditGroupForm />
       },
       {
+        path: '/events',
+        element: <EventList />
+      },
+      {
+        path: '/events/:eventId',
+        element: <EventDetails />
+      },
+      {
+        path: 'groups/:groupId/events/new',
+        element: <CreateEventForm />
+      },
+      {
         path: '*',
-        element: <h2>PAGE NOT FOUND</h2>
+        element: <PageNotFound />
       }
     ]
   }

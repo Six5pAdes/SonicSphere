@@ -6,7 +6,7 @@ import GroupListItem from './GroupListItem';
 import "./GroupList.css";
 
 const GroupList = () => {
-    const groups = Object.values(useSelector((state) => state.groups));
+    const groups = useSelector(state => Object.values(state.groups));
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const GroupList = () => {
                 </div>
             </section>
             <section>
-                <ul className="group-list">
+                <ul className="each-group">
                     {groups.map((group) => (
                         <GroupListItem
                             groupId={group.id}

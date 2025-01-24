@@ -188,7 +188,7 @@ const EditGroupForm = () => {
                 </div>
 
                 <div>
-                    <button onSubmit={handleSubmit}>Update group</button>
+                    <button onSubmit={handleSubmit}>Update Group</button>
                     <button onClick={handleCancel}>Cancel</button>
                 </div>
             </form>

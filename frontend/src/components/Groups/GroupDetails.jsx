@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { loadGroupDetailsThunk, loadGroupEventsThunk, deleteGroupThunk, loadMembersThunk } from '../../store/groups';
-// import EventListItem from '../../Events/Listings/EventListItem';
+import EventListItem from '../Events/Listings/EventListItem';
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import { useModal } from '../../context/Modal';
 // import './GroupDetails.css'
@@ -78,7 +78,7 @@ const GroupDetails = () => {
     return (
         <div>
             <div className='back'>
-                <span>{'<'}</span><Link id='goBack' to='/groups'>Back to Groups</Link>
+                <span>{'<'}</span><Link className='goBack' to='/groups'>Back to Groups</Link>
             </div>
 
             <section className='group-details'>
@@ -124,17 +124,17 @@ const GroupDetails = () => {
                     {upcoming.length != 0 && <div className='upcoming-events'>
                         <h2>Upcoming Events ({upcoming.length})</h2>
                         <ul>
-                            {/* {upcoming.map(event => (
+                            {upcoming.map(event => (
                                 <EventListItem key={event.id} eventId={event.id} />
-                            ))} */}
+                            ))}
                         </ul>
                     </div>}
                     {past.length != 0 && <div className='past-events'>
                         <h2>Past Events ({past.length})</h2>
                         <ul>
-                            {/* {past.map(event => (
+                            {past.map(event => (
                                 <EventListItem key={event.id} eventId={event.id} />
-                            )} */}
+                            ))}
                         </ul>
                     </div>}
                 </div>

@@ -33,7 +33,7 @@ const CreateGroupForm = () => {
         if ((!image?.endsWith('.png') && !image?.endsWith('.PNG') && !image?.endsWith('.jpg') && !image?.endsWith('.JPG') && !image?.endsWith('.jpeg') && !image?.endsWith('.JPEG'))) {
             errors.image = 'Image URL must end in .png, .jpg, or .jpeg';
         }
-        if (Object.keys(errors).length) {
+        if (Object.values(errors).length) {
             setValidErrors(errors);
         } else {
             const group = {
@@ -200,7 +200,7 @@ const CreateGroupForm = () => {
                 </div>
 
                 <div>
-                    <button onSubmit={handleSubmit}>Create group</button>
+                    <button onSubmit={handleSubmit}>Create Group</button>
                     <button onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
