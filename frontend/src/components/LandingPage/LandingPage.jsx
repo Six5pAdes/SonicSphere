@@ -40,17 +40,17 @@ export default function LandingPage() {
                 </div>
                 <div id='site-options'>
                     <div className='action'>
-                        <img className='action-img' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1711420255/tails-jul-2014_ay4jug.png' alt='' />
+                        <img className='action-img' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1711420255/character%20sketchings/tails-jul-2014_ay4jug.png' alt='' />
                         <NavLink className={'action-link'} to='/groups'>See All Groups</NavLink>
                         <p className='description'>Look through the groups currently active, and find the one that best suits your fancy!</p>
                     </div>
                     <div className='action'>
-                        <img className='action-img' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1711420301/amy-apr-2016_gy5ijn.png' alt='' />
+                        <img className='action-img' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1711420301/character%20sketchings/amy-apr-2016_gy5ijn.png' alt='' />
                         <NavLink className={'action-link'} to='/events'>See All Events</NavLink>
                         <p className='description'>There are plenty of events and activities that have happened, are happening, and will happen. It&#39;s up to you to figure out your next adventure!</p>
                     </div>
                     <div className='action'>
-                        <img className='action-img' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1711417675/knuckles-may-2013_bm5oec.png' alt='' />
+                        <img className='action-img' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1711417675/character%20sketchings/knuckles-may-2013_bm5oec.png' alt='' />
                         {sessionUser ?
                             <NavLink className={'action-link'} to={'/groups/new'}>Start a New Group</NavLink> :
                             <p className={'unavailable action-link'}>Log in to start a new group</p>}

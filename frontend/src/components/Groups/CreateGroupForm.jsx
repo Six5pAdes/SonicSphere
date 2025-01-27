@@ -12,8 +12,8 @@ const CreateGroupForm = () => {
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [about, setAbout] = useState("");
-    const [type, setType] = useState("");
-    const [privateOrNot, setPrivateOrNot] = useState("");
+    const [type, setType] = useState("placeholder");
+    const [privateOrNot, setPrivateOrNot] = useState("placeholder");
     const [image, setImage] = useState(null);
     const [validErrors, setValidErrors] = useState({});
 
@@ -26,10 +26,9 @@ const CreateGroupForm = () => {
         if (!name) errors.name = "Name is required";
         if (!city) errors.city = "City is required";
         if (!state) errors.state = "State is required";
-        if (!type) errors.type = "Type is required";
         if (about.length < 30) errors.about = "Description must be at least 30 characters";
-        if (!type) errors.type = "Type is required";
-        if (!privateOrNot) errors.privateOrNot = "Visibility type is required";
+        if (type == 'placeholder' || !type) errors.type = "Type is required";
+        if (type == 'placeholder' || !privateOrNot) errors.privateOrNot = "Visibility type is required";
         if ((!image?.endsWith('.png') && !image?.endsWith('.PNG') && !image?.endsWith('.jpg') && !image?.endsWith('.JPG') && !image?.endsWith('.jpeg') && !image?.endsWith('.JPEG'))) {
             errors.image = 'Image URL must end in .png, .jpg, or .jpeg';
         }
@@ -160,10 +159,10 @@ const CreateGroupForm = () => {
                             <option
                                 className="placeholder"
                                 disabled
-                                value={""}>Select one
+                                value="placeholder">Select one
                             </option>
-                            <option value="in person">In person</option>
-                            <option value="online">Online</option>
+                            <option value="In person">In person</option>
+                            <option value="Online">Online</option>
                         </select>
                     </label>
                     {validErrors.type && <p className="err-msg">{validErrors.type}</p>}
@@ -179,7 +178,7 @@ const CreateGroupForm = () => {
                             <option
                                 className="placeholder"
                                 disabled
-                                value={""}>Select one
+                                value="placeholder">Select one
                             </option>
                             <option value={true}>Private</option>
                             <option value={false}>Public</option>

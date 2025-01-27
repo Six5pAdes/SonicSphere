@@ -34,20 +34,6 @@ const EventDetails = () => {
         closeModal();
     }
 
-    let eventImagesPreview;
-    if (event?.previewImage) {
-        eventImagesPreview = event.previewImage
-    } else if (event?.EventImages) {
-        eventImagesPreview = event?.EventImages?.find(image => image?.preview === true)?.url
-    }
-
-    let groupPreview;
-    if (group?.GroupImages) {
-        groupPreview = group?.GroupImages?.find(image => image.preview === true)?.url
-    } else if (group?.previewImage) {
-        groupPreview = group.previewImage
-    }
-
     let startingDate;
     let startingTime;
     let endingDate;
@@ -69,7 +55,7 @@ const EventDetails = () => {
     return (
         <>
             <div className="event-head">
-                <span>{"<"}</span><Link className="goBack" to="/events">Back to Events</Link>
+                <span>{"<"}</span><Link className="goBack" to="/events">Back to All Events</Link>
                 <h1>{event?.name}</h1>
                 <h4>Hosted by: {group?.Organizer?.firstName} {group?.Organizer?.lastName}</h4>
             </div>
@@ -77,13 +63,14 @@ const EventDetails = () => {
             <section className="event-sec">
                 <div className="event-details">
                     <div className="event-img-contain">
-                        {event?.EventImages && <img src={eventImagesPreview} alt="" />}
+                        <img className='event-img' src={event?.EventImages?.find(img => img.preview === true)?.url} alt='Event' />
                     </div>
                     <div className="event-info">
                         <Link to={`/groups/${event.groupId}`}>
                             <div className="event-grp-card">
                                 <div className="event-group-img-contain">
-                                    {group?.GroupImages && <img src={groupPreview} />}
+                                    <img className='event-group-img' src={group?.GroupImages?.find(img => img.preview == true)?.url} alt='Group' />
+
                                 </div>
                                 <div className="event-group-info">
                                     <h3>{group?.name}</h3>

@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-import { deleteAllEvents } from "./events";
+// import { deleteAllEvents } from "./events";
 
 export const LOAD_GROUPS = "groups/loadGroups";
 export const LOAD_GROUP_DETAILS = "groups/loadGroupDetails";
@@ -92,7 +92,8 @@ export const createGroupThunk = (group) => async (dispatch) => {
     dispatch(createGroup(newGroup));
     return newGroup;
   } else {
-    throw response;
+    const err = await response.json();
+    return err;
   }
 };
 
@@ -135,8 +136,8 @@ export const updateGroupThunk = (groupId, group) => async (dispatch) => {
   }
 };
 
-export const deleteGroupThunk = (group) => async (dispatch) => {
-  const response = await csrfFetch(`/api/groups/${group.id}`, {
+export const deleteGroupThunk = (groupId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/groups/${groupId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -144,10 +145,10 @@ export const deleteGroupThunk = (group) => async (dispatch) => {
   });
   if (response.ok) {
     const msg = await response.json();
-    await group.Events.forEach((event) => {
-      dispatch(deleteAllEvents(event.id));
-    });
-    dispatch(deleteGroup(group.id));
+    // await group.Events.forEach((event) => {
+    //   dispatch(deleteAllEvents(event.id));
+    // });
+    dispatch(deleteGroup(groupId));
     return msg;
   } else {
     const error = await response.json();

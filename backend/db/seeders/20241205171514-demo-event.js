@@ -136,17 +136,6 @@ module.exports = {
           endDate: "2023-09-26",
         },
         {
-          groupId: 7,
-          venueId: 7,
-          name: "The Blitz",
-          description: "All the world's a stage, and we are all players!",
-          type: "In person",
-          capacity: 100,
-          price: 1,
-          startDate: "2024-06-24",
-          endDate: "2024-06-25",
-        },
-        {
           groupId: 8,
           venueId: 8,
           name: "Restaurant Waiting for a Day",

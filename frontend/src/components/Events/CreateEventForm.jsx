@@ -12,7 +12,7 @@ const CreateEventForm = () => {
     const group = useSelector(state => state.groups[groupId]);
 
     const [name, setName] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('placeholder');
     const [capacity, setCapacity] = useState('');
     const [price, setPrice] = useState('');
     const [startDate, setStartDate] = useState('');
@@ -99,9 +99,9 @@ const CreateEventForm = () => {
                     <p>Is this an in person or online event?</p>
                 </label>
                 <select value={type} onChange={(e) => setType(e.target.value)}>
-                    <option disabled value="select-one">(Select one)</option>
-                    <option value="in-person">In Person</option>
-                    <option value="online">Online</option>
+                    <option disabled value="placeholder">Select one</option>
+                    <option value="In person">In Person</option>
+                    <option value="Online">Online</option>
                 </select>
                 {validErrors.type && <p className="err-msg">{validErrors.type}</p>}
 
