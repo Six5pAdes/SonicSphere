@@ -90,7 +90,7 @@ const GroupDetails = () => {
                     <div>
                         <h1>{group?.name}</h1>
                         <h3>{group?.city}, {group?.state}</h3>
-                        <h4>{groupEvent?.length ? groupEvent?.length : 0} events • {group.private ? "Private" : "Public"}</h4>
+                        <h4>{groupEvent?.length ? groupEvent.length : 0} {groupEvent?.length === 1 ? "event" : "events"} • {group.private ? "Private" : "Public"}</h4>
                         <h4>Organized by {group?.Organizer?.firstName} {group?.Organizer?.lastName}</h4>
                     </div>
                     <div className='group-btns'>

@@ -1,25 +1,34 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { createGroupThunk, addGroupImageThunk } from "../../store/groups";
-import "./GroupForm.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { loadGroupDetailsThunk, updateGroupThunk } from '../../../store/groups'
+import './GroupForm.css'
 
-const CreateGroupForm = () => {
+const EditGroupForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { groupId } = useParams();
+    const group = useSelector(state => state.groups[groupId]);
+    const user = useSelector(state => state.session.user);
 
-    const [name, setName] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [about, setAbout] = useState("");
-    const [type, setType] = useState("placeholder");
-    const [privateOrNot, setPrivateOrNot] = useState("placeholder");
-    const [image, setImage] = useState(null);
+    const [name, setName] = useState(group?.name);
+    const [city, setCity] = useState(group?.city);
+    const [state, setState] = useState(group?.state);
+    const [about, setAbout] = useState(group?.about);
+    const [type, setType] = useState(group?.type);
+    const [privateOrNot, setPrivateOrNot] = useState(group?.private);
     const [validErrors, setValidErrors] = useState({});
+
+    const isUserOwner = group?.organizerId == user?.id;
+
+    if (isUserOwner == false) navigate(`/groups/${groupId}`);
+
+    useEffect(() => {
+        if (!group?.Organizer) dispatch(loadGroupDetailsThunk(groupId));
+    }, [dispatch, groupId, group?.Organizer]);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setValidErrors({});
 
         const errors = {};
 
@@ -27,37 +36,28 @@ const CreateGroupForm = () => {
         if (!city) errors.city = "City is required";
         if (!state) errors.state = "State is required";
         if (about.length < 30) errors.about = "Description must be at least 30 characters";
-        if (type == 'placeholder' || !type) errors.type = "Type is required";
-        if (type == 'placeholder' || !privateOrNot) errors.privateOrNot = "Visibility type is required";
-        if ((!image?.endsWith('.png') && !image?.endsWith('.PNG') && !image?.endsWith('.jpg') && !image?.endsWith('.JPG') && !image?.endsWith('.jpeg') && !image?.endsWith('.JPEG'))) {
-            errors.image = 'Image URL must end in .png, .jpg, or .jpeg';
-        }
-        if (Object.values(errors).length) {
-            setValidErrors(errors);
-        } else {
-            const group = {
+        if (!type) errors.type = "Type is required";
+        if (!privateOrNot) errors.privateOrNot = "Visibility type is required";
+
+        setValidErrors(errors);
+
+        if (!Object.keys(validErrors).length) {
+            const groupInfo = {
                 name,
                 city,
                 state,
                 about,
                 type,
                 private: privateOrNot,
-                image,
             };
 
-            await dispatch(createGroupThunk(group))
-                .then(async (newGroup) => {
-                    await dispatch(addGroupImageThunk(newGroup.id, image));
-                    navigate(`/groups/${newGroup.id}`);
-                })
-                .catch(async (res) => {
-                    const data = await res.json();
-                    if (data && data.errors) {
-                        setValidErrors(data.errors);
-                    } else {
-                        setValidErrors(data)
-                    }
-                })
+            const updatedGroup = await dispatch(updateGroupThunk(groupId, groupInfo));
+
+            if (updatedGroup.errors) {
+                setValidErrors(updatedGroup.errors);
+            } else {
+                navigate(`/groups/${groupId}`);
+            }
         }
     }
 
@@ -66,10 +66,10 @@ const CreateGroupForm = () => {
     }
 
     return (
-        <section className="group-form-contain">
-            <h3>BECOME AN ORGANIZER</h3>
-            <h4>Start a new group</h4>
-            <form onSubmit={handleSubmit} className="group-form">
+        <section className='group-form'>
+            <h4>UPDATE YOUR GROUP&apos;S INFORMATION</h4>
+            <h2>Update your Group</h2>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <h3>Set your group&apos;s location</h3>
                     <p>
@@ -159,10 +159,10 @@ const CreateGroupForm = () => {
                             <option
                                 className="placeholder"
                                 disabled
-                                value="placeholder">Select one
+                                value={""}>Select one
                             </option>
-                            <option value="In person">In person</option>
-                            <option value="Online">Online</option>
+                            <option value="in person">In person</option>
+                            <option value="online">Online</option>
                         </select>
                     </label>
                     {validErrors.type && <p className="err-msg">{validErrors.type}</p>}
@@ -178,33 +178,22 @@ const CreateGroupForm = () => {
                             <option
                                 className="placeholder"
                                 disabled
-                                value="placeholder">Select one
+                                value={""}>Select one
                             </option>
                             <option value={true}>Private</option>
                             <option value={false}>Public</option>
                         </select>
                     </label>
                     {validErrors.privateOrNot && <p className="err-msg">{validErrors.privateOrNot}</p>}
-
-                    <label>
-                        <h5>Please add an image url for your group below:</h5>
-                        <textarea
-                            placeholder='Image URL'
-                            cols='30'
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
-                        />
-                    </label>
-                    {validErrors.image && <div className="err-msg">{validErrors.image}</div>}
                 </div>
 
-                <div>
-                    <button onSubmit={handleSubmit}>Create Group</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                <div className="buttons-contain">
+                    <button id="submit-button" type="submit">Update Group</button>
+                    <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
         </section>
     )
 }
 
-export default CreateGroupForm;
+export default EditGroupForm;

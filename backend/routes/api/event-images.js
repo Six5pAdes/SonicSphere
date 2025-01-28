@@ -39,12 +39,12 @@ router.delete("/:imageId", requireAuth, async (req, res) => {
     ],
   });
 
-  let organizer = group.organizerId === currUser.id;
+  let organizer = group.organizerId == currUser.id;
   let cohost = [];
 
   currUser.Memberships.forEach((membership) => {
     membership = membership.toJSON();
-    if (membership.groupId === group.id && membership.role === "co-host") {
+    if (membership.groupId === group.id && membership.role == "co-host") {
       cohost.push(true);
     }
   });

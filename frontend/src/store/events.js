@@ -151,13 +151,23 @@ const eventReducer = (state = {}, action) => {
       return eventState;
     }
     case ADD_EVENT_IMAGE: {
-      return {
-        ...state,
-        [action.eventId]: {
-          ...state[action.eventId],
-          EventImages: [...state[action.eventId].EventImages, ...action.image],
-        },
-      };
+      if (state[action.eventId].EventImages) {
+        return {
+          ...state,
+          [action.eventId]: {
+            ...state[action.eventId],
+            EventImages: [...state[action.eventId].EventImages, action.image],
+          },
+        };
+      } else {
+        return {
+          ...state,
+          [action.eventId]: {
+            ...state[action.eventId],
+            EventImages: [action.image],
+          },
+        };
+      }
     }
     case UPDATE_EVENT: {
       const eventState = { ...state };

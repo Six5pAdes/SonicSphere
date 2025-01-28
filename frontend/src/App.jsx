@@ -7,15 +7,14 @@ import { Modal } from './context/Modal';
 import LandingPage from './components/LandingPage/LandingPage';
 import GroupList from './components/Groups/Listings/GroupList';
 import GroupDetails from './components/Groups/GroupDetails';
-import CreateGroupForm from './components/Groups/CreateGroupForm';
-import EditGroupForm from './components/Groups/EditGroupForm';
+import CreateGroupForm from './components/Groups/Forms/CreateGroupForm';
+import EditGroupForm from './components/Groups/Forms/EditGroupForm';
 import EventList from './components/Events/Listings/EventList';
 import EventDetails from './components/Events/EventDetails';
-import CreateEventForm from './components/Events/CreateEventForm';
-{/* import EditEventForm from './components/Events/EditEventForm';
-  import ManageGroups from './components/Groups/ManageGroups';
-  import ManageEvents from './components/Events/ManageEvents';
- */}
+import CreateEventForm from './components/Events/Forms/CreateEventForm';
+import EditEventForm from './components/Events/Forms/EditEventForm';
+import ManageGroups from './components/Groups/ManageGroups';
+import ManageEvents from './components/Events/ManageEvents';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function Layout() {
@@ -70,8 +69,20 @@ const router = createBrowserRouter([
         element: <EventDetails />
       },
       {
-        path: 'groups/:groupId/events/new',
+        path: '/groups/:groupId/events/new',
         element: <CreateEventForm />
+      },
+      {
+        path: '/events/:eventId/edit',
+        element: <EditEventForm />
+      },
+      {
+        path: '/groups/current',
+        element: <ManageGroups />
+      },
+      {
+        path: '/events/current',
+        element: <ManageEvents />
       },
       {
         path: '*',

@@ -12,8 +12,9 @@ const {
 } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const { Op } = require("sequelize");
+const { Op, or } = require("sequelize");
 const { format } = require("sequelize/lib/utils");
+const e = require("express");
 
 const router = express.Router();
 
@@ -144,6 +145,55 @@ router.get("/", validateQueryParams, async (req, res) => {
   });
 });
 
+router.get("/current", requireAuth, async (req, res) => {
+  const { user } = req;
+
+  const ownedEvents = await Event.findAll({
+    include: [
+      {
+        model: Group,
+        where: { organizerId: user.id },
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
+      },
+      {
+        model: EventImage,
+        attributes: {
+          exclude: ["eventId", "createdAt", "updatedAt"],
+        },
+      },
+    ],
+  });
+
+  const attendingEvents = await Event.findAll({
+    include: [
+      {
+        model: User,
+        as: "numAttending",
+        where: { id: user.id },
+      },
+      {
+        model: Group,
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
+      },
+      {
+        model: EventImage,
+        attributes: {
+          exclude: ["eventId", "createdAt", "updatedAt"],
+        },
+      },
+    ],
+  });
+
+  return res.json({
+    ownedEvents,
+    attendingEvents,
+  });
+});
+
 // 18. get one event
 router.get("/:eventId", async (req, res) => {
   const { eventId } = req.params;
@@ -155,7 +205,9 @@ router.get("/:eventId", async (req, res) => {
     include: [
       {
         model: EventImage,
-        attributes: ["eventId", "createdAt", "updatedAt"],
+        attributes: {
+          exclude: ["eventId", "createdAt", "updatedAt"],
+        },
       },
       {
         model: User,

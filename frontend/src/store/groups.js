@@ -92,8 +92,7 @@ export const createGroupThunk = (group) => async (dispatch) => {
     dispatch(createGroup(newGroup));
     return newGroup;
   } else {
-    const err = await response.json();
-    return err;
+    throw response;
   }
 };
 
@@ -213,13 +212,26 @@ const groupReducer = (state = {}, action) => {
       return groupState;
     }
     case ADD_GROUP_IMAGE: {
-      return {
-        ...state,
-        [action.groupId]: {
-          ...state[action.groupId],
-          GroupImages: [...state[action.groupId].GroupImages, ...action.image],
-        },
-      };
+      if (state[action.groupId].GroupImages) {
+        return {
+          ...state,
+          [action.groupId]: {
+            ...state[action.groupId],
+            GroupImages: [
+              ...state[action.groupId].GroupImages,
+              ...action.image,
+            ],
+          },
+        };
+      } else {
+        return {
+          ...state,
+          [action.groupId]: {
+            ...state[action.groupId],
+            GroupImages: [action.image],
+          },
+        };
+      }
     }
     case UPDATE_GROUP: {
       const groupState = { ...state };

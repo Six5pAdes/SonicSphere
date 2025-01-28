@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { loadGroupDetailsThunk } from "../../store/groups";
-import { createEventThunk, addEventImageThunk } from "../../store/events";
+import { loadGroupDetailsThunk } from "../../../store/groups";
+import { createEventThunk, addEventImageThunk } from "../../../store/events";
 import './EventForm.css';
 
 const CreateEventForm = () => {
@@ -189,9 +189,9 @@ const CreateEventForm = () => {
                 {validErrors.description && <p className="err-msg">{validErrors.description}</p>}
             </div>
 
-            <div>
-                <button onSubmit={handleSubmit}>Create Event</button>
-                <button onClick={handleCancel}>Cancel</button>
+            <div className="buttons-contain">
+                <button id="submit-button" type="submit">Create Event</button>
+                <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
             </div>
         </form>
     )

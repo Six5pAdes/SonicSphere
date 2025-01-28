@@ -35,6 +35,8 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
 
     if (!group) return null;
 
+    console.log(isOwner, isMember);
+
     return (
         <li>
             <Link to={`/groups/${group.id}`}>

@@ -142,21 +142,21 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: { ...state.user, Groups } };
     }
     case LOAD_USER_EVENTS: {
-      const userEvents = {};
-      const eventQueue = {};
-      action.events.userEvents.forEach((event) => {
-        userEvents[event.id] = event;
+      const ownedEvents = {};
+      const attendingEvents = {};
+      action.events.ownedEvents.forEach((event) => {
+        ownedEvents[event.id] = event;
       });
-      action.events.eventQueue.forEach((event) => {
-        eventQueue[event.id] = event;
+      action.events.attendingEvents.forEach((event) => {
+        attendingEvents[event.id] = event;
       });
       return {
         ...state,
         user: {
           ...state.user,
           Events: {
-            userEvents,
-            eventQueue,
+            ownedEvents,
+            attendingEvents,
           },
         },
       };
