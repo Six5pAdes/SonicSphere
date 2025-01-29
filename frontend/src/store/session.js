@@ -22,14 +22,14 @@ const removeUser = () => {
 const loadUserGroups = (groups) => {
   return {
     type: LOAD_USER_GROUPS,
-    payload: groups,
+    groups,
   };
 };
 
 const loadUserEvents = (events) => {
   return {
     type: LOAD_USER_EVENTS,
-    payload: events,
+    events,
   };
 };
 

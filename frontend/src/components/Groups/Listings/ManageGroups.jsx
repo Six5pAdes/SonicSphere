@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { loadUserGroupsThunk } from '../../store/session'
-import GroupListItem from './Listings/GroupListItem';
-// import '.ManageGroups.css'
+import { loadUserGroupsThunk } from '../../../store/session'
+import GroupListItem from './GroupListItem';
+import './GroupList.css';
 
 const ManageGroups = () => {
     const dispatch = useDispatch();

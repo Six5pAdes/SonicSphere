@@ -59,7 +59,7 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
                 </div>
             </Link>
             <div className='event-btn-contain'>
-                {isOwned && <button onClick={() => navigate(`/events/${event.id}/edit`)}>Update</button>}
+                {isOwned && <button onClick={() => navigate(`/events/${event.id}/edit`)}>Update Event</button>}
                 {isOwned && <OpenModalMenuItem
                     itemText='Delete Event'
                     modalComponent={
@@ -72,7 +72,7 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
                     }
                 />}
                 {isAttending && (
-                    <button className="tba" onClick={() => alert("Feature coming soon")}>Leave</button>
+                    <button className="tba" onClick={() => alert("Feature coming soon")}>{isAttending ? "Leave" : "Attend"}</button>
                 )}
             </div>
         </li>

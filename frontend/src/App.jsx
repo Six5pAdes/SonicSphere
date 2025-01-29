@@ -13,8 +13,8 @@ import EventList from './components/Events/Listings/EventList';
 import EventDetails from './components/Events/EventDetails';
 import CreateEventForm from './components/Events/Forms/CreateEventForm';
 import EditEventForm from './components/Events/Forms/EditEventForm';
-import ManageGroups from './components/Groups/ManageGroups';
-import ManageEvents from './components/Events/ManageEvents';
+import ManageGroups from './components/Groups/Listings/ManageGroups';
+import ManageEvents from './components/Events/Listings/ManageEvents';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function Layout() {

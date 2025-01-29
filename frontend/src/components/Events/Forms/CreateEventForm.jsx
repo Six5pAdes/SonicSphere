@@ -162,12 +162,11 @@ const CreateEventForm = () => {
 
             <div>
                 <label>
-                    <h5>Please add an image url for your group below:</h5>
-                    <textarea
-                        placeholder='Image URL'
-                        cols='30'
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                    <p>Please add an image url for your group below:</p>
+                    <input
+                        type="file"
+                        accept=".jpg, .png, .jpeg"
+                        onChange={(e) => setImage(e.target.files[0])}
                     />
                 </label>
                 {validErrors.image && <div className="err-msg">{validErrors.image}</div>}

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { loadUserEventsThunk } from "../../store/session"
-import EventListItem from "./Listings/EventListItem";
-// import './ManageEvents.css'
+import { loadUserEventsThunk } from "../../../store/session"
+import EventListItem from "./EventListItem";
+import "./EventList.css";
 
 const ManageEvents = () => {
     const dispatch = useDispatch()

@@ -35,8 +35,6 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
 
     if (!group) return null;
 
-    console.log(isOwner, isMember);
-
     return (
         <li>
             <Link to={`/groups/${group.id}`}>
@@ -59,7 +57,7 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
                 </div>
             </Link>
             <div className='grp-btn-contain'>
-                {isOwner && <button onClick={() => navigate(`/groups/${group.id}/edit`)}>Update</button>}
+                {isOwner && <button onClick={() => navigate(`/groups/${group.id}/edit`)}>Update Group</button>}
                 {isOwner && <OpenModalMenuItem
                     itemText='Delete Group'
                     modalComponent={
@@ -71,7 +69,7 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
                         </div>)
                     }
                 />}
-                {isMember && <button className='tba' onClick={() => alert("Feature coming soon")}>Join</button>}
+                {isMember && <button className='tba' onClick={() => alert("Feature coming soon")}>{isMember ? "Unjoin" : "Join"}</button>}
             </div>
         </li>
     )
