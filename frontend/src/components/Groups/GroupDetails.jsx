@@ -94,7 +94,8 @@ const GroupDetails = () => {
                         <h4>Organized by {group?.Organizer?.firstName} {group?.Organizer?.lastName}</h4>
                     </div>
                     <div className='group-btns'>
-                        {!isOwner && !isMember && <button className='tba' onClick={() => alert("Feature coming soon")}>Join</button>}
+                        {!isOwner && !isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Join Group</button>}
+                        {!isOwner && isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Leave Group</button>}
                         {isOwner && <button onClick={() => nav(`/groups/${groupId}/events/new`)}>Create New Event</button>}
                         {isOwner && <button onClick={() => nav(`/groups/${groupId}/edit`)}>Update Group</button>}
                         {isOwner && <OpenModalMenuItem

@@ -69,7 +69,7 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
                         </div>)
                     }
                 />}
-                {isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Unjoin</button>}
+                {isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Unjoin Group</button>}
             </div>
         </li>
     )

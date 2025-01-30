@@ -1,32 +1,40 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { loadEventDetailsThunk, deleteEventThunk } from "../../../store/events";
-import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
-import { useModal } from "../../../context/Modal";
+import {
+    Link,
+    // useNavigate
+} from "react-router-dom";
+import {
+    loadEventDetailsThunk,
+    // deleteEventThunk
+} from "../../../store/events";
+// import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
+// import { useModal } from "../../../context/Modal";
 import "./EventList.css";
 
-const EventListItem = ({ eventId, isOwned, isAttending }) => {
+const EventListItem = ({ eventId,
+    // isOwned, isAttending
+}) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { closeModal } = useModal();
+    // const navigate = useNavigate();
+    // const { closeModal } = useModal();
     const event = useSelector(state => state.events[eventId]);
 
     useEffect(() => {
         if (eventId && !event?.description) dispatch(loadEventDetailsThunk(eventId));
     }, [dispatch, eventId, event?.description]);
 
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        await dispatch(deleteEventThunk(eventId));
-        closeModal();
-        navigate('/events');
-    }
+    // const handleDelete = async (e) => {
+    //     e.preventDefault();
+    //     await dispatch(deleteEventThunk(eventId));
+    //     closeModal();
+    //     navigate('/events');
+    // }
 
-    const handleCancel = (e) => {
-        e.preventDefault();
-        closeModal();
-    }
+    // const handleCancel = (e) => {
+    //     e.preventDefault();
+    //     closeModal();
+    // }
 
     if (!event) return null;
 
@@ -58,7 +66,7 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
                     <p>{event.description}</p>
                 </div>
             </Link>
-            <div className='event-btn-contain'>
+            {/* <div className='event-btn-contain'>
                 {isOwned && <button onClick={() => navigate(`/events/${event.id}/edit`)}>Update Event</button>}
                 {isOwned && <OpenModalMenuItem
                     itemText='Delete Event'
@@ -72,9 +80,9 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
                     }
                 />}
                 {isAttending && (
-                    <button id="tba" onClick={() => alert("Feature coming soon")}>Leave</button>
+                    <button id="tba" onClick={() => alert("Feature coming soon")}>Leave Event</button>
                 )}
-            </div>
+            </div> */}
         </li>
     )
 }
