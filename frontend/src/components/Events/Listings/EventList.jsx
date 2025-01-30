@@ -30,19 +30,19 @@ const EventList = () => {
                     <NavLink className='' to='/groups'>Groups</NavLink>
                 </div>
                 <div>
-                    <span>All Current Events</span>
+                    <h2>All Current Events</h2>
                 </div>
             </section>
             <section>
                 <ul className="each-event">
-                    {upcoming?.length > 0 && <h2>Upcoming Events</h2>}
+                    {upcoming?.length > 0 && <h3>Upcoming Events</h3>}
                     {upcoming?.length > 0 && upcoming?.map((event) => (
                         <EventListItem
                             eventId={event.id}
                             key={event.id}
                         />
                     ))}
-                    {past?.length > 0 && <h2 id='time-divide'>Past Events</h2>}
+                    {past?.length > 0 && <h3 id='time-divide'>Past Events</h3>}
                     {past?.length > 0 && past?.map((event) => (
                         <EventListItem
                             eventId={event.id}

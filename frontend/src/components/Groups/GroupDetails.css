@@ -1,0 +1,87 @@
+.goBack {
+  color: black;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.goBack:hover {
+  color: #3061e3;
+  text-decoration: underline;
+}
+
+.group-details {
+  margin: auto;
+  width: 80%;
+  display: flex;
+}
+
+.group-img-div {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  background: whitesmoke;
+}
+
+.group-img {
+  height: 350px;
+  width: 525px;
+  object-fit: contain;
+}
+
+.group-info {
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.group-info h1 {
+  margin-top: 0;
+}
+
+.group-info h4 {
+  color: rgb(175, 175, 175);
+  margin: 10px 0px;
+}
+
+.group-btns button {
+  background-color: #3061e3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.group-btns button:hover {
+  color: #ffd700;
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+.group-events-contain {
+  margin-top: 2rem;
+  background-color: blanchedalmond;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.group-events-info {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.group-events-info h4 {
+  color: gray;
+}
+
+.group-events-info ul {
+  padding-left: 0;
+}
+
+.group-events-info li {
+  background-color: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}

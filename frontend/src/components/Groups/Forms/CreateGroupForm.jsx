@@ -97,8 +97,8 @@ const CreateGroupForm = () => {
                             onChange={(e) => setState(e.target.value)}
                         />
                     </label>
-                    {validErrors.city && <p className="err-msg">{validErrors.city}</p>}
-                    {validErrors.state && <p className="err-msg">{validErrors.state}</p>}
+                    {validErrors.city && <p className="err-msg" id="err-city">{validErrors.city}</p>}
+                    {validErrors.state && <p className="err-msg" id="err-state">{validErrors.state}</p>}
                 </div>
 
                 <div>
@@ -157,7 +157,7 @@ const CreateGroupForm = () => {
                             onChange={(e) => setType(e.target.value)}
                         >
                             <option
-                                className="placeholder"
+                                className="placeholder-select"
                                 disabled
                                 value="placeholder">Select one
                             </option>
@@ -176,7 +176,7 @@ const CreateGroupForm = () => {
                             onChange={(e) => setPrivateOrNot(e.target.value)}
                         >
                             <option
-                                className="placeholder"
+                                className="placeholder-select"
                                 disabled
                                 value="placeholder">Select one
                             </option>
@@ -189,8 +189,12 @@ const CreateGroupForm = () => {
                     <label htmlFor="image">
                         <p>Please add an image url for your group below:</p>
                         <input
-                            type="file"
-                            accept=".jpg, .png, .jpeg"
+                            id="group-imgURL"
+                            // type="file"
+                            // accept=".jpg, .png, .jpeg"
+                            type="text"
+                            placeholder="Image URL"
+                            value={image}
                             onChange={(e) => setImage(e.target.files[0])}
                         />
                     </label>

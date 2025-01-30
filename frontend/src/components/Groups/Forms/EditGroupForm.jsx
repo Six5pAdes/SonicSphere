@@ -66,10 +66,10 @@ const EditGroupForm = () => {
     }
 
     return (
-        <section className='group-form'>
-            <h4>UPDATE YOUR GROUP&apos;S INFORMATION</h4>
-            <h2>Update your Group</h2>
-            <form onSubmit={handleSubmit}>
+        <section className='group-form-contain'>
+            <h3>UPDATE YOUR GROUP&apos;S INFORMATION</h3>
+            <h4>Update your Group</h4>
+            <form onSubmit={handleSubmit} className="group-form">
                 <div>
                     <h3>Set your group&apos;s location</h3>
                     <p>

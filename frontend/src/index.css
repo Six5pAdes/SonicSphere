@@ -1,28 +1,99 @@
 /* TODO: Add sitewide styles */
 * {
-    /* color: 	#3061e3; */
-    font-family: 'Roboto', serif;
-    margin: 0;
+  /* color: 	#3061e3; */
+  font-family: "Roboto", serif;
+  margin: 0;
 }
 
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    background-color:rgb(248, 255, 229)
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(248, 255, 229);
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+p {
+  word-wrap: break-word;
 }
 
 .fa-ring {
-    color: #FFD700
+  color: #ffd700;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.error-msg {
-    color: red
+.err-msg {
+  color: red;
+  margin: 0;
+}
+
+#confirm-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+}
+
+#confirm-delete > h2,
+span {
+  align-self: center;
+}
+
+#confirm-delete > button {
+  padding: 10px;
+}
+
+#delete-complete {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#delete-cancel {
+  background-color: darkgray;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#delete-complete:hover,
+#delete-cancel:hover {
+  color: black;
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+#tba {
+  background-color: #67c1ec;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+#tba:hover {
+  color: #ffd700;
+  box-shadow: 1px 1px 5px 1px black;
 }

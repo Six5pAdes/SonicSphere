@@ -99,7 +99,7 @@ const CreateEventForm = () => {
                     <p>Is this an in person or online event?</p>
                 </label>
                 <select value={type} onChange={(e) => setType(e.target.value)}>
-                    <option disabled value="placeholder">Select one</option>
+                    <option disabled value="select-one">Select one</option>
                     <option value="In person">In Person</option>
                     <option value="Online">Online</option>
                 </select>
@@ -110,6 +110,7 @@ const CreateEventForm = () => {
                 </label>
                 <input
                     type="number"
+                    name="event-capacity"
                     id="event-capacity"
                     placeholder="Event Capacity"
                     min={0}
@@ -143,7 +144,6 @@ const CreateEventForm = () => {
                 </label>
                 <input
                     type="datetime-local"
-                    id="event-start-date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
@@ -153,7 +153,6 @@ const CreateEventForm = () => {
                 </label>
                 <input
                     type="datetime-local"
-                    id="event-end-date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                 />
@@ -164,8 +163,12 @@ const CreateEventForm = () => {
                 <label>
                     <p>Please add an image url for your group below:</p>
                     <input
-                        type="file"
-                        accept=".jpg, .png, .jpeg"
+                        id="event-imgURL"
+                        // type="file"
+                        // accept=".jpg, .png, .jpeg"
+                        type="text"
+                        placeholder="Image URL"
+                        value={image}
                         onChange={(e) => setImage(e.target.files[0])}
                     />
                 </label>

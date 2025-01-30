@@ -1,0 +1,75 @@
+.event-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#event-head-contain {
+    border: none;
+}
+
+.event-form div {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid lightgray;
+}
+
+.event-form input,
+.event-form select,
+.event-form textarea {
+    border: 2px solid black;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+    padding: .36rem;
+}
+
+.event-form p {
+    margin: 0.25rem 0;
+}
+
+#event-name, #event-imgURL {
+    width: 20rem;
+}
+
+#event-date {
+    width: 10rem;
+}
+
+#event-price {
+    border: 2px solid black;
+    width: fit-content;
+    padding-left: 5px;
+    width: 89px;
+    margin: 0;
+}
+
+#price-contain {
+    border: none;
+    width: 75px;
+}
+
+#event-description {
+    width: 20rem;
+    height: 10rem;
+}
+
+.buttons-contain {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+#submit-button, #cancel-button {
+    background-color: #3061e3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: fit-content;
+    align-self: center;
+    margin-left: 10px;
+}
+
+#submit-button:hover, #cancel-button:hover {
+    color: #FFD700;
+    box-shadow: 1px 1px 5px 1px black;
+}

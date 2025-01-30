@@ -19,6 +19,7 @@ const EditEventForm = () => {
     const [startDate, setStartDate] = useState(event?.startDate);
     const [endDate, setEndDate] = useState(event?.endDate);
     const [description, setDescription] = useState(event?.description);
+    const [image, setImage] = useState(event?.image);
     const [validErrors, setValidErrors] = useState({});
     const isUserOwner = group?.organizerId == user?.id;
 
@@ -42,6 +43,9 @@ const EditEventForm = () => {
         if (new Date(startDate).getTime() <= new Date().getTime()) errors.startDate = 'Start date must be in the future';
         if (new Date(startDate).getTime() > new Date(endDate).getTime()) errors.endDate = 'Start date must be before end date';
         if (!endDate) errors.endDate = 'End date is required';
+        if ((!image?.endsWith('.png') && !image?.endsWith('.PNG') && !image?.endsWith('.jpg') && !image?.endsWith('.JPG') && !image?.endsWith('.jpeg') && !image?.endsWith('.JPEG'))) {
+            errors.image = 'Image URL must end in .png, .jpg, or .jpeg';
+        }
         if (description.length < 30) errors.description = 'Description must be at least 30 characters';
 
         if (Object.values(errors).length) {
@@ -75,7 +79,7 @@ const EditEventForm = () => {
     }
 
     return (
-        <form className="eventForm" onSubmit={handleSubmit}>
+        <form className="event-form" onSubmit={handleSubmit}>
             <div id="event-head-contain">
                 <h1>Update Your Event</h1>
                 <label htmlFor="event-name">
@@ -89,10 +93,10 @@ const EditEventForm = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
-                {validErrors.name && <p>{validErrors.name}</p>}
+                {validErrors.name && <p className="err-msg">{validErrors.name}</p>}
             </div>
 
-            <div id="event-types-contain">
+            <div>
                 <label htmlFor="event-type">
                     <p>Is this an in person or online event?</p>
                 </label>
@@ -101,7 +105,7 @@ const EditEventForm = () => {
                     <option value="In person">In person</option>
                     <option value="Online">Online</option>
                 </select>
-                {validErrors.type && <p>{validErrors.type}</p>}
+                {validErrors.type && <p className="err-msg">{validErrors.type}</p>}
 
                 <label htmlFor="event-capacity">
                     <p>What is the capacity of the event?</p>
@@ -115,7 +119,7 @@ const EditEventForm = () => {
                     min={0}
                     onChange={(e) => setCapacity(e.target.value)}
                 />
-                {validErrors.capacity && <p>{validErrors.capacity}</p>}
+                {validErrors.capacity && <p className="err-msg">{validErrors.capacity}</p>}
 
                 <label htmlFor="event-price">
                     <p>What is the price of the event?</p>
@@ -133,10 +137,10 @@ const EditEventForm = () => {
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </div>
-                {validErrors.price && <p>{validErrors.price}</p>}
+                {validErrors.price && <p className="err-msg">{validErrors.price}</p>}
             </div>
 
-            <div id="event-dates-contain">
+            <div>
                 <label htmlFor="event-start-date">
                     <p>When does the event start?</p>
                 </label>
@@ -145,7 +149,7 @@ const EditEventForm = () => {
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
-                {validErrors.startDate && <p>{validErrors.startDate}</p>}
+                {validErrors.startDate && <p className="err-msg">{validErrors.startDate}</p>}
 
                 <label htmlFor="event-end-date">
                     <p>When does the event end?</p>
@@ -155,10 +159,26 @@ const EditEventForm = () => {
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                 />
-                {validErrors.endDate && <p>{validErrors.endDate}</p>}
+                {validErrors.endDate && <p className="err-msg">{validErrors.endDate}</p>}
             </div>
 
-            <div id="event-description-contain">
+            <div>
+                <label>
+                    <p>Please add an image url for your group below:</p>
+                    <input
+                        id="event-imgURL"
+                        // type="file"
+                        // accept=".jpg, .png, .jpeg"
+                        type="text"
+                        placeholder="Image URL"
+                        value={image}
+                        onChange={(e) => setImage(e.target.files[0])}
+                    />
+                </label>
+                {validErrors.image && <div className="err-msg">{validErrors.image}</div>}
+            </div>
+
+            <div>
                 <label htmlFor="event-description">
                     <p>Describe your event:</p>
                 </label>
@@ -171,7 +191,7 @@ const EditEventForm = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                {validErrors.description && <p>{validErrors.description}</p>}
+                {validErrors.description && <p className="err-msg">{validErrors.description}</p>}
             </div>
 
             <div className="buttons-contain">

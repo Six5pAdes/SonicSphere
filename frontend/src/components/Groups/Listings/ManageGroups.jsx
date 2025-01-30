@@ -19,10 +19,10 @@ const ManageGroups = () => {
     }
 
     return (
-        <div className='manage-groups-container'>
+        <div className='manage-groups-contain'>
             <h1>Manage Groups</h1>
-            <h2>Your Groups in Sonic Sphere</h2>
-            <div>
+            <h3>Your Groups in Sonic Sphere</h3>
+            <div className='each-group'>
                 <ul>
                     {userGroups?.length ? (
                         userGroups.map((group) => (

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loadEventsThunk, deleteEventThunk } from "../../../store/events";
+import { loadEventDetailsThunk, deleteEventThunk } from "../../../store/events";
 import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
 import { useModal } from "../../../context/Modal";
 import "./EventList.css";
@@ -13,8 +13,8 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
     const event = useSelector(state => state.events[eventId]);
 
     useEffect(() => {
-        if (eventId && !event?.description) dispatch(loadEventsThunk(eventId));
-    }, [dispatch, eventId, event]);
+        if (eventId && !event?.description) dispatch(loadEventDetailsThunk(eventId));
+    }, [dispatch, eventId, event?.description]);
 
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
             <Link to={`/events/${event.id}`} event={event}>
                 <div className='event-item-contain'>
                     <div className='event-img-contain'>
-                        <img className='event-img' src={event?.previewImage} alt='Event' />
+                        <img className='event-img' src={event?.EventImages?.find(img => img.preview === true)?.url} alt='Event' />
                     </div>
                     <div className='event-info'>
                         <h3>{date} • {"<"} {time} {">"}</h3>
@@ -55,7 +55,7 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
                     </div>
                 </div>
                 <div className="event-description">
-                    <p>{event?.description}</p>
+                    <p>{event.description}</p>
                 </div>
             </Link>
             <div className='event-btn-contain'>
@@ -72,7 +72,7 @@ const EventListItem = ({ eventId, isOwned, isAttending }) => {
                     }
                 />}
                 {isAttending && (
-                    <button className="tba" onClick={() => alert("Feature coming soon")}>{isAttending ? "Leave" : "Attend"}</button>
+                    <button id="tba" onClick={() => alert("Feature coming soon")}>Leave</button>
                 )}
             </div>
         </li>

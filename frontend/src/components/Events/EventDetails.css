@@ -1,0 +1,145 @@
+.goBack {
+  color: black;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.goBack:hover {
+  color: #3061e3;
+  text-decoration: underline;
+}
+
+.event-head {
+  padding-top: 2rem;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.event-head h4 {
+  color: gray;
+  font-weight: 100;
+}
+
+.event-sec {
+  background-color: blanchedalmond;
+}
+
+.event-details {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.event-image-contain {
+  width: 50%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.event-image {
+  width: 500px;
+  height: 300px;
+  border-radius: 15px;
+}
+
+.event-stats-contain {
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-grp-card {
+  background-color: white;
+  display: flex;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.event-group-img {
+  height: 133px;
+  width: 200px;
+  object-fit: contain;
+}
+
+.event-group-info {
+  padding-left: 1rem;
+}
+
+.event-stats {
+  background-color: white;
+  border-radius: 15px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-stats > div {
+  margin: 0.5rem 0;
+}
+
+.event-stats span,
+.event-stats i {
+  color: grey;
+}
+
+.event-stats i {
+  font-size: larger;
+}
+
+.icon-contain {
+  width: 1.5rem;
+}
+
+.event-stats p {
+  color: #2a9d8f;
+  margin: 0;
+}
+
+.time-heads,
+.time-dates,
+.price-stat,
+.type-stat {
+  margin-left: 1rem;
+}
+
+.time,
+.price,
+.type {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.user-btns-contain {
+  margin-left: auto;
+  padding: 5px;
+}
+
+.type button {
+  background-color: #3061e3;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.type button:hover {
+  color: #ffd700;
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+.event-about {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}

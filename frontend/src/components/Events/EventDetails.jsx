@@ -5,7 +5,7 @@ import { loadEventDetailsThunk, deleteEventThunk } from "../../store/events";
 import { loadGroupDetailsThunk } from "../../store/groups";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import { useModal } from "../../context/Modal";
-// import './EventDetails.css';
+import './EventDetails.css';
 
 const EventDetails = () => {
     const navigate = useNavigate();
@@ -62,10 +62,10 @@ const EventDetails = () => {
 
             <section className="event-sec">
                 <div className="event-details">
-                    <div className="event-img-contain">
-                        <img className='event-img' src={event?.EventImages?.find(img => img.preview === true)?.url} alt='Event' />
+                    <div className="event-image-contain">
+                        <img className='event-image' src={event?.EventImages?.find(img => img.preview === true)?.url} alt='Event' />
                     </div>
-                    <div className="event-info">
+                    <div className="event-stats-contain">
                         <Link to={`/groups/${event.groupId}`}>
                             <div className="event-grp-card">
                                 <div className="event-group-img-contain">
@@ -128,7 +128,8 @@ const EventDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="event-description">
+                    <div className="event-about">
+                        <h3>Details</h3>
                         <p>{event?.description}</p>
                     </div>
                 </div>

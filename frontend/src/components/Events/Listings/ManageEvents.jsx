@@ -24,13 +24,13 @@ const ManageEvents = () => {
     attendingEvents?.sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
 
     return (
-        <div className="manage-events-container">
+        <div className="manage-events-contain">
             <h1>Manage Events</h1>
-            <h2>Your Events in Sonic Sphere</h2>
+            <h3>Your Events in Sonic Sphere</h3>
 
             {ownedEvents?.length ? (
-                <div>
-                    <h3>Events you are hosting:</h3>
+                <div className="each-event">
+                    <h4>Events you are hosting:</h4>
                     <ul>
                         {ownedEvents.map((event) => (
                             <EventListItem
@@ -46,8 +46,8 @@ const ManageEvents = () => {
                 <p>You are not hosting any events at the moment</p>
             )}
             {attendingEvents?.length ? (
-                <div>
-                    <h3>Events you are attending:</h3>
+                <div className="each-event">
+                    <h4>Events you are attending:</h4>
                     <ul>
                         {attendingEvents.map((event) => (
                             <EventListItem
