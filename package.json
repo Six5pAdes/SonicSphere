@@ -14,5 +14,15 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Six5pAdes/SonicSphere.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Six5pAdes/SonicSphere/issues"
+  },
+  "homepage": "https://github.com/Six5pAdes/SonicSphere#readme"
 }
