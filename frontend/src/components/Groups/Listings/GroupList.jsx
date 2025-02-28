@@ -21,7 +21,7 @@ const GroupList = () => {
                     <NavLink className='' to='/groups'>Groups</NavLink>
                 </div>
                 <div>
-                    <span>All Current Groups</span>
+                    <h2>All Current Groups</h2>
                 </div>
             </section>
             <section>

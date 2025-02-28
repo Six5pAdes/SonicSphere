@@ -115,7 +115,7 @@ const GroupDetails = () => {
 
             <section className='group-events-contain'>
                 <div className='group-events-info'>
-                    <div>
+                    <div className='group-about'>
                         <h2>Organizer</h2>
                         <h4>{group?.Organizer?.firstName} {group?.Organizer?.lastName}</h4>
                         <h3>What we&apos;re about</h3>

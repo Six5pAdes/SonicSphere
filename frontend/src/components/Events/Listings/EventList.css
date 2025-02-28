@@ -40,10 +40,11 @@ h3 {
   border: 1px solid black;
   padding: 1rem;
   margin-bottom: 1rem;
+  border-radius: 20px;
 }
 
 .each-event li:hover {
-  background-color: #f0f0f0;
+  background-color: #FFE5B4;
 }
 
 .event-item-contain {
@@ -82,7 +83,11 @@ h3 {
 }
 
 .event-info h4 {
-  color: aqua;
+  color: lightgrey;
+}
+
+.event-description {
+  margin-top: 1rem;
 }
 
 .event-btn-contain {

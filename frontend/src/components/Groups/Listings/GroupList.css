@@ -17,10 +17,11 @@ h3 {
   border: 1px solid black;
   padding: 1rem;
   margin-bottom: 1rem;
+  border-radius: 20px;
 }
 
 .each-group li:hover {
-  background-color: #f0f0f0;
+  background-color: #FFE5B4;
 }
 
 .grp-item-contain {

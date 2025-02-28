@@ -58,7 +58,7 @@ const EventListItem = ({ eventId,
                         <h3>{date} • {"<"} {time} {">"}</h3>
                         <h2>{event.name}</h2>
                         {event.Venue ? (
-                            <h4>{event.Venue?.city}, {event.Venue?.state}</h4>
+                            <h4>{event.Group?.city}, {event.Group?.state}</h4>
                         ) : (<h4>Location TBD</h4>)}
                     </div>
                 </div>
