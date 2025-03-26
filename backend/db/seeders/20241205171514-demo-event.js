@@ -109,8 +109,8 @@ module.exports = {
           type: "In person",
           capacity: 10,
           price: 100,
-          startDate: "2025-03-19",
-          endDate: "2025-03-26",
+          startDate: "2025-03-27",
+          endDate: "2025-03-31",
         },
         {
           groupId: 6,
@@ -155,7 +155,7 @@ module.exports = {
           type: "In person",
           capacity: 10,
           price: 0,
-          startDate: "2025-03-24",
+          startDate: "2025-03-30",
           endDate: "2025-03-31",
         },
         {
