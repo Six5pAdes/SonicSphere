@@ -74,39 +74,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       startDate: {
         type: DataTypes.DATE,
-        validate: {
-          isDate: true,
-          isAfter: {
-            args: [sequelize.NOW],
-            msg: "Start date must be in the future",
-          },
-        },
-        get: function () {
-          let year = this.getDataValue("startDate").getFullYear();
-          let month = this.getDataValue("startDate").getMonth() + 1;
-          let day = this.getDataValue("startDate").getDate();
-
-          let time = this.getDataValue("startDate").toLocaleTimeString("en-GB");
-          return `${year}-${month.toString().padStart(2, "0")}-${day
-            .toString()
-            .padStart(2, "0")} ${time}`;
-        },
+        allowNull: false,
       },
       endDate: {
         type: DataTypes.DATE,
-        validate: {
-          isDate: true,
-        },
-        get: function () {
-          let year = this.getDataValue("endDate").getFullYear();
-          let month = this.getDataValue("endDate").getMonth() + 1;
-          let day = this.getDataValue("endDate").getDate();
-
-          let time = this.getDataValue("endDate").toLocaleTimeString("en-GB");
-          return `${year}-${month.toString().padStart(2, "0")}-${day
-            .toString()
-            .padStart(2, "0")} ${time}`;
-        },
+        allowNull: false,
       },
     },
     {

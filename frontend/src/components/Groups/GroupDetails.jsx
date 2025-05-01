@@ -78,7 +78,7 @@ const GroupDetails = () => {
     return (
         <div>
             <div className='back'>
-                <span>{'<'}</span><Link className='goBack' to='/groups'>Back to All Groups</Link>
+                <span>{'<'}</span><Link className='goBack-groups' to='/groups'>Back to All Groups</Link>
             </div>
 
             <section className='group-details'>

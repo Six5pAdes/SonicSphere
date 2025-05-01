@@ -4,8 +4,7 @@
   width: 80%;
 }
 
-.manage-groups-contain h1,
-h3 {
+.manage-groups-header {
   text-align: center;
 }
 
@@ -21,7 +20,7 @@ h3 {
 }
 
 .each-group li:hover {
-  background-color: #FFE5B4;
+  background-color: #ffe5b4;
 }
 
 .grp-item-contain {
@@ -70,6 +69,16 @@ h3 {
 
 .event-type-contain {
   display: flex;
+}
+
+.grp-btn-contain {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  position: relative;
+  margin-top: 1rem;
+  background-color: transparent;
+  z-index: 1;
 }
 
 .grp-btn-contain button {

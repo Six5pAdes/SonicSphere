@@ -1,4 +1,13 @@
-.goBack {
+.back {
+  color: black;
+  text-decoration: none;
+  position: relative;
+  margin-top: 2em;
+  margin-left: 140px;
+  padding-bottom: 1em;
+}
+
+.goBack-groups {
   color: black;
   margin-left: 5px;
   text-decoration: none;
@@ -21,6 +30,7 @@
   display: flex;
   justify-content: center;
   background: whitesmoke;
+  border-radius: 15px;
 }
 
 .group-img {
@@ -38,6 +48,10 @@
 
 .group-info h1 {
   margin-top: 0;
+}
+
+.group-info h3 {
+  text-align: left;
 }
 
 .group-info h4 {

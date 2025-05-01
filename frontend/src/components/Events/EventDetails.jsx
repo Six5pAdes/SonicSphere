@@ -40,14 +40,34 @@ const EventDetails = () => {
     let endingTime;
 
     if (event?.startDate) {
-        const starting = event.startDate.split(' ')
-        startingDate = starting[0]
-        startingTime = starting[1]
-        startingTime = startingTime?.slice(0, 5)
-        const ending = event.endDate?.split(' ')
-        endingDate = ending[0]
-        endingTime = ending[1]
-        endingTime = endingTime?.slice(0, 5)
+        const startDate = new Date(event.startDate);
+        const endDate = new Date(event.endDate);
+
+        if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+            startingDate = startDate.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            startingTime = startDate.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            }).toLowerCase();
+
+            endingDate = endDate.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+            endingTime = endDate.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            }).toLowerCase();
+        }
     }
 
     if (!event) return null;
@@ -84,13 +104,9 @@ const EventDetails = () => {
                                 <div className="icon-contain">
                                     <i className="fa-regular fa-clock"></i>
                                 </div>
-                                <div className="time-heads">
-                                    <p><span>START</span></p>
-                                    <p><span>END</span></p>
-                                </div>
-                                <div className="time-dates">
-                                    <p>{startingDate} • {'<'}{startingTime}{'>'}</p>
-                                    <p>{endingDate} • {'<'}{endingTime}{'>'}</p>
+                                <div className="time-stats">
+                                    <p><span>START: </span>{startingDate} • {'<'}{startingTime}{'>'}</p>
+                                    <p><span>END: </span>{endingDate} • {'<'}{endingTime}{'>'}</p>
                                 </div>
 
                                 <div className="price">

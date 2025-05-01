@@ -1,117 +1,117 @@
 #landing-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    top: 50px;
-    margin-bottom: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  top: 50px;
+  margin-bottom: 75px;
 }
 
 #intro {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
 .intro-text {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    color: #3061e3;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  color: #3061e3;
 }
 
 .intro-text h1 {
-    font-size: 40px;
-    font-weight: bold;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 #what-to-do {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: white; */
 }
 
 #instructions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #FFD700;
-    background-color: #3061e3;
-    border: 1px solid lightgrey;
-    padding-top: 10px;
-    width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffd700;
+  background-color: #3061e3;
+  border: 1px solid lightgrey;
+  padding-top: 10px;
+  width: 60%;
 }
 
 #instructions p {
-    margin: 10px;
+  margin: 10px;
 }
 
 #site-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 62%;
-    margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 62%;
+  margin-top: 15px;
 }
 
 .action-img {
-    width: 100%;
-    height: 275px;
-    border-radius: 15px;
+  width: 100%;
+  height: 275px;
+  border-radius: 15px;
 }
 
 .action {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .action-link {
-    padding: 0px;
-    margin: 0px;
-    color: #3061e3;
-    text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  color: #3061e3;
+  text-decoration: none;
 }
 
 .action-link:hover:not(.unavailable) {
-    text-decoration: underline;
-    font-weight: bold;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .description {
-    margin: 4px;
+  margin: 4px;
 }
 
 #buttons {
-    width: 10%;
-    height: 50px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+  width: 10%;
+  height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #join-button {
-    width: 100%;
-    height: 100%;
-    font-size: large;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    background-color: #3061e3;
+  width: 100%;
+  height: 100%;
+  font-size: large;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #3061e3;
 }
 
 #join-button:hover {
-    color: #FFD700;
-    box-shadow: 1px 1px 5px 1px black;
-    border: none;
+  color: #ffd700;
+  box-shadow: 1px 1px 5px 1px black;
+  border: none;
 }
 
 .unavailable {
-    color: grey;
+  color: grey;
 }
 
 .unavailable:hover {
-    cursor:default;
+  cursor: default;
 }

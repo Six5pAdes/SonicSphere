@@ -1,96 +1,97 @@
 .hidden {
-    display: none;
+  display: none;
 }
 
 #logo {
-    margin: 10px;
-    width: fit-content;
-    height: 60px;
-    padding-left: 20px;
-    overflow: hidden;
-    border-radius: 10px;
+  margin: 10px;
+  width: fit-content;
+  height: 60px;
+  padding-left: 20px;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 #logo:hover {
-    animation: moveOffScreen 1s forwards;
+  animation: moveOffScreen 1s forwards;
 }
 
 .site-title {
-    padding-top: 20px;
-    text-decoration: none;
-    font-family: 'marker felt', sans-serif;
-    font-size: 25px;
-    font-weight: bold;
-    color: #3061e3;
+  padding-top: 20px;
+  text-decoration: none;
+  font-family: "marker felt", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: #3061e3;
+  margin-left: 50px;
 }
 
 .site-title:hover {
-    color: black;
-    text-decoration: underline;
+  color: black;
+  text-decoration: underline;
 }
 
 #Navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    margin-right: 0px;
-    margin-left: 0px;
-    border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  margin-right: 0px;
+  margin-left: 0px;
+  border-bottom: 1px solid lightgrey;
 }
 
 .profile-area {
-    display: flex;
+  display: flex;
 }
 
 #logged {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 15%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15%;
 }
 
 #not-logged {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 15%;
 }
 
 #create-group-link {
-    display: flex;
-    color: white;
-    background-color: #3061e3;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    margin-right: 5px;
-    padding: 5px;
+  display: flex;
+  color: white;
+  background-color: #3061e3;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 5px;
+  padding: 5px;
 }
 
 #create-group-link:hover {
-    color: #FFD700;
-    box-shadow: 1px 1px 5px 1px black;
+  color: #ffd700;
+  box-shadow: 1px 1px 5px 1px black;
 }
 
 @keyframes moveOffScreen {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    51% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  51% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

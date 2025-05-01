@@ -97,3 +97,118 @@ span {
   color: #ffd700;
   box-shadow: 1px 1px 5px 1px black;
 }
+
+/* Group and Event cards */
+body.dark-mode .each-group li:hover,
+body.dark-mode .each-event li:hover {
+  background-color: #2d2d2d;
+  border-color: #555555;
+}
+
+body.dark-mode .event-grp-card {
+  background-color: #2d2d2d;
+  border-color: #555555;
+}
+
+/* Details pages */
+body.dark-mode .event-details {
+  background-color: #1a1a1a;
+}
+
+/* body.dark-mode .group-info, */
+/* body.dark-mode .event-info, */
+body.dark-mode .event-stats,
+body.dark-mode .group-about,
+body.dark-mode .event-about {
+  background-color: #2d2d2d;
+  border-color: #555555;
+}
+
+body.dark-mode .group-events-contain,
+body.dark-mode .event-sec {
+  background-color: #1a1a1a;
+  border-color: #555555;
+}
+
+body.dark-mode .group-events-info li {
+  background-color: #2d2d2d;
+  border-color: #555555;
+}
+
+/* Buttons */
+body.dark-mode button {
+  background-color: #3061e3;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+/* Back links */
+body.dark-mode .goBack,
+body.dark-mode .goBack-groups {
+  color: #ffffff;
+}
+
+body.dark-mode .goBack:hover,
+body.dark-mode .goBack-groups:hover {
+  color: #ffd700;
+}
+
+/* Modal content */
+body.dark-mode #confirm-delete {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+/* Event stats */
+body.dark-mode .time-stats,
+body.dark-mode .price-stat,
+body.dark-mode .type-stat {
+  color: #ffffff;
+}
+
+body.dark-mode .profile-contain:hover {
+  color: #ffd700;
+}
+
+body.dark-mode .icon-contain i {
+  color: #ffd700;
+}
+
+/* Lists */
+body.dark-mode .upcoming-events,
+body.dark-mode .past-events {
+  background-color: #1a1a1a;
+  border-color: #555555;
+}
+
+/* Links in dark mode */
+body.dark-mode .dropdown-link {
+  color: #ffffff;
+}
+
+body.dark-mode .dropdown-link:hover {
+  color: #ffd700;
+}
+
+body.dark-mode #modal-content {
+  background-color: #2d2d2d;
+}
+
+/* Group details dark mode text styles */
+body.dark-mode .grp-item-contain h2,
+body.dark-mode .grp-item-contain p,
+body.dark-mode .grp-item-contain span,
+body.dark-mode .other-info span body.dark-mode .event-type-contain span,
+body.dark-mode .back {
+  color: #ffffff;
+}
+
+/* Ensure links in group items follow dark mode */
+body.dark-mode .grp-item-contain a {
+  color: #ffffff;
+}
+
+body.dark-mode .grp-item-contain a:hover {
+  color: #ffd700;
+}

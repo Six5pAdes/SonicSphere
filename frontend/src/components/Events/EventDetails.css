@@ -31,6 +31,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 10px;
+  text-align: center;
 }
 
 .event-image-contain {
@@ -40,6 +41,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 15px;
+  margin: 0 auto;
+  padding-left: 50px;
 }
 
 .event-image {
@@ -49,7 +52,8 @@
 }
 
 .event-stats-contain {
-  margin-left: 1.5rem;
+  margin: 0 auto;
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -77,8 +81,9 @@
   background-color: white;
   border-radius: 15px;
   padding: 1rem;
-  display: grid;
+  display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .event-stats > div {
@@ -96,6 +101,7 @@
 
 .icon-contain {
   width: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .event-stats p {
@@ -103,18 +109,19 @@
   margin: 0;
 }
 
-.time-heads,
-.time-dates,
+.time-stats,
 .price-stat,
 .type-stat {
-  margin-left: 1rem;
+  margin-left: 0;
+  margin-top: 0.5rem;
 }
 
 .time,
 .price,
 .type {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   margin: 1rem 0;
   width: 100%;
 }
@@ -141,9 +148,11 @@
 
 .event-about {
   width: 80%;
-  margin: 0 auto;
-  padding-bottom: 3rem;
-  padding-top: 1rem;
-  padding-left: 25rem;
-  justify-content: center;
+  align-items: center;
+  border: 1px solid darkgrey;
+  border-radius: 20px;
+  margin-left: 95px;
+  margin-right: 4rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
 }

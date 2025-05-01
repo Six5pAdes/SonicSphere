@@ -10,6 +10,7 @@ import './ProfileButton.css';
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
     const ulRef = useRef();
     const navigate = useNavigate();
 
@@ -34,6 +35,18 @@ function ProfileButton({ user }) {
 
     const closeMenu = () => setShowMenu(false);
 
+    useEffect(() => {
+        if (darkMode) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }, [darkMode]);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    }
+
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
@@ -56,14 +69,19 @@ function ProfileButton({ user }) {
                             <li className='floating'>Hello, {user.firstName}</li>
                             <li className='floating'>{user.email}</li>
                             <li className='floating'>
-                                {/* replace with Manage ______ later */}
-                                {/* <NavLink className='dropdown-link' to='/groups'>Your Groups</NavLink> */}
                                 <NavLink className='dropdown-link' to='/groups/current'>Your Groups</NavLink>
                             </li>
                             <li className='floating'>
-                                {/* replace with Manage ______ later */}
-                                {/* <NavLink className='dropdown-link' to='/events'>Your Events</NavLink> */}
                                 <NavLink className='dropdown-link' to='/events/current'>Your Events</NavLink>
+                            </li>
+                            <li className='floating'>
+                                <button className='dark-mode-toggle' onClick={toggleDarkMode}>
+                                    {darkMode ? (
+                                        <><i className="fas fa-sun"></i> Light Mode </>
+                                    ) : (
+                                        <><i className="fas fa-moon"></i> Dark Mode </>
+                                    )}
+                                </button>
                             </li>
                             <li className='floating'>
                                 <button className='logout' onClick={logout}>Log Out</button>

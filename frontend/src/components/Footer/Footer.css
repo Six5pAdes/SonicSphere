@@ -1,75 +1,107 @@
 .footer-container {
-    list-style-type: none;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 5px;
-    border-top: 1px gray solid;
-    background-color: rgba(209, 208, 175, 0.807);
-    margin: 0%;
+  list-style-type: none;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  border-top: 1px gray solid;
+  background-color: rgba(209, 208, 175, 0.807);
+  margin: 0%;
 }
 
 .contactme-txt {
-    margin: 0;
-    text-align: center;
-    padding: 10px 0 5px 0;
+  margin: 0;
+  text-align: center;
+  padding: 10px 0 5px 0;
 }
 
 .footer-top {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .icons-contain {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .contact {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer-link {
-    text-decoration: none;
-    padding: 5px 0;
-    color: #3061e3;
+  text-decoration: none;
+  padding: 5px 0;
+  color: #3061e3;
 }
 
 .footer-link:hover {
-    color: black;
-    text-decoration: underline;
-    font-weight: bolder;
+  color: black;
+  text-decoration: underline;
+  font-weight: bolder;
 }
 
 .sonic-git {
-    font-size: 18px;
-    padding-bottom: 10px;
-    text-decoration: underline;
+  font-size: 18px;
+  padding-bottom: 10px;
+  text-decoration: underline;
 }
 
 .sonic-git:hover {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .github-logo {
-    color: black !important;
-    padding-right: 5px;
+  color: black !important;
+  padding-right: 5px;
 }
 
 .linkedin-logo {
-    color: rgb(7, 98, 200) !important;
-    padding-right: 5px;
+  color: rgb(7, 98, 200) !important;
+  padding-right: 5px;
 }
 
 .website-logo {
-    color: #e77d7d !important;
-    padding-right: 5px;
+  color: #e77d7d !important;
+  padding-right: 5px;
 }
 
 #copyright {
-    text-align: center;
-    padding: 10px 0;
+  text-align: center;
+  padding: 10px 0;
+}
+
+body.dark-mode .footer-container {
+  background-color: #2d2d2d;
+  border-top: 1px solid #555555;
+}
+body.dark-mode .footer-link {
+  color: #ffffff;
+}
+body.dark-mode .footer-link:hover {
+  color: #ffd700;
+}
+body.dark-mode .github-logo {
+  color: #ffffff !important;
+}
+body.dark-mode .linkedin-logo {
+  color: #ffffff !important;
+}
+body.dark-mode .website-logo {
+  color: #ffffff !important;
+}
+body.dark-mode .sonic-git {
+  color: #ffffff;
+}
+body.dark-mode .sonic-git:hover {
+  color: #ffd700;
+}
+body.dark-mode .contactme-txt {
+  color: #ffffff;
+}
+body.dark-mode #copyright {
+  color: #ffffff;
 }

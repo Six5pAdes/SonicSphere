@@ -1,93 +1,140 @@
 .profile-dropdown {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 100%;
-    margin-top: 5px;
-    padding-right: 30px;
-    right: 0;
-    width: fit-content;
-    z-index: 2;
-    border: 1px solid black;
-    border-radius: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    background-color: white;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  margin-top: 5px;
+  padding-right: 30px;
+  right: 0;
+  width: fit-content;
+  z-index: 2;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: white;
 }
 
 .profile-dropdown > ul {
-    margin: 0px 0px 25px 0px;
-    list-style-type: none;
+  margin: 0px 0px 25px 0px;
+  list-style-type: none;
 }
 
 .profile-contain {
-    margin-right: 5px;
-    border: black 1px solid;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: white;
+  margin-right: 5px;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
 }
 
-.fa-caret-up, .fa-caret-down {
-    margin-left: 5px;
+.fa-caret-up,
+.fa-caret-down {
+  margin-left: 5px;
 }
 
 .profile-contain:hover {
-    color: #3061e3;
-    box-shadow: 1px 1px 5px 1px #FFD700;
-    border: none;
-    cursor: pointer;
+  color: #3061e3;
+  box-shadow: 1px 1px 5px 1px #ffd700;
+  border: none;
+  cursor: pointer;
 }
 
 .logout {
-    width: 100px;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    background-color: #3061e3;
+  width: 100px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #3061e3;
 }
 
 .logout:hover {
-    color: #FFD700;
-    background-color: #3061e3;
-    box-shadow: 1px 1px 5px 1px black;
-    cursor: pointer;
+  color: #ffd700;
+  background-color: #3061e3;
+  box-shadow: 1px 1px 5px 1px black;
+  cursor: pointer;
 }
 
 .dropdown-contain {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .floating {
-    position: relative;
-    top: 15px;
-    margin: 5px auto;
+  position: relative;
+  top: 15px;
+  margin: 5px auto;
 }
 
 .dropdown-link {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .dropdown-link:hover {
-    color: #3061e3;
+  color: #3061e3;
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  width: 100px;
+  padding: 5px;
+  text-align: left;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.dark-mode-toggle:hover {
+  background-color: #f0f0f0;
+  color: #3061e3;
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+body.dark-mode {
+  background-color: rgb(27, 30, 118);
+  color: #ffffff;
+}
+
+body.dark-mode a {
+  color: #ffffff;
+}
+
+body.dark-mode a:hover {
+  color: #ffd700;
+}
+
+body.dark-mode .profile-dropdown {
+  background-color: #2d2d2d;
+  border-color: #555555;
+}
+
+body.dark-mode .dark-mode-toggle {
+  width: 110px;
+  padding: 5px;
+  color: #ffffff;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+  background-color: #555555;
 }
 
 .signins button {
-    margin: 0px 5px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    color: #3061e3;
-    font-size: 16px;
-    cursor: pointer;
+  margin: 0px 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: #3061e3;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .signins button:hover {
-    color: #FFD700;
-    background-color: #3061e3;
-    box-shadow: 1px 1px 5px 1px black;
-    cursor: pointer;
+  color: #ffd700;
+  background-color: #3061e3;
+  box-shadow: 1px 1px 5px 1px black;
+  cursor: pointer;
 }

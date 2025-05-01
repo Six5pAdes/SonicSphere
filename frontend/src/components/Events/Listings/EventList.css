@@ -43,8 +43,21 @@ h3 {
   border-radius: 20px;
 }
 
+.each-event li > a {
+  display: block;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
 .each-event li:hover {
-  background-color: #FFE5B4;
+  background-color: #ffe5b4;
+  display: block;
+  border-radius: 20px;
+}
+
+.each-event h3,
+h4 {
+  padding-bottom: 15px;
 }
 
 .event-item-contain {
@@ -80,6 +93,8 @@ h3 {
 
 .event-info h3 {
   color: #3061e3;
+  font-weight: 100;
+  text-align: left;
 }
 
 .event-info h4 {
@@ -92,10 +107,12 @@ h3 {
 
 .event-btn-contain {
   display: flex;
-  justify-content: space-between;
-  position: absolute;
-  right: 0;
-  bottom: 4rem;
+  justify-content: flex-end;
+  gap: 10px;
+  position: relative;
+  margin-top: 1rem;
+  background-color: transparent;
+  z-index: 1;
 }
 
 .event-btn-contain button {
@@ -104,11 +121,18 @@ h3 {
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  margin-top: 5px;
-  margin-right: 5px;
 }
 
-.event-btn-contain button:hover {
+.event-btn-contain div {
+  background-color: #3061e3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.event-btn-contain button:hover,
+.event-btn-contain div:hover {
   color: #ffd700;
   box-shadow: 1px 1px 5px 1px black;
 }

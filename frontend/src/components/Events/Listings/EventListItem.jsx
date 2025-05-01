@@ -2,39 +2,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
     Link,
-    // useNavigate
+    useNavigate
 } from "react-router-dom";
 import {
     loadEventDetailsThunk,
-    // deleteEventThunk
+    deleteEventThunk
 } from "../../../store/events";
-// import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
-// import { useModal } from "../../../context/Modal";
+import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
+import { useModal } from "../../../context/Modal";
 import "./EventList.css";
 
 const EventListItem = ({ eventId,
-    // isOwned, isAttending
+    isOwned, isAttending
 }) => {
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
-    // const { closeModal } = useModal();
+    const navigate = useNavigate();
+    const { closeModal } = useModal();
     const event = useSelector(state => state.events[eventId]);
 
     useEffect(() => {
         if (eventId && !event?.description) dispatch(loadEventDetailsThunk(eventId));
     }, [dispatch, eventId, event?.description]);
 
-    // const handleDelete = async (e) => {
-    //     e.preventDefault();
-    //     await dispatch(deleteEventThunk(eventId));
-    //     closeModal();
-    //     navigate('/events');
-    // }
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        await dispatch(deleteEventThunk(eventId));
+        closeModal();
+        navigate('/events');
+    }
 
-    // const handleCancel = (e) => {
-    //     e.preventDefault();
-    //     closeModal();
-    // }
+    const handleCancel = (e) => {
+        e.preventDefault();
+        closeModal();
+    }
 
     if (!event) return null;
 
@@ -42,9 +42,16 @@ const EventListItem = ({ eventId,
     let time;
 
     if (event && !event.message) {
-        date = event.startDate.split(" ")[0];
-        time = event.startDate.split(" ")[1];
-        time = time?.slice(0, 5);
+        const eventDate = new Date(event.startDate);
+        date = eventDate.toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        });
+        time = eventDate.toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit'
+        });
     }
 
     return (
@@ -55,7 +62,7 @@ const EventListItem = ({ eventId,
                         <img className='event-img' src={event?.EventImages?.find(img => img.preview === true)?.url} alt='Event' />
                     </div>
                     <div className='event-info'>
-                        <h3>{date} • {"<"} {time} {">"}</h3>
+                        <h3>{date} • {time} </h3>
                         <h2>{event.name}</h2>
                         {event.Venue ? (
                             <h4>{event.Group?.city}, {event.Group?.state}</h4>
@@ -66,7 +73,7 @@ const EventListItem = ({ eventId,
                     <p>{event.description}</p>
                 </div>
             </Link>
-            {/* <div className='event-btn-contain'>
+            <div className='event-btn-contain'>
                 {isOwned && <button onClick={() => navigate(`/events/${event.id}/edit`)}>Update Event</button>}
                 {isOwned && <OpenModalMenuItem
                     itemText='Delete Event'
@@ -82,7 +89,7 @@ const EventListItem = ({ eventId,
                 {isAttending && (
                     <button id="tba" onClick={() => alert("Feature coming soon")}>Leave Event</button>
                 )}
-            </div> */}
+            </div>
         </li>
     )
 }
