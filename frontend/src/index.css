@@ -104,6 +104,10 @@ span {
 
 #tba:hover {
   color: #ffd700;
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+body.dark-mode #tba:hover {
   box-shadow: 1px 1px 5px 1px #ffd700;
 }
 

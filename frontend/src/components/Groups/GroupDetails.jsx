@@ -49,6 +49,12 @@ const GroupDetails = () => {
         }).length > 0;
     }
 
+    let membershipStatus = null;
+    if (group?.Members && user) {
+        const memberObj = Object.values(group.Members).find(member => member.id == user.id);
+        if (memberObj) membershipStatus = memberObj.status;
+    }
+
     const now = new Date();
     const upcoming = []
     const past = []
@@ -94,8 +100,22 @@ const GroupDetails = () => {
                         <h4>Organized by {group?.Organizer?.firstName} {group?.Organizer?.lastName}</h4>
                     </div>
                     <div className='group-btns'>
-                        {!isOwner && !isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Join Group</button>}
-                        {!isOwner && isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Leave Group</button>}
+                        {!isOwner && (
+                            <button
+                                id='tba'
+                                onClick={() => {
+                                    if (membershipStatus === 'pending') return;
+                                    alert("Feature coming soon");
+                                }}
+                                disabled={membershipStatus === 'pending'}
+                            >
+                                {membershipStatus === 'pending'
+                                    ? 'Membership Pending'
+                                    : !membershipStatus
+                                        ? 'Join Group'
+                                        : 'Leave Group'}
+                            </button>
+                        )}
                         {isOwner && <button onClick={() => nav(`/groups/${groupId}/events/new`)}>Create New Event</button>}
                         {isOwner && <button onClick={() => nav(`/groups/${groupId}/edit`)}>Update Group</button>}
                         {isOwner && <OpenModalMenuItem

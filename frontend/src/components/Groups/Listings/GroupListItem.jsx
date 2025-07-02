@@ -12,6 +12,12 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
     const navigate = useNavigate();
     const { closeModal } = useModal();
     const group = useSelector(state => state.groups[groupId]);
+    const user = useSelector(state => state.session.user);
+    let membershipStatus = null;
+    if (group?.Members && user) {
+        const memberObj = Object.values(group.Members).find(member => member.id == user.id);
+        if (memberObj) membershipStatus = memberObj.status;
+    }
 
     useEffect(() => {
         if (isOwner || isMember) dispatch(loadUserGroupEventsThunk(groupId));
@@ -69,7 +75,22 @@ const GroupListItem = ({ groupId, isOwner, isMember }) => {
                         </div>)
                     }
                 />}
-                {isMember && <button id='tba' onClick={() => alert("Feature coming soon")}>Unjoin Group</button>}
+                {(!isOwner && user) && (
+                    <button
+                        id='tba'
+                        onClick={() => {
+                            if (membershipStatus === 'pending') return;
+                            alert("Feature coming soon");
+                        }}
+                        disabled={membershipStatus === 'pending'}
+                    >
+                        {membershipStatus === 'pending'
+                            ? 'Membership Pending'
+                            : !membershipStatus
+                                ? 'Join Group'
+                                : 'Leave Group'}
+                    </button>
+                )}
             </div>
         </li>
     )
