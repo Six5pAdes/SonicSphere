@@ -41,13 +41,13 @@ const GroupDetails = () => {
     if (!events) return null;
 
     const isOwner = user?.id === group?.organizerId;
-    let isMember;
-    if (group?.Members) {
-        const members = Object.values(group?.Members);
-        isMember = members.filter(member => {
-            return member.id == user.id
-        }).length > 0;
-    }
+    // let isMember;
+    // if (group?.Members) {
+    //     const members = Object.values(group?.Members);
+    //     isMember = members.filter(member => {
+    //         return member.id == user.id
+    //     }).length > 0;
+    // }
 
     let membershipStatus = null;
     if (group?.Members && user) {
