@@ -1,0 +1,35 @@
+.dark-mode-toggle-floating {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: white;
+  color: #3061e3;
+  border: 1px solid #3061e3;
+  border-radius: 24px;
+  padding: 12px 20px;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.dark-mode-toggle-floating:hover {
+  background: #3061e3;
+  color: #ffd700;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .dark-mode-toggle-floating {
+  background: #2d2d2d;
+  color: #ffd700;
+  border: 1px solid #ffd700;
+}
+
+body.dark-mode .dark-mode-toggle-floating:hover {
+  background: #ffd700;
+  color: #2d2d2d;
+}

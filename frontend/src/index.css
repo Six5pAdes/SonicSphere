@@ -32,8 +32,17 @@ p {
   color: #ffd700;
 }
 
-button:hover {
+button {
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+body.dark-mode button:hover {
+  box-shadow: 1px 1px 5px 1px #ffd700;
 }
 
 .err-msg {
@@ -95,7 +104,7 @@ span {
 
 #tba:hover {
   color: #ffd700;
-  box-shadow: 1px 1px 5px 1px black;
+  box-shadow: 1px 1px 5px 1px #ffd700;
 }
 
 /* Group and Event cards */

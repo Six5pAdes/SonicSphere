@@ -16,6 +16,7 @@ import EditEventForm from './components/Events/Forms/EditEventForm';
 import ManageGroups from './components/Groups/Listings/ManageGroups';
 import ManageEvents from './components/Events/Listings/ManageEvents';
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import DarkModeButton from './components/DarkModeButton/DarkModeButton';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function Layout() {
     <>
       <Modal />
       <Navigation isLoaded={isLoaded} />
+      <DarkModeButton />
       {isLoaded && <Outlet />}
     </>
   );

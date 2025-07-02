@@ -70,11 +70,16 @@
   text-decoration: none;
   margin-right: 5px;
   padding: 5px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 #create-group-link:hover {
   color: #ffd700;
   box-shadow: 1px 1px 5px 1px black;
+}
+
+body.dark-mode #create-group-link:hover {
+  box-shadow: 1px 1px 5px 1px #ffd700;
 }
 
 @keyframes moveOffScreen {

@@ -100,12 +100,17 @@
   border-radius: 5px;
   color: white;
   background-color: #3061e3;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 #join-button:hover {
   color: #ffd700;
   box-shadow: 1px 1px 5px 1px black;
   border: none;
+}
+
+body.dark-mode #join-button:hover {
+  box-shadow: 1px 1px 5px 1px #ffd700;
 }
 
 .unavailable {

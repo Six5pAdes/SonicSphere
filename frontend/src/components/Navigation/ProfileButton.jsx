@@ -10,7 +10,6 @@ import './ProfileButton.css';
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
-    const [darkMode, setDarkMode] = useState(false);
     const ulRef = useRef();
     const navigate = useNavigate();
 
@@ -34,18 +33,6 @@ function ProfileButton({ user }) {
     }, [showMenu]);
 
     const closeMenu = () => setShowMenu(false);
-
-    useEffect(() => {
-        if (darkMode) {
-            document.body.classList.add('dark-mode');
-        } else {
-            document.body.classList.remove('dark-mode');
-        }
-    }, [darkMode]);
-
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    }
 
     const logout = (e) => {
         e.preventDefault();
@@ -73,15 +60,6 @@ function ProfileButton({ user }) {
                             </li>
                             <li className='floating'>
                                 <NavLink className='dropdown-link' to='/events/current'>Your Events</NavLink>
-                            </li>
-                            <li className='floating'>
-                                <button className='dark-mode-toggle' onClick={toggleDarkMode}>
-                                    {darkMode ? (
-                                        <><i className="fas fa-sun"></i> Light Mode </>
-                                    ) : (
-                                        <><i className="fas fa-moon"></i> Dark Mode </>
-                                    )}
-                                </button>
                             </li>
                             <li className='floating'>
                                 <button className='logout' onClick={logout}>Log Out</button>

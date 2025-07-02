@@ -63,5 +63,5 @@
 
 #login-success:hover, #demo:hover {
     color: #FFD700;
-    box-shadow: 1px 1px 5px 1px black;
-}
+    box-shadow: 1px 1px 5px 1px #FFD700;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;}

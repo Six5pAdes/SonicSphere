@@ -67,9 +67,14 @@
     width: fit-content;
     align-self: center;
     margin-left: 10px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 #submit-button:hover, #cancel-button:hover {
-    color: #FFD700;
+    color: #ffd700;
     box-shadow: 1px 1px 5px 1px black;
+}
+
+body.dark-mode #submit-button:hover, body.dark-mode #cancel-button:hover {
+    box-shadow: 1px 1px 5px 1px #ffd700;
 }
